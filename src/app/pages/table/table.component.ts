@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableFunctions } from '../../component-functions/table.function'
 
 declare interface TableData {
     headerRow: string[];
@@ -14,7 +15,12 @@ declare interface TableData {
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
+
+    constructor(
+        private tableFunction: TableFunctions
+    ) {}
     ngOnInit(){
+        this.tableFunction.allUsersFromAdminToMembers()
         this.tableData1 = {
             headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
             dataRows: [
@@ -38,4 +44,6 @@ export class TableComponent implements OnInit{
             ]
         };
     }
+
+
 }
