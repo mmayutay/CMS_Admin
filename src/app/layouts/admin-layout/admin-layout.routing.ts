@@ -9,13 +9,22 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 
+import { MynetworkgroupComponent } from '../../pages/mynetworkgroup/mynetworkgroup.component';
+import { ReportingsComponent } from '../../pages/reportings/reportings.component';
+import { EventsandannouncementsComponent } from '../../pages/eventsandannouncements/eventsandannouncements.component';
+
+
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    // { path: 'typography',     component: TypographyComponent },
+    // { path: 'icons',          component: IconsComponent },
+    // { path: 'maps',           component: MapsComponent },
+    // { path: 'notifications',  component: NotificationsComponent },
+    // { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'mynetworkgroup', component: MynetworkgroupComponent},
+    { path: 'reportings', component: ReportingsComponent },
+    { path: 'eventsandannouncements', component: EventsandannouncementsComponent },
+
 ];

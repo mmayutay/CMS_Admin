@@ -12,12 +12,20 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { MynetworkgroupComponent } from './pages/mynetworkgroup/mynetworkgroup.component';
+import { ReportingsComponent } from './pages/reportings/reportings.component';
+import { EventsandannouncementsComponent } from './pages/eventsandannouncements/eventsandannouncements.component';
+import { ClassesComponent } from './pages/trainings/classes/classes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    MynetworkgroupComponent,
+    ReportingsComponent,
+    EventsandannouncementsComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserAnimationsModule,
