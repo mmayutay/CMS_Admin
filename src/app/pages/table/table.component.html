@@ -12,31 +12,43 @@
                 Name
               </th>
               <th>
-                Country
+                Address
               </th>
               <th>
-                City
+                Marital Status
               </th>
               <th class="text-right">
-                Salary
+                Email
+              </th>
+              <th>
+                Contact Number
+              </th>
+              <th>
+                Role
               </th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let value of allUsers">
                 <td>
-                  Dakota Rice
+                  {{ value.userDetails.lastname }}, {{ value.userDetails.firstname }}
                 </td>
                 <td>
-                  Niger
+                  {{ value.userDetails.address }}
                 </td>
                 <td>
-                  Oud-Turnhout
+                  {{ value.userDetails.marital_status }}
                 </td>
                 <td class="text-right">
-                  $36,738
+                  {{ value.userDetails.email }}
+                </td>
+                <td>
+                  {{ value.userDetails.contact_number }}
+                </td>
+                <td>
+                  {{ value.role }}
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>
                   Minerva Hooper
                 </td>
@@ -119,14 +131,13 @@
                 <td class="text-right">
                   $98,615
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
-      </div>
     </div>
   </div>
-  <div class="col-md-12">
+  <!-- <div class="col-md-12">
     <div class="card card-plain">
       <div class="card-header">
         <h4 class="card-title"> Table on Plain Background</h4>
@@ -253,5 +264,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

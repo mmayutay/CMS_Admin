@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit{
   public chartEmail;
   public chartHours;
 
+    constructor() {
+
+    }
+
     ngOnInit(){
       this.chartColor = "#FFFFFF";
 
