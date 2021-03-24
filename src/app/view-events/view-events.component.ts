@@ -55,6 +55,7 @@ export class ViewEventsComponent implements OnInit {
         });
       })
     }
+    console.log(this.students)
   }
 
 }

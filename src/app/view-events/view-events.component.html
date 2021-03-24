@@ -2,7 +2,7 @@
     <div class="w3-container">
         <h2>{{ event.title }}</h2>
         <p>{{ event.description }}</p>
-        <div *ngIf="students.length == 0"><h1>No students enrolled!</h1></div>
+        <div><h1 *ngIf="students.length == 0">No students enrolled!</h1></div>
         <ul class="w3-ul w3-card-4" style="width:50%">
             <li style="padding: 30px;" *ngFor="let student of students" class="w3-display-container">
                 {{ student.lastname }}, {{ student.firstname }}
