@@ -1,0 +1,11 @@
+button {
+    float: right;
+    outline: none;
+}
+button:active {
+    background-color: rgb(153, 49, 49);
+}
+
+span {
+    float: right;
+}

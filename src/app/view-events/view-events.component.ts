@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataServicesService } from 'app/pages/data-services/data-services.service';
+import { DataServicesService } from 'data-services/data-services.service';
 
 @Component({
   selector: 'app-view-events',
@@ -8,6 +8,7 @@ import { DataServicesService } from 'app/pages/data-services/data-services.servi
   styleUrls: ['./view-events.component.css']
 })
 export class ViewEventsComponent implements OnInit {
+  public allUsers = this.service.allUsers
   public students = []
   public event = {
     title: "",
@@ -55,7 +56,6 @@ export class ViewEventsComponent implements OnInit {
         });
       })
     }
-    console.log(this.students)
   }
 
 }

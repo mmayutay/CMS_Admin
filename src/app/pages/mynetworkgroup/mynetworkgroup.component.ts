@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataServicesService } from '../data-services/data-services.service';
+import { DataServicesService } from '../../../data-services/data-services.service';
 
 @Component({
   selector: 'app-mynetworkgroup',

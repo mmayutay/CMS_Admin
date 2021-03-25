@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDetailsService } from '../data-services/user-details.service';
+import { UserDetailsService } from '../../../data-services/user-details.service';
 
 @Component({
     selector: 'user-cmp',

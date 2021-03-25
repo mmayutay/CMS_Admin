@@ -6,12 +6,18 @@ import { Injectable } from '@angular/core';
 })
 
 export class DataServicesService {
+    public leaders = []
+    public allUsers = []
+
   public url = "http://localhost:8000/api/"
 
 
     constructor(
         private http: HttpClient
-    ) {}
+    ) {
+        this.returnLeaders()
+        this.returnAllUsers()
+    }
     // This function is to get all the Trainings and classes 
     getTrainingsAndClasses() {
         return this.http.get(this.url + "trainings-and-classes/return-all")
@@ -65,5 +71,28 @@ export class DataServicesService {
     // This function is to return the selected trainings
     retrieveTraining(itemID, type) {
         return this.http.post(this.url + 'trainings-by-instructor/get-selected-class', {typeSelected: type, idSelectedItem: itemID})
+    }
+
+    // This function is to return all the leaders listed in the database
+    returnLeaders() {
+        const leaders = this.http.get(this.url + 'get-leaders');
+        leaders.subscribe((data: any) => {
+            data.forEach(element => {
+                const members = this.http.post(this.url + 'return-members-group', {leaderID: element.id})
+                members.subscribe((response: any) => {
+                    this.leaders.push({leader: element, members: response})
+                })
+            })
+        console.log(this.leaders)
+        })
+    }
+
+    // This function is to store all members in an Array
+    returnAllUsers() {
+        const members = this.getAllUsers()
+        members.subscribe((data: any) => {
+            this.allUsers = data
+            console.log(data)
+        })
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableFunctions } from '../../component-functions/table.function'
-import { DataServicesService } from '../data-services/data-services.service';
+import { DataServicesService } from '../../../data-services/data-services.service';
 
 declare interface TableData {
     headerRow: string[];

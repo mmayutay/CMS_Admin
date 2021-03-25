@@ -1,8 +1,32 @@
 <div class="w3-panel w3-card" style="padding: 40px;">
     <div class="w3-container">
+        <p class="w3-tooltip">
+            <button class="w3-button w3-xlarge w3-circle w3-black"
+                onclick="document.getElementById('id01').style.display='block'">+</button>
+            <span class="w3-text w3-tag w3-animate-opacity">Add Student</span>
+        </p>
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top w3-card-4" style="margin-left: 35%; width: 50%;">
+                <header class="w3-container w3-pale-green">
+                    <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-xlarge w3-display-topright">&times;</span><br>
+                    <center><h2>List of names</h2></center>
+                </header>
+                <div class="w3-container"><br>
+                    <p *ngFor="let value of allUsers">{{ value.firstname }} {{ value.lastname }}</p>
+                </div>
+                <footer class="w3-container w3-pale-green"><br>
+                    <p>Click the name you want to add!</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <div class="w3-container">
         <h2>{{ event.title }}</h2>
         <p>{{ event.description }}</p>
-        <div><h1 *ngIf="students.length == 0">No students enrolled!</h1></div>
+        <div>
+            <h1 *ngIf="students.length == 0">No students enrolled!</h1>
+        </div>
         <ul class="w3-ul w3-card-4" style="width:50%">
             <li style="padding: 30px;" *ngFor="let student of students" class="w3-display-container">
                 {{ student.lastname }}, {{ student.firstname }}
