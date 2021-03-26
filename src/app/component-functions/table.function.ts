@@ -46,7 +46,5 @@ export class TableFunctions {
                 })
             });
         })
-        console.log(this.eventsAndAnnouncements)
-        console.log(this.trainingsAndClasses)
     }
 }

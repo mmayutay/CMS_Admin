@@ -31,6 +31,6 @@ export class AttendanceService {
         month[9] = "Oct";
         month[10] = "Nov";
         month[11] = "Dec";
-        return month;
+        return month[monthInput];
     }
 }

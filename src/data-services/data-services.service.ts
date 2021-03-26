@@ -83,7 +83,6 @@ export class DataServicesService {
                     this.leaders.push({leader: element, members: response})
                 })
             })
-        console.log(this.leaders)
         })
     }
 
@@ -92,7 +91,6 @@ export class DataServicesService {
         const members = this.getAllUsers()
         members.subscribe((data: any) => {
             this.allUsers = data
-            console.log(data)
         })
     }
 }
