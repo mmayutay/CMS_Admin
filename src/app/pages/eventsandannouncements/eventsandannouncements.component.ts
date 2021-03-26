@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataServicesService } from '../data-services/data-services.service';
+import { TableFunctions } from 'app/component-functions/table.function';
 
 @Component({
   selector: 'app-eventsandannouncements',
@@ -13,28 +13,12 @@ export class EventsandannouncementsComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private service: DataServicesService
+    private builtFunction: TableFunctions
   ) { }
 
   ngOnInit(): void {
-    const events = this.service.getEventsAndAnnouncements()
-    events.subscribe((evAndAnn: any) => {
-        evAndAnn.forEach(element => {
-            const user = this.service.getUserDetails(element.eventOwner)
-            user.subscribe((response: any) => {
-                this.eventsAndAnnouncements.push({events: element, user: response[0]})
-            })
-        });
-    })
-    const trainings = this.service.getTrainingsAndClasses()
-    trainings.subscribe((trai: any) => {
-        trai.trainings.forEach(element => {
-            const user = this.service.getUserDetails(element.instructor)
-            user.subscribe((response: any) => {
-                this.trainingsAndClasses.push({trainings: element, user: response[0]})
-            })
-        });
-    })
+      this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
+      this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
   }
 
       // This function is to show the students belong to a certain class

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { DataServicesService } from '../data-services/data-services.service';
+import { DataServicesService } from '../../../data-services/data-services.service';
 
 @Component({
     selector: 'icons-cmp',
