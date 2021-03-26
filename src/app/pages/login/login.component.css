@@ -5,11 +5,18 @@
     background-color: aquamarine;
 } */
 .body{
-    /* background-image: url('https://www.motionworship.com/wp-content/themes/mwtheme/assets/images/collections-service-packs-640.jpg'); */
+    background-image: url("https://wallpapercave.com/wp/wp2958151.jpg");
+    /* background: linear-gradient(to top right, #caf3dd 0%, #68ED9A 100%); */
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter: blur(5px);
 }
+
+.head{
+    background-image: url("https://cdn.wallpapersafari.com/79/46/OeHxJw.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 h2 {
     text-align: center;
     font-size: 16px;
@@ -62,7 +69,7 @@ h2.inactive {
 }
 
 h2.active {
-    color: #0d0d0d;
+    color: white;
     border-bottom: 2px solid #5fbae9;
 }
 
