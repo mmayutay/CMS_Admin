@@ -4,7 +4,12 @@
     height: 100vh;
     background-color: aquamarine;
 } */
-
+.body{
+    /* background-image: url('https://www.motionworship.com/wp-content/themes/mwtheme/assets/images/collections-service-packs-640.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+}
 h2 {
     text-align: center;
     font-size: 16px;
