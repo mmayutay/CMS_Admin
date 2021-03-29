@@ -18,6 +18,7 @@ import { MynetworkgroupComponent } from './pages/mynetworkgroup/mynetworkgroup.c
 import { ReportingsComponent } from './pages/reportings/reportings.component';
 import { EventsandannouncementsComponent } from './pages/eventsandannouncements/eventsandannouncements.component';
 import { ClassesComponent } from './pages/trainings/classes/classes.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ClassesComponent } from './pages/trainings/classes/classes.component';
     ReportingsComponent,
     EventsandannouncementsComponent,
     ClassesComponent,
-    ViewEventsComponent
+    ViewEventsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserAnimationsModule,
