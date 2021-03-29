@@ -1,18 +1,20 @@
 /* BASIC */
+
 /* body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
     background-color: aquamarine;
 } */
-.body{
-    background-image: url("https://wallpapercave.com/wp/wp2958151.jpg");
+
+.body {
+    /* background-image: url("https://wallpapercave.com/wp/wp2958151.jpg"); */
     /* background: linear-gradient(to top right, #caf3dd 0%, #68ED9A 100%); */
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.head{
-    background-image: url("https://cdn.wallpapersafari.com/79/46/OeHxJw.jpg");
+.head {
+    /* background-image: url("https://cdn.wallpapersafari.com/79/46/OeHxJw.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -28,26 +30,16 @@ h2 {
 }
 
 /* STRUCTURE */
-
-.wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-}
-
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 8px 8px 8px 8px;
     background: #fff;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
+    padding: 9%;
+    width: 100%;
+    height: auto;
+    /* max-width: 450px;
     position: relative;
-    padding: 0px;
+    padding: 0px; */
     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -69,7 +61,7 @@ h2.inactive {
 }
 
 h2.active {
-    color: white;
+    color: black;
     border-bottom: 2px solid #5fbae9;
 }
 
@@ -108,45 +100,8 @@ h2.active {
     transform: scale(0.95);
 }
 
-
 /* ANIMATIONS */
 
-/* Simple CSS3 Fade-in-down Animation */
-
-.fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-}
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-}
 /* Simple CSS3 Fade-in Animation */
 
 .underlineHover:after {
@@ -169,6 +124,7 @@ h2.active {
 }
 
 /* input fields */
+
 .input {
     position: relative;
     width: 90%;
@@ -200,32 +156,44 @@ input:focus {
     border-color: #56baed;
 }
 
-input:hover{
+input:hover {
     background-color: #dce8f1;
 }
 
-.submit {
-    width: 45px;
-    height: 45px;
-    display: block;
-    margin: 0 auto -15px auto;
-    background: #fff;
-    border-radius: 100%;
-    border: 1px solid #FF7052;
-    color: #FF7052;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px 7px #fff;
-    transition: 0.2s ease-out;
-}
-
-.submit:hover, .submit:focus {
-    background: #FF7052;
-    color: #fff;
-    outline: 0;
-}
-
-img#icon{
-    width: 25%;
+img#icon {
+    width: 60%;
     height: auto;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+    float: right;
+    width: 40%;
+    padding: 10px;
+    height: 100%;
+    position: relative;
+    margin-left: 5%;
+  
+    /* Should be removed. Only for demonstration */
+}
+.column2 {
+    float: right;
+    /* width: 45%; */
+    width: 50%;
+    padding: 10px;
+    height: 100%;
+    position: relative;
+    margin-right: 3%;
+  
+    /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    width: 100%;
+    height: 100%;
 }
