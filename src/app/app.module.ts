@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from "ngx-toastr";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
@@ -18,6 +19,7 @@ import { MynetworkgroupComponent } from './pages/mynetworkgroup/mynetworkgroup.c
 import { ReportingsComponent } from './pages/reportings/reportings.component';
 import { EventsandannouncementsComponent } from './pages/eventsandannouncements/eventsandannouncements.component';
 import { ClassesComponent } from './pages/trainings/classes/classes.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -28,9 +30,11 @@ import { ClassesComponent } from './pages/trainings/classes/classes.component';
     ReportingsComponent,
     EventsandannouncementsComponent,
     ClassesComponent,
-    ViewEventsComponent
+    ViewEventsComponent,
+    LoginComponent,
   ],
   imports: [
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes,{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LoginAndLogout } from 'data-services/user-data';
 
 export interface RouteInfo {
     path: string;
@@ -19,7 +19,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
     { path: '/table',         title: 'My Cell Group',        icon:'nc-tile-56',    class: '' },
     { path: '/mynetworkgroup',    title: 'My Network Group',        icon:'nc-tile-56', class: '' },
-    { path: '/login',    title: 'Logout',        icon:'nc-button-power', class: '' },
 
     // { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
 
@@ -34,7 +33,18 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+
+    constructor(
+        private loginAndLogout: LoginAndLogout
+    ) {
+
+    }
+
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+    }
+
+    logout() {
+        this.loginAndLogout.logOut()
     }
 }

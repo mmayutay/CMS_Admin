@@ -15,6 +15,8 @@ import { ReportingsComponent } from '../../pages/reportings/reportings.component
 import { EventsandannouncementsComponent } from '../../pages/eventsandannouncements/eventsandannouncements.component';
 
 
+
+
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
@@ -33,5 +35,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'mynetworkgroup', component: MynetworkgroupComponent},
     { path: 'reportings', component: ReportingsComponent },
     { path: 'eventsandannouncements', component: EventsandannouncementsComponent },
+    { path: 'reportings', component: ReportingsComponent },
 
 ];
