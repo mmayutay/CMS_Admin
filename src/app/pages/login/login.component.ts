@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   }
+  public type = 'password';
+  public showPass = false;
 
   constructor(
     private loginAndLogout: LoginAndLogout

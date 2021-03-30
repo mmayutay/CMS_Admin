@@ -1,43 +1,37 @@
-<body class="body">
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <div class="head">
-                <h2 class="active"> Sign In </h2>
-
-                <!-- Icon -->
-                <div class="fadeIn first">
-                    <img src="assets/img/BHCFLogo.png" id="icon" alt="User Icon" /><br>
-                </div><br><br>
+<body class="body"><br><br><br><br><br><br>
+    <!-- Tabs Titles -->
+    <div class="row">
+        <div class="column1">
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="assets/img/BHCFLogo.png" id="icon" alt="User Icon" /><br>
             </div>
-            <h2 style="color:black"> Admin </h2>
+            <!-- <br><br> -->
+        </div>
+        <div class="column2">
+            <div id="formContent"><br><br>
+                <form>
+                    <!-- <h2 style="color:black"> Admin </h2> -->
+                    <div class="input">
+                        <input type="text" placeholder="Username" [(ngModel)]="loginDetails.username" name="email" required />
+                        <span><i class="fa fa-envelope-o"></i></span>
+                    </div>
 
-            <!-- Login Form -->
-            <!-- <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form> -->
-            <form>
-                <div class="input">
-                    <input type="email" placeholder="Username" [(ngModel)]="loginDetails.username" name="username" required />
-                    <span><i class="fa fa-envelope-o"></i></span>
+                    <div class="input">
+                        <input type="password" placeholder="Password" [(ngModel)]="loginDetails.password" name="password" required />
+                        <span><i class="fa fa-lock"></i></span>
+                        <!-- <span class="eyeBtn"><i class="fa fa-eye"  aria-hidden="true"></i></span>
+                    <span class="eyeBtn"><i class="fa fa-eye-slash" aria-hidden="true"></i></span> -->
+                    </div>
+
+                    <button class="btnLogin" (click)="logIn()"> Log In </button><br><br>
+
+                </form>
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
                 </div>
-
-                <div class="input">
-                    <input type="password" placeholder="Password" [(ngModel)]="loginDetails.password" name="password" required />
-                    <span><i class="fa fa-lock"></i></span>
-                </div>
-
-                <button class="btnLogin" (click)="logIn()"> Log In </button><br><br>
-
-            </form>
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="#">Forgot Password?</a>
             </div>
-
         </div>
     </div>
-
 </body>
