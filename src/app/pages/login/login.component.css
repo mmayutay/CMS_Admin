@@ -92,6 +92,7 @@ h2.active {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    outline: none;
 }
 
 .btnLogin:hover {
@@ -170,7 +171,6 @@ img#icon {
     width: 65%;
     height: auto;
 }
-
 /* Create two equal columns that floats next to each other */
 
 .column1 {
@@ -187,7 +187,7 @@ img#icon {
 .column2 {
     float: right;
     /* width: 45%; */
-    width: 50%;
+    width: 40%;
     padding: 10px;
     height: 100%;
     position: relative;

@@ -14,8 +14,7 @@
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content w3-animate-top w3-card-4" style="margin-left: 35%; width: 50%;">
                 <header class="w3-container w3-pale-green">
-                    <span onclick="document.getElementById('id01').style.display='none'"
-                        class="w3-button w3-xlarge w3-display-topright">&times;</span><br>
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-display-topright">&times;</span><br>
                     <center>
                         <h2>List of names</h2>
                     </center>
@@ -45,8 +44,10 @@
     </div>
 </div>
 <div class="detailsCard">
-    <div class="w3-container details" *ngIf="eventsOrClass">
-        <center><h2>{{ eventDetails.title }}</h2></center>
+    <!-- <div class="w3-container details" *ngIf="eventsOrClass">
+        <center>
+            <h2>{{ eventDetails.title }}</h2>
+        </center>
 
         <div class="w3-card-4" style="width:50%;margin-left: 25%;">
             <header class="w3-container w3-blue">
@@ -63,5 +64,19 @@
                 <h5>Footer</h5>
             </footer>
         </div>
-    </div>
+        #2196F3!important
+    </div> -->
+
+    <div class="blog-card spring-fever" *ngIf="eventsOrClass">
+        <div class="title-content">
+            <h3> {{ eventDetails.title }} </h3>
+            <div class="intro"> <a>{{ eventDetails.location }}</a>
+                <p> Start Date: {{ eventDetails.start_date }} <br> End Date: {{ eventDetails.end_date }} </p>
+                <p> {{ eventDetails.start_time }} - {{ eventDetails.end_time }} </p>
+            </div>
+        </div>
+        <p class="card-info"> {{ eventDetails.description }} </p>
+        <div class="gradient-overlay"></div>
+        <div class="color-overlay"></div>
+    </div><!-- /.blog-card -->
 </div>
