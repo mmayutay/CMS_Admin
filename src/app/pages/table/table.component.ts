@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TableFunctions } from '../../component-functions/table.function'
+import { DataServicesService } from '../../../data-services/data-services.service';
 
 declare interface TableData {
     headerRow: string[];
@@ -12,14 +14,36 @@ declare interface TableData {
 })
 
 export class TableComponent implements OnInit{
+    public allUsers = []
     public tableData1: TableData;
     public tableData2: TableData;
+
+    constructor(
+        private service: DataServicesService
+    ) {}
     ngOnInit(){
-        this.tableData1 = {
-            headerRow: [ 'Name', 'Roles'],
-            dataRows: [
-                ['Dakota Rice', 'Niger']
-            ]
-        };
+        this.allUsersFromAdminToMembers()
     }
+    allUsersFromAdminToMembers() {
+        const accounts = this.service.getAllAccounts()
+        accounts.subscribe((data: any) => {
+            data.forEach(element => {
+                const user = this.service.getUserDetails(element.userid)
+                user.subscribe((details: any) => {
+                    this.allUsers.push({account: element, userDetails: details[0], role: this.roleConverter(element.roles)})
+                })
+            });
+        })
+    }
+
+    roleConverter(role) {
+        var roles = new Array();
+        roles[1] = "Admin"
+        roles[2] = "Pastor"
+        roles[3] = "Leader"
+        roles[4] = "Member"
+        return roles[Number(role)]
+    }
+
+
 }

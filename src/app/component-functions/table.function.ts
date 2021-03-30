@@ -1,24 +1,33 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { DataServicesService } from '../../../data-services/data-services.service';
+import { Injectable } from '@angular/core';
+import { DataServicesService } from 'data-services/data-services.service';
 
-@Component({
-    selector: 'icons-cmp',
-    moduleId: module.id,
-    templateUrl: 'icons.component.html'
+@Injectable({
+    providedIn: 'root'
 })
 
-export class IconsComponent{
+export class TableFunctions {
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
 
-    constructor(
-        private route: Router,
-        private service: DataServicesService
-    ) {}
+    public allUsers = [];
+    public allEventsAndAnnouncements = []
 
-    ngOnInit() {
+    constructor(
+        private service: DataServicesService
+    ) {
+        this.getEventsAnnouncementsAndClasses()
+    }
+
+
+    // This function is getting all the members including the admin
+    allUsersFromAdminToMembers() {
+        const users = this.service.getAllUsers()
+        users.subscribe((data: any) => {
+            this.allUsers = data;
+        })
+    }
+
+    getEventsAnnouncementsAndClasses() {
         const events = this.service.getEventsAndAnnouncements()
         events.subscribe((evAndAnn: any) => {
             evAndAnn.forEach(element => {
@@ -37,14 +46,5 @@ export class IconsComponent{
                 })
             });
         })
-    }
-
-    // This function is to show the students belong to a certain class
-    showStudent(data, idSelectedItem) {
-        if(idSelectedItem == 'Events') {
-            this.route.navigate(['/view-events/' + data.events.id + '/'+ idSelectedItem])
-        }else {
-            this.route.navigate(['/view-events/' + data.trainings.id + '/'+ idSelectedItem])
-        }
     }
 }

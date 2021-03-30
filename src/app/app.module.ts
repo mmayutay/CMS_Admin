@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from "ngx-toastr";
+import { HttpClientModule } from '@angular/common/http';
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ViewEventsComponent } from './view-events/view-events.component';
 import { MynetworkgroupComponent } from './pages/mynetworkgroup/mynetworkgroup.component';
 import { ReportingsComponent } from './pages/reportings/reportings.component';
 import { EventsandannouncementsComponent } from './pages/eventsandannouncements/eventsandannouncements.component';
@@ -25,10 +27,12 @@ import { ClassesComponent } from './pages/trainings/classes/classes.component';
     MynetworkgroupComponent,
     ReportingsComponent,
     EventsandannouncementsComponent,
-    ClassesComponent
+    ClassesComponent,
+    ViewEventsComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
