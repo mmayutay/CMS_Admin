@@ -7,6 +7,7 @@ import { LoginAndLogout } from 'data-services/user-data';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public passwordType = 'password'
   public loginDetails = {
     username: '',
     password: ''
@@ -23,5 +24,15 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     this.loginAndLogout.logIn(this.loginDetails)
+  }
+
+  showPassword() {
+    if(this.showPass) {
+      this.showPass = false
+      this.passwordType = 'password'
+    }else {
+      this.showPass = true
+      this.passwordType = 'text'
+    }
   }
 }
