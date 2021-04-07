@@ -205,9 +205,6 @@ img#icon {
     height: 100%;
 }
 
-/* .eyeBtn{
-    z-index: 9999;
-	position: absolute;
-	top: 30%;
-	right: 20px;
-  } */
+.eyeBtn{
+  margin-left: 90%;
+}
