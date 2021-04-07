@@ -93,4 +93,14 @@ export class DataServicesService {
             this.allUsers = data
         })
     }
+    //This is for the admin to get all VIP Users
+    allVipUsers () {
+        return this.http.get(this.url + 'vip-users')
+    }
+    //This function will fetch all member users from the database except to the VIP members
+    getRegularMembers() {
+        return this.http.get(this.url + 'regular-members')
+    } 
+
+    
 }
