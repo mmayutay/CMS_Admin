@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { DataServicesService } from 'data-services/data-services.service';
+import { Router } from '@angular/router';
 
 
 
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit{
 
     constructor( 
       public dataRequest:DataServicesService,
+      public router: Router
     ) {
 
     }
@@ -159,5 +161,9 @@ export class DashboardComponent implements OnInit{
           this.length = this.regularMembers.length;
         });
       })
+    }
+    optMember(value) {
+      this.router.navigate(['displaymembers/' + value.type])
+      // this.popController.dismiss()
     }
 }

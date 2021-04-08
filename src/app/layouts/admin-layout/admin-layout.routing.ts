@@ -13,6 +13,7 @@ import { ViewEventsComponent } from '../../view-events/view-events.component';
 import { MynetworkgroupComponent } from '../../pages/mynetworkgroup/mynetworkgroup.component';
 import { ReportingsComponent } from '../../pages/reportings/reportings.component';
 import { EventsandannouncementsComponent } from '../../pages/eventsandannouncements/eventsandannouncements.component';
+import { DisplaymembersComponent } from '../../pages/displaymembers/displaymembers.component';
 
 
 
@@ -36,5 +37,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'reportings', component: ReportingsComponent },
     { path: 'eventsandannouncements', component: EventsandannouncementsComponent },
     { path: 'reportings', component: ReportingsComponent },
+    { path: 'displaymembers/:type', component: DisplaymembersComponent },
+
+    
 
 ];
