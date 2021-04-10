@@ -1,76 +1,90 @@
 <div class="row">
-    <div class="col-md-12">
-      <div class="card demo-icons">
-        <div class="card-header">
-          <h5 class="card-title">Events, Annoucements and Trainings</h5>
-          <p class="card-category">Handcrafted by our friends from
-            <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
-          </p>
-        </div>
-        <div class="card-body all-icons">
-          <div id="icons-wrapper">
-            <section>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="card ">
-                    <div class="card-header ">
-                      <h5 class="card-title">Events And Announcements</h5>
-                      <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          Events And Announcements
-                        </th>
-                        <th>
-                          Author
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let value of eventsAndAnnouncements" (click)="showStudent(value, 'Events')">
-                          <td>
-                            {{ value.events.title }}
-                          </td>
-                          <td>
-                            {{ value.user.lastname }}, {{ value.user.firstname }}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card ">
-                    <div class="card-header ">
-                      <h5 class="card-title">Trainings And Classes</h5>
-                      <p class="card-category">Trainings for the members</p>
-                    </div>
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          Trainings And Classes
-                        </th>
-                        <th>
-                          Author
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
-                          <td>
-                            {{ value.trainings.title }}
-                          </td>
-                          <td>
-                            {{ value.user.lastname }}, {{ value.user.firstname }}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+  <!-- <div class="col-md-12">
+    <div class="card demo-icons"> -->
+  <!-- <div class="card-header">
+        <h5 class="card-title">Events, Annoucements and Trainings</h5>
+        <p class="card-category">Handcrafted by our friends from
+          <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
+        </p>
+      </div> -->
+  <div class="card-body all-icons">
+    <div id="icons-wrapper">
+      <section>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Events And Announcements</h5>
+                <p class="card-category">Last Campaign Performance</p>
               </div>
-            </section>
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Events And Announcements
+                  </th>
+                  <th>
+                    Author
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let value of eventsAndAnnouncements">
+                    <td>
+                      {{ value.events.title }}
+                    </td>
+                    <td>
+                      {{ value.user.lastname }}, {{ value.user.firstname }}
+                    </td>
+                    <td>
+                      <img  (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                      <img (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Trainings And Classes</h5>
+                <p class="card-category">Trainings for the members</p>
+              </div>
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Trainings And Classes
+                  </th>
+                  <th>
+                    Author
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let value of trainingsAndClasses">
+                    <td>
+                      {{ value.trainings.title }}
+                    </td>
+                    <td>
+                      {{ value.user.lastname }}, {{ value.user.firstname }}
+                    </td>
+                    <td>
+                      <img (click)="showStudent(value, 'Trainings')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                      <img (click)="deleteTraining(value, 'Trainings')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
+  <!-- </div>
+  </div> -->
+</div>
