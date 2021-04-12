@@ -38,8 +38,8 @@
                       {{ value.user.lastname }}, {{ value.user.firstname }}
                     </td>
                     <td>
-                      <img  (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                      <img (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                      <img  class="action" (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                      <img  class="action" (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
                     </td>
                   </tr>
                 </tbody>
@@ -73,8 +73,8 @@
                       {{ value.user.lastname }}, {{ value.user.firstname }}
                     </td>
                     <td>
-                      <img (click)="showStudent(value, 'Trainings')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                      <img (click)="deleteTraining(value, 'Trainings')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                      <img class="action" (click)="showStudent(value, 'Trainings')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                      <img class="action" (click)="deleteTraining(value, 'Trainings')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
                     </td>
                   </tr>
                 </tbody>
