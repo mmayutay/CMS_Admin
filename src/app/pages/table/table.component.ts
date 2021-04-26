@@ -10,10 +10,12 @@ declare interface TableData {
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['./table.css']
 })
 
 export class TableComponent implements OnInit{
+    public usersCounter = 0
     public allUsers = []
     public tableData1: TableData;
     public tableData2: TableData;
@@ -27,6 +29,7 @@ export class TableComponent implements OnInit{
     allUsersFromAdminToMembers() {
         const accounts = this.service.getAllAccounts()
         accounts.subscribe((data: any) => {
+            this.usersCounter = data.length
             data.forEach(element => {
                 const user = this.service.getUserDetails(element.userid)
                 user.subscribe((details: any) => {
