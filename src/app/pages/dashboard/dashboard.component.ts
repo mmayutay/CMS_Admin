@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { DataServicesService } from 'data-services/data-services.service';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -9,18 +13,33 @@ import Chart from 'chart.js';
 })
 
 export class DashboardComponent implements OnInit{
-
+  public url = "http://localhost:8000/api/"
   public canvas : any;
   public ctx;
   public chartColor;
   public chartEmail;
   public chartHours;
+  public activeMember = [];
+  public inactiveMember = [];
+  public active = []
+  public inactive = []
+  //This will list all the VIP and Regular members
+  public vipMembers = [];
+  public regularMembers = [];
 
-    constructor() {
+  public typeOfViewMember = this.returnTypeOfMember()
+
+  public length;
+
+    constructor( 
+      public dataRequest:DataServicesService,
+      public router: Router
+    ) {
 
     }
 
     ngOnInit(){
+      console.log(this.returnTypeOfMember())
       this.chartColor = "#FFFFFF";
 
       this.canvas = document.getElementById("chartHours");
@@ -99,115 +118,52 @@ export class DashboardComponent implements OnInit{
           },
         }
       });
+    }
+    returnTypeOfMember() {
+      var members = [];
+      this.dataRequest.allVipUsers().subscribe((data:any) => {
+        members.push({type: "VIP Members", length:data.length});
+        console.log(members);
+      })
+  
+      this.dataRequest.getRegularMembers().subscribe((data:any) => {
+        members.push({type: "Regular Members", length:data.length});
+        console.log(members);
+      })
+  
+      members.push({type: "Active Members", length: this.activeMember.length });
+      members.push({type: "Inactive Members", length: this.inactiveMember.length });
+      
+      return members;
+    }
 
-
-      // this.canvas = document.getElementById("chartEmail");
-      // this.ctx = this.canvas.getContext("2d");
-      // this.chartEmail = new Chart(this.ctx, {
-      //   type: 'pie',
-      //   data: {
-      //     labels: [1, 2, 3],
-      //     datasets: [{
-      //       label: "Emails",
-      //       pointRadius: 0,
-      //       pointHoverRadius: 0,
-      //       backgroundColor: [
-      //         '#e3e3e3',
-      //         '#4acccd',
-      //         '#fcc468',
-      //         '#ef8157'
-      //       ],
-      //       borderWidth: 0,
-      //       data: [342, 480, 530, 120]
-      //     }]
-      //   },
-
-      //   options: {
-
-      //     legend: {
-      //       display: false
-      //     },
-
-      //     pieceLabel: {
-      //       render: 'percentage',
-      //       fontColor: ['white'],
-      //       precision: 2
-      //     },
-
-      //     tooltips: {
-      //       enabled: false
-      //     },
-
-      //     scales: {
-      //       yAxes: [{
-
-      //         ticks: {
-      //           display: false
-      //         },
-      //         gridLines: {
-      //           drawBorder: false,
-      //           zeroLineColor: "transparent",
-      //           color: 'rgba(255,255,255,0.05)'
-      //         }
-
-      //       }],
-
-      //       xAxes: [{
-      //         barPercentage: 1.6,
-      //         gridLines: {
-      //           drawBorder: false,
-      //           color: 'rgba(255,255,255,0.1)',
-      //           zeroLineColor: "transparent"
-      //         },
-      //         ticks: {
-      //           display: false,
-      //         }
-      //       }]
-      //     },
-      //   }
-      // });
-
-      // var speedCanvas = document.getElementById("speedChart");
-
-      // var dataFirst = {
-      //   data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
-      //   fill: false,
-      //   borderColor: '#fbc658',
-      //   backgroundColor: 'transparent',
-      //   pointBorderColor: '#fbc658',
-      //   pointRadius: 4,
-      //   pointHoverRadius: 4,
-      //   pointBorderWidth: 8,
-      // };
-
-      // var dataSecond = {
-      //   data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
-      //   fill: false,
-      //   borderColor: '#51CACF',
-      //   backgroundColor: 'transparent',
-      //   pointBorderColor: '#51CACF',
-      //   pointRadius: 4,
-      //   pointHoverRadius: 4,
-      //   pointBorderWidth: 8
-      // };
-
-      // var speedData = {
-      //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      //   datasets: [dataFirst, dataSecond]
-      // };
-
-      // var chartOptions = {
-      //   legend: {
-      //     display: false,
-      //     position: 'top'
-      //   }
-      // };
-
-      // var lineChart = new Chart(speedCanvas, {
-      //   type: 'line',
-      //   hover: false,
-      //   data: speedData,
-      //   options: chartOptions
-      // });
+    getTheVipMembers() {
+      var partialDataHandler;
+      this.dataRequest.allVipUsers().subscribe(data => {
+        console.log(this.dataRequest)
+        partialDataHandler = data
+        partialDataHandler.forEach(element => {
+          this.vipMembers.push(element.firstname + " " + element.lastname)
+  
+          this.length = this.vipMembers.length;
+          // console.log(this.length);
+  
+        })
+      })
+    }
+    getTheRegularMembers() {
+      var regularMembers;
+      this.dataRequest.getRegularMembers().subscribe(result => {
+        regularMembers = result
+        regularMembers.forEach(element => {
+          this.regularMembers.push(element.firstname + ' ' + element.lastname)
+  
+          this.length = this.regularMembers.length;
+        });
+      })
+    }
+    optMember(value) {
+      this.router.navigate(['displaymembers/' + value.type])
+      // this.popController.dismiss()
     }
 }
