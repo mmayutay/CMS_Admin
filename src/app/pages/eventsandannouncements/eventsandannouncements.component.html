@@ -45,19 +45,21 @@
                                     <table class="table">
                                         <thead class=" text-primary">
                                             <th>
-                                                Trainings And Classes
+                                                Trainings
                                             </th>
                                             <th>
-                                                Author
+                                                Classes
                                             </th>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
                                                 <td>
-                                                    {{ value.trainings.title }}
+                                                    {{ value.training.title }}
                                                 </td>
                                                 <td>
-                                                    {{ value.user.lastname }}, {{ value.user.firstname }}
+                                                    <tr *ngFor="let class of value.classes">
+                                                        <td>{{ class.name }}</td>
+                                                    </tr>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -74,7 +76,7 @@
 
 
 <!-- Second Table  -->
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-12">
         <div class="card demo-icons">
             <div class="card-header">
@@ -146,4 +148,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

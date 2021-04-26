@@ -18,9 +18,14 @@ export class DataServicesService {
         this.returnLeaders()
         this.returnAllUsers()
     }
-    // This function is to get all the Trainings and classes 
-    getTrainingsAndClasses() {
-        return this.http.get(this.url + "trainings-and-classes/return-all")
+    // Kini siya nga function kay i return niya ang tanan nga trainings 
+    returnAllTrainings() {
+        return this.http.get(this.url + 'trainings-and-classes/return-all-traininings')
+    }
+
+    // Kini siya nga function kay i return niya ang tanan nga classes sa certain training 
+    returnClassesOfTraining(trainingID) {
+        return this.http.get(this.url + 'trainings-and-classes/return-classes-of-selected-training/' + trainingID)
     }
 
     // This function is to get all the events and announcements

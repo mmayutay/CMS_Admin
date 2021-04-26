@@ -37,14 +37,25 @@ export class TableFunctions {
                 })
             });
         })
-        const trainings = this.service.getTrainingsAndClasses()
-        trainings.subscribe((trai: any) => {
-            trai.trainings.forEach(element => {
-                const user = this.service.getUserDetails(element.instructor)
-                user.subscribe((response: any) => {
-                    this.trainingsAndClasses.push({trainings: element, user: response[0]})
+        const trainingAndClass = this.service.returnAllTrainings()
+        trainingAndClass.subscribe((trainings: any) => {
+            trainings.forEach(element => {
+                const classes = this.service.returnClassesOfTraining(element.id)
+                classes.subscribe((allClass: any) => {
+                    this.trainingsAndClasses.push({training: element, classes: allClass})
+                    
                 })
             });
-        })
+        }) 
+        console.log(this.trainingsAndClasses)
+        // const trainings = this.service.getTrainingsAndClasses()
+        // trainings.subscribe((trai: any) => {
+        //     trai.trainings.forEach(element => {
+        //         const user = this.service.getUserDetails(element.instructor)
+        //         user.subscribe((response: any) => {
+        //             this.trainingsAndClasses.push({trainings: element, user: response[0]})
+        //         })
+        //     });
+        // })
     }
 }

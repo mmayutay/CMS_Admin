@@ -3,12 +3,11 @@ import Chart from 'chart.js';
 import { DataServicesService } from 'data-services/data-services.service';
 
 
-
-
 @Component({
     selector: 'dashboard-cmp',
     moduleId: module.id,
-    templateUrl: 'dashboard.component.html'
+    templateUrl: 'dashboard.component.html',
+    styleUrls: ['./dashboard.css']
 })
 
 export class DashboardComponent implements OnInit{
@@ -120,7 +119,7 @@ export class DashboardComponent implements OnInit{
     returnTypeOfMember() {
       var members = [];
       this.dataRequest.allVipUsers().subscribe((data:any) => {
-        members.push({type: "VIP Members", length:data.length});
+        members.push({type: "VIP/New Members", length:data.length});
         console.log(members);
       })
   

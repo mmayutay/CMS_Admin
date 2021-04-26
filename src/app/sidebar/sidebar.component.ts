@@ -19,6 +19,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
     { path: '/table',         title: 'My Cell Group',        icon:'nc-tile-56',    class: '' },
     { path: '/mynetworkgroup',    title: 'My Network Group',        icon:'nc-tile-56', class: '' },
+    { path: '/notifications', title: 'Add New User',     icon:'nc-simple-add',    class: '' },
 
     // { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
 
