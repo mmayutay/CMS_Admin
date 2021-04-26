@@ -20,6 +20,7 @@ import { ReportingsComponent } from './pages/reportings/reportings.component';
 import { EventsandannouncementsComponent } from './pages/eventsandannouncements/eventsandannouncements.component';
 import { ClassesComponent } from './pages/trainings/classes/classes.component';
 import { LoginComponent } from './pages/login/login.component';
+import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { LoginComponent } from './pages/login/login.component';
     ClassesComponent,
     ViewEventsComponent,
     LoginComponent,
+    DisplaymembersComponent,
   ],
   imports: [
     FormsModule,

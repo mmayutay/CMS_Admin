@@ -107,5 +107,52 @@ export class DataServicesService {
         return this.http.get(this.url + 'regular-members')
     } 
 
-    
+    getAllUsersId() {
+        return this.http.get(this.url + 'allMemberUsers')
+    }
+
+    getMemberSCAndEventsAttendance(currentUserId) {
+        return this.http.post(this.url + 'leader-sc-cg', {currentUserId: currentUserId})
+    }
+
+    getEventAndSCAttendance(currentUserId) {
+        return this.http.post(this.url + 'viewAttendancesOfSCandEvents', {currentUserId: currentUserId})
+    }
+
+      //data to pass is the current user's id
+  getTheCurrentUserAttendance(currentUserId, month) {
+    return this.http.post(this.url + 'current-user-attendance', {currentUserId: currentUserId, month: month});
+  }
+  //This function will get the current users attendance through his/her chosed year 
+  usersAttendanceChosenYear(monthChose, yearChose, currentUserId) {
+    return this.http.post(this.url + 'user-attendance-year-selected', {currentUserId: currentUserId, month: monthChose, year: yearChose})
+  }
+
+  //This function fetch all the vip users but this function includes to get the leader 
+  getAllVipUsersWithLeader() {
+    return this.http.get(this.url + 'vip-user-with-leader')
+  }
+
+  //This function is for the notification who displays the leader and the member
+  vipUsersToDisplayAsNotification() {
+    return this.http.get(this.url + 'all-new-unvip-members');
+  }
+
+  //This function will add the user to inactive where his/her attendance for sunday celebration is less than 4
+  addMemberToInactive(user) {
+    return this.http.post(this.url + 'addInactiveUser', {memberId: user.id, active: user.boolean})
+  }
+
+  addClassStudent(id, classes) {
+    return this.http.post( this.url + "classes/add/"+ id.id, {classes: classes});
+  }
+
+  // A function to get the students data
+  getStudentsData(id) {
+    return this.http.get( this.url + 'student-trainings-or-class/get-student/' + id );
+  }
+
+  getTheCurrentUser(userId) {
+    return this.http.post(this.url + "info", userId);
+  }
 }

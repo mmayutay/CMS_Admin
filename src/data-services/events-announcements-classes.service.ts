@@ -31,4 +31,9 @@ export class EventAndAnnouncementsService {
     deleteStudentRecord(studentID) {
         return this.http.get(this.url  + 'student-trainings-or-class/delete-student/' + studentID)
     }
+
+    deleteSelectedEvent(id) {
+        return this.http.delete(this.url + 'event-announcement/delete/' + id)
+      }
+    
 }

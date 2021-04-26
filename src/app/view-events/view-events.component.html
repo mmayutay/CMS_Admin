@@ -1,15 +1,27 @@
+<!-- <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head> -->
+
 <div class="w3-panel w3-card" style="padding: 40px;" *ngIf="!eventsOrClass">
     <div class="w3-container">
-        <div style="float: right; margin-right: 120px;" class="dropdown">
-            <div style="float: right;">
+        <div style="float: right;" class="dropdown">
+            <img class="addStudent" onclick="document.getElementById('id01').style.display='block'" src="https://img.icons8.com/pastel-glyph/50/26e07f/add-user-male--v2.png" />
+            <div class="addStudentText">Add Student</div>
+        </div><br>
+        <div style="float: right;" class="dropdown">
+            <img class="deleteAll" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+            <div class="deleteText">Delete All</div>
+            <!-- <div style="float: right;">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
             </div>
             <div class="dropdown-choices">
-                <button class="addstudent" onclick="document.getElementById('id01').style.display='block'">+ Add Student</button>
+                <button class="addstudent" onclick="document.getElementById('id01').style.display='block'">Add
+                    Student</button>
                 <button class="deleteStudent">Delete All</button>
-            </div>
+            </div> -->
         </div>
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content w3-animate-top w3-card-4" style="margin-left: 35%; width: 50%;">
