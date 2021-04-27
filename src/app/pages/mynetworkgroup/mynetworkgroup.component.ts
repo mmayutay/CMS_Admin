@@ -7,27 +7,30 @@ import { DataServicesService } from '../../../data-services/data-services.servic
   styleUrls: ['./mynetworkgroup.component.css']
 })
 export class MynetworkgroupComponent implements OnInit {
-  public allUsers = []
+  public pastorsWithItsMembers = []
 
   constructor(
     private service: DataServicesService
   ) { }
 
   ngOnInit(): void {
-    this.allUsersFromAdminToMembers()
+    this.allPastorsWithItsLeaders()
   }
 
-  allUsersFromAdminToMembers() {
-    const accounts = this.service.getAllAccounts()
-    accounts.subscribe((data: any) => {
-      data.forEach(element => {
-        const user = this.service.getUserDetails(element.userid)
-        user.subscribe((details: any) => {
-          this.allUsers.push({ account: element, userDetails: details[0], role: this.roleConverter(element.roles) })
-        })
-      });
+  // Kini siya nga function kay kuhaon niya ang tanan nga pastors 
+  allPastorsWithItsLeaders() {
+    const pastors = this.service.getAllPastorsWithItsLeaders()
+    pastors.subscribe((response: any) => {
+      console.log(response)
+      this.pastorsWithItsMembers = response
     })
   }
+
+  // Kini siya kay mag kuha sa mga members sa usa ka leader 
+  getCertainLeadersMembers(leader) {
+    console.log(leader)
+  }
+
 
   roleConverter(role) {
     var roles = new Array();

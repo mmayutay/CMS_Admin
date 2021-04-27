@@ -73,6 +73,9 @@ export class AddNewUserComponent implements OnInit {
 
   // Kini siya nga function kay ang pag add new user nga makita sa submit nga button 
   submitUser() {
+    if(this.signup.role.code == '2') {
+      this.signup.groupBelong.Leader = '1'
+    }
     const newUser = this.userService.addNewUser(this.signup)
     newUser.subscribe((response: any) => {
       console.log(response)

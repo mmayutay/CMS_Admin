@@ -152,6 +152,12 @@ export class DataServicesService {
     return this.http.get( this.url + 'student-trainings-or-class/get-student/' + id );
   }
 
+
+//   Kini siya nga function kay kuhaon niya ang tanan nga pastors 
+getAllPastorsWithItsLeaders() {
+    return this.http.get(this.url + 'get-pastors');
+}
+
   getTheCurrentUser(userId) {
     return this.http.post(this.url + "info", userId);
   }
