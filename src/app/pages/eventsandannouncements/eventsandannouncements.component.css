@@ -1,6 +1,21 @@
 .action:hover {
     transform: scale(1.3);
 }
+ .show{
+   width: 15%;
+   float: center;
+ }
+
+.show:hover {
+  transform: scale(1.3);
+}
+
+div.add{
+  width: 100%;
+}
+div.add img{
+  float: right;
+}
 
 .lds-spinner {
     color: official;
