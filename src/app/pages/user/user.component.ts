@@ -7,16 +7,42 @@ import { UserDetailsService } from '../../../data-services/user-details.service'
     templateUrl: 'user.component.html'
 })
 
-export class UserComponent implements OnInit{
-    public userDetails;
-    public userAccount;
+export class UserComponent implements OnInit {
+    public userDetails =  {
+        firstname: '',
+        lastname: '',
+        birthday: '',
+        age: '',
+        address: '',
+        marital_status: '',
+        email: '',
+        contact_number: '',
+        facebook: '',
+        instagram: '',
+        twitter: '',
+        username: ''
+    };
+    public userAccount = {
+        firstname: '',
+        lastname: '',
+        birthday: '',
+        age: '',
+        address: '',
+        marital_status: '',
+        email: '',
+        contact_number: '',
+        facebook: '',
+        instagram: '',
+        twitter: '',
+        username: ''
+    };
 
     constructor(
         private userService: UserDetailsService
     ) {
 
     }
-    ngOnInit(){
+    ngOnInit() {
         const user = this.userService.getTheUsersInfo(1)
         user.subscribe((data: any) => {
             this.userDetails = data[0]
@@ -26,4 +52,8 @@ export class UserComponent implements OnInit{
             })
         })
     }
+}
+
+export interface User {
+    
 }

@@ -6,9 +6,10 @@ import { TableComponent } from '../../pages/table/table.component';
 import { TypographyComponent } from '../../pages/typography/typography.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
-import { NotificationsComponent } from '../../pages/notifications/notifications.component';
+// import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { ViewEventsComponent } from '../../view-events/view-events.component';
+import { AddNewUserComponent } from '../../pages/add-new-user/add-new-user.component'
 
 import { MynetworkgroupComponent } from '../../pages/mynetworkgroup/mynetworkgroup.component';
 import { ReportingsComponent } from '../../pages/reportings/reportings.component';
@@ -25,7 +26,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
+    { path: 'add-new-user',   component:  AddNewUserComponent},
+    // { path: 'add-new-user',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
     {path: 'view-events/:eventID/:idSelectedItem', component: ViewEventsComponent},
     // { path: 'typography',     component: TypographyComponent },

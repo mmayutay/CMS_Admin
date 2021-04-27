@@ -85,3 +85,10 @@
     width: 100%;
     text-align: center;
 }
+
+p {
+  transition: transform 250ms;
+}
+p:hover {
+  transform: translateY(-10px);
+}

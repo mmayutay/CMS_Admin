@@ -21,6 +21,7 @@ import { EventsandannouncementsComponent } from './pages/eventsandannouncements/
 import { ClassesComponent } from './pages/trainings/classes/classes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.component';
+import { AddNewUserComponent } from './pages/add-new-user/add-new-user.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.c
     ViewEventsComponent,
     LoginComponent,
     DisplaymembersComponent,
+    AddNewUserComponent,
   ],
   imports: [
     FormsModule,

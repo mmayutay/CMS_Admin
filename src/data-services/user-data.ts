@@ -27,6 +27,17 @@ export class LoginAndLogout {
             }
         })
     }
+
+    addNewUser(newUser) {
+        return this.http.post(this.url + 'sign-up', newUser)
+    }
+
+
+    // Kini siya nga function kay kuhaon ang tanan nga leaders 
+    getAllLeaders() {
+        return this.http.get(this.url + 'get-leaders');
+
+    }
     
     logOut() {
         localStorage.removeItem(this.authenticationKey)

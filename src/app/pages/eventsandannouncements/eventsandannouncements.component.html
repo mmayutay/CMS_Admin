@@ -1,5 +1,18 @@
 <div class="spinning">
-    <div *ngIf="eventsAndAnnouncements.length == 0 && trainingsAndClasses.length == 0" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div *ngIf="eventsAndAnnouncements.length == 0 && trainingsAndClasses.length == 0" class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
 
 <div *ngIf="eventsAndAnnouncements.length != 0 && trainingsAndClasses.length != 0" class="row">
@@ -60,16 +73,17 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let value of trainingsAndClasses"
-                                        (click)="showStudent(value, 'Trainings')">
+                                    <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
                                         <td>
-                                            {{ value.training.title }}
+                                            <p>{{ value.training.title }}</p>
                                         </td>
                                         <td>
-                                    <tr *ngFor="let class of value.classes">
-                                        <td>{{ class.name }}</td>
-                                    </tr>
-                                    </td>
+                                            <tr *ngFor="let class of value.classes">
+                                            <td>
+                                                <p>{{ class.name }}</p>
+                                            </td>
+                                            </tr>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -1,0 +1,157 @@
+<div style="width: 100%;">
+    <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+        <div class="card card-user">
+            <div class="card-header">
+                <h5 class="card-title">Add New User</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Firstname" name="fname"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-1">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Lastname" name="lname"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Birthday</label>
+                                <input type="date" (change)="getTheBirthday($event)" name="bday" class="form-control"
+                                    id="birth">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" [(ngModel)]="signup.newUser.Email" name="email"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Marital Status</label>
+                                <select [(ngModel)]="signup.newUser.Marital_status" name="marital_status">
+                                    <option *ngFor="let status of marital_status" [value]="status"> {{ status }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select id="country" [(ngModel)]="signup.newUser.Gender" name="cgVip">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <!-- <input type="text" [(ngModel)]="signup.newUser.Gender" name="fb" class="form-control"> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                <label>Contact_number</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Contact_number" name="twit"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select id="country" [(ngModel)]="signup.role.code" name="role">
+                                    <option *ngFor="let role of roles" [value]="role.code">{{ role.role }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>VIP of Cell Group?</label>
+                                <select id="country" [(ngModel)]="signup.newUser.isCGVIP" name="cgVip">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>VIP of Sunday Celebration?</label>
+                                <select id="country" [(ngModel)]="signup.newUser.isSCVIP" name="scVip">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div *ngIf="signup.role.code != '2'" class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>Who is his/her leader?</label>
+                                <!-- <input type="text" [(ngModel)]="signup.groupBelong.Leader" name="insta" class="form-control"> -->
+                                <select id="country" [(ngModel)]="signup.groupBelong.Leader" name="cgVip">
+                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname
+                                        }} {{ leader.lastname }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Address" name="address"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Facebook</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Facebook" name="fb" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                <label>Twitter</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Twitter" name="twit"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>Instagram</label>
+                                <input type="text" [(ngModel)]="signup.newUser.Instagram" name="insta"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>About Me</label>
+                                <textarea class="form-control textarea" [(ngModel)]="signup.newUser.Description"
+                                    name="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="update ml-auto mr-auto">
+                            <button type="submit" (click)="submitUser()" class="btn btn-primary btn-round">Add
+                                User</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

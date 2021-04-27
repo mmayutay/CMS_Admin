@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TableFunctions } from 'app/component-functions/table.function';
+import { TableFunctions } from '../../component-functions/table.function';
 import { EventAndAnnouncementsService } from '../../../data-services/events-announcements-classes.service';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'

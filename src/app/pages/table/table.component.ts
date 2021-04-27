@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableFunctions } from '../../component-functions/table.function'
+// import { TableFunctions } from '../../component-functions/table.function'
 import { DataServicesService } from '../../../data-services/data-services.service';
 
 declare interface TableData {
@@ -29,13 +29,13 @@ export class TableComponent implements OnInit{
     allUsersFromAdminToMembers() {
         const accounts = this.service.getAllAccounts()
         accounts.subscribe((data: any) => {
-            this.usersCounter = data.length
             data.forEach(element => {
                 const user = this.service.getUserDetails(element.userid)
                 user.subscribe((details: any) => {
                     this.allUsers.push({account: element, userDetails: details[0], role: this.roleConverter(element.roles)})
                 })
-            });
+            })
+            this.usersCounter = data.length
         })
     }
 
