@@ -42,8 +42,7 @@ export class TableFunctions {
             trainings.forEach(element => {
                 const classes = this.service.returnClassesOfTraining(element.id)
                 classes.subscribe((allClass: any) => {
-                    this.trainingsAndClasses.push({training: element, classes: allClass})
-                    
+                    this.trainingsAndClasses.push({training: element, classes: allClass})  
                 })
             });
         }) 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableFunctions } from '../../component-functions/table.function'
+// import { TableFunctions } from '../../component-functions/table.function'
 import { DataServicesService } from '../../../data-services/data-services.service';
 
 declare interface TableData {
@@ -10,10 +10,12 @@ declare interface TableData {
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['./table.css']
 })
 
 export class TableComponent implements OnInit{
+    public usersCounter = 0
     public allUsers = []
     public tableData1: TableData;
     public tableData2: TableData;
@@ -32,7 +34,8 @@ export class TableComponent implements OnInit{
                 user.subscribe((details: any) => {
                     this.allUsers.push({account: element, userDetails: details[0], role: this.roleConverter(element.roles)})
                 })
-            });
+            })
+            this.usersCounter = data.length
         })
     }
 

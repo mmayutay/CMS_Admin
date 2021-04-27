@@ -1,11 +1,3 @@
-.card {
-    box-shadow: 5px 5px 5px 5px #b1b1b1;
-}
-
-.spinning {
-    text-align: center;
-}
-
 .lds-spinner {
     color: official;
     display: inline-block;
@@ -84,3 +76,8 @@
       opacity: 0;
     }
   }
+
+.spinning {
+    width: 100%;
+    text-align: center;
+}
