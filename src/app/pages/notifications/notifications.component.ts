@@ -5,7 +5,8 @@ import { ToastrService } from "ngx-toastr";
 @Component({
     selector: 'notifications-cmp',
     moduleId: module.id,
-    templateUrl: 'notifications.component.html'
+    templateUrl: 'notifications.component.html',
+    styleUrls: ['./notification.css']
 })
 
 export class NotificationsComponent{

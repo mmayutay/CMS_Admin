@@ -28,15 +28,15 @@ export class IconsComponent{
                 })
             });
         })
-        const trainings = this.service.getTrainingsAndClasses()
-        trainings.subscribe((trai: any) => {
-            trai.trainings.forEach(element => {
-                const user = this.service.getUserDetails(element.instructor)
-                user.subscribe((response: any) => {
-                    this.trainingsAndClasses.push({trainings: element, user: response[0]})
-                })
-            });
-        })
+        // const trainings = this.service.getTrainingsAndClasses()
+        // trainings.subscribe((trai: any) => {
+        //     trai.trainings.forEach(element => {
+        //         const user = this.service.getUserDetails(element.instructor)
+        //         user.subscribe((response: any) => {
+        //             this.trainingsAndClasses.push({trainings: element, user: response[0]})
+        //         })
+        //     });
+        // })
     }
 
     // This function is to show the students belong to a certain class
