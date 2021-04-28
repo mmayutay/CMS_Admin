@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 
 export class DataServicesService {
+    public allMembers = []
+
     public leaders = []
     public allUsers = []
 
@@ -17,6 +19,7 @@ export class DataServicesService {
     ) {
         this.returnLeaders()
         this.returnAllUsers()
+        this.returnMembersOfALeader()
     }
     // Kini siya nga function kay i return niya ang tanan nga trainings 
     returnAllTrainings() {
@@ -156,6 +159,15 @@ export class DataServicesService {
 //   Kini siya nga function kay kuhaon niya ang tanan nga pastors 
 getAllPastorsWithItsLeaders() {
     return this.http.get(this.url + 'get-pastors');
+}
+
+// Kini siya nga function kay i return niya ang tanan nga mga members  
+returnMembersOfALeader() {
+    const allMembers = this.http.get(this.url + 'regular-members')
+    allMembers.subscribe((response: any) => {
+        console.log()
+        this.allMembers = response
+    })
 }
 
   getTheCurrentUser(userId) {

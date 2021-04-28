@@ -7,6 +7,7 @@ import { DataServicesService } from '../../../data-services/data-services.servic
   styleUrls: ['./mynetworkgroup.component.css']
 })
 export class MynetworkgroupComponent implements OnInit {
+  public selectedLeadersMembers  = []
   public pastorsWithItsMembers = []
 
   constructor(
@@ -21,14 +22,22 @@ export class MynetworkgroupComponent implements OnInit {
   allPastorsWithItsLeaders() {
     const pastors = this.service.getAllPastorsWithItsLeaders()
     pastors.subscribe((response: any) => {
-      console.log(response)
       this.pastorsWithItsMembers = response
     })
   }
 
   // Kini siya kay mag kuha sa mga members sa usa ka leader 
-  getCertainLeadersMembers(leader) {
-    console.log(leader)
+  getCertainLeadersMembers(leader, hideAndShow) {
+    if(hideAndShow  == 'show') {
+      this.selectedLeadersMembers = []
+      this.service.allMembers.forEach(element => {
+        if(element.leader == leader.id) {
+          this.selectedLeadersMembers.push(element)
+        }
+      })
+    }else {
+      this.selectedLeadersMembers = []
+    }
   }
 
 

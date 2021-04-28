@@ -21,8 +21,13 @@
             <td *ngFor="let leaders of pastor.leaders">
               <div class="leaderCard">
                 <h3>{{ leaders.firstname }} {{ leaders.lastname }} </h3>
-                <p><button (click)="getCertainLeadersMembers(leaders)">Show Members >></button></p>
-                
+                <p *ngIf="selectedLeadersMembers.length == 0"><button (click)="getCertainLeadersMembers(leaders, 'show')"><b>Show Members >></b></button></p>
+                <p *ngIf="selectedLeadersMembers.length != 0"><button (click)="getCertainLeadersMembers(leaders, 'hide')"><b>Hide Members >></b></button></p>
+                <div class="w3-container">
+                  <ul class="w3-ul">
+                    <li *ngFor="let member of selectedLeadersMembers">{{ member.firstname }} {{ member.lastname }}</li>
+                  </ul>
+                </div>
               </div>
             </td>
           </tr>
