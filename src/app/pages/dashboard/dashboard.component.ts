@@ -14,10 +14,12 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit{
   public url = "http://localhost:8000/api/"
   public canvas : any;
+  public sundayCelebration : any;
   public ctx;
   public chartColor;
   public chartEmail;
   public chartHours;
+  public sundayStats;
   public activeMember = [];
   public inactiveMember = [];
   public active = []
@@ -39,9 +41,60 @@ export class DashboardComponent implements OnInit{
 
     ngOnInit(){
       console.log(this.returnTypeOfMember())
+      this.statistics("chartHours")
+      this.statistics("sundayCelebration")
+    }
+    returnTypeOfMember() {
+      var members = [];
+      this.dataRequest.allVipUsers().subscribe((data:any) => {
+        members.push({type: "VIP/New Members", length:data.length});
+        console.log(members);
+      })
+  
+      this.dataRequest.getRegularMembers().subscribe((data:any) => {
+        members.push({type: "Regular Members", length:data.length});
+        console.log(members);
+      })
+  
+      members.push({type: "Active Members", length: this.activeMember.length });
+      members.push({type: "Inactive Members", length: this.inactiveMember.length });
+      
+      return members;
+    }
+
+    getTheVipMembers() {
+      var partialDataHandler;
+      this.dataRequest.allVipUsers().subscribe(data => {
+        console.log(this.dataRequest)
+        partialDataHandler = data
+        partialDataHandler.forEach(element => {
+          this.vipMembers.push(element.firstname + " " + element.lastname)
+  
+          this.length = this.vipMembers.length;
+          // console.log(this.length);
+  
+        })
+      })
+    }
+    getTheRegularMembers() {
+      var regularMembers;
+      this.dataRequest.getRegularMembers().subscribe(result => {
+        regularMembers = result
+        regularMembers.forEach(element => {
+          this.regularMembers.push(element.firstname + ' ' + element.lastname)
+  
+          this.length = this.regularMembers.length;
+        });
+      })
+    }
+    optMember(value) {
+      this.router.navigate(['displaymembers/' + value.type])
+    }
+
+    statistics(id) {
       this.chartColor = "#FFFFFF";
 
-      this.canvas = document.getElementById("chartHours");
+      this.canvas = document.getElementById(id);
       this.ctx = this.canvas.getContext("2d");
 
       this.chartHours = new Chart(this.ctx, {
@@ -117,52 +170,6 @@ export class DashboardComponent implements OnInit{
           },
         }
       });
-    }
-    returnTypeOfMember() {
-      var members = [];
-      this.dataRequest.allVipUsers().subscribe((data:any) => {
-        members.push({type: "VIP/New Members", length:data.length});
-        console.log(members);
-      })
-  
-      this.dataRequest.getRegularMembers().subscribe((data:any) => {
-        members.push({type: "Regular Members", length:data.length});
-        console.log(members);
-      })
-  
-      members.push({type: "Active Members", length: this.activeMember.length });
-      members.push({type: "Inactive Members", length: this.inactiveMember.length });
-      
-      return members;
-    }
 
-    getTheVipMembers() {
-      var partialDataHandler;
-      this.dataRequest.allVipUsers().subscribe(data => {
-        console.log(this.dataRequest)
-        partialDataHandler = data
-        partialDataHandler.forEach(element => {
-          this.vipMembers.push(element.firstname + " " + element.lastname)
-  
-          this.length = this.vipMembers.length;
-          // console.log(this.length);
-  
-        })
-      })
-    }
-    getTheRegularMembers() {
-      var regularMembers;
-      this.dataRequest.getRegularMembers().subscribe(result => {
-        regularMembers = result
-        regularMembers.forEach(element => {
-          this.regularMembers.push(element.firstname + ' ' + element.lastname)
-  
-          this.length = this.regularMembers.length;
-        });
-      })
-    }
-    optMember(value) {
-      this.router.navigate(['displaymembers/' + value.type])
-      // this.popController.dismiss()
     }
 }
