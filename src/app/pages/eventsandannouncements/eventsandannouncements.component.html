@@ -23,6 +23,9 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
+                                <div class="add">
+                                    <img src="https://img.icons8.com/pastel-glyph/64/26e07f/plus--v1.png" />
+                                </div>
                                 <h5 class="card-title">Events And Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
                             </div>
@@ -47,10 +50,8 @@
                                             {{ value.user.lastname }}, {{ value.user.firstname }}
                                         </td>
                                         <td>
-                                            <img class="action" (click)="showStudent(value, 'Events')"
-                                                src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                                            <img class="action" (click)="deleteEvent(value, 'Events')"
-                                                src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                                            <img class="action" (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                            <img class="action" (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
                                         </td>
                                     </tr>
                                 </tbody>
@@ -60,6 +61,9 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
+                                <div class="add">
+                                    <img src="https://img.icons8.com/pastel-glyph/64/26e07f/plus--v1.png" />
+                                </div>
                                 <h5 class="card-title">Trainings And Classes</h5>
                                 <p class="card-category">Trainings for the members</p>
                             </div>
@@ -76,14 +80,15 @@
                                     <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
                                         <td>
                                             <p>{{ value.training.title }}</p>
+                                            <img class="show" src="https://img.icons8.com/metro/64/26e07f/visible.png" />
                                         </td>
                                         <td>
-                                            <tr *ngFor="let class of value.classes">
-                                            <td>
-                                                <p>{{ class.name }}</p>
-                                            </td>
-                                            </tr>
+                                    <tr *ngFor="let class of value.classes">
+                                        <td>
+                                            <p>{{ class.name }}</p>
                                         </td>
+                                    </tr>
+                                    </td>
                                     </tr>
                                 </tbody>
                             </table>
