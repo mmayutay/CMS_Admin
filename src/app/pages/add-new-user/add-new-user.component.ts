@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServicesService } from '../../../data-services/data-services.service';
 import { LoginAndLogout } from 'data-services/user-data';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-new-user',
@@ -8,9 +10,10 @@ import { LoginAndLogout } from 'data-services/user-data';
 })
 export class AddNewUserComponent implements OnInit {
   public roles = [
-    {code: '2', role: 'Pastor'},
-    {code: '3', role: 'Leader'},
-    {code: '4', role: 'Member'}
+    {code: '1', role: 'Pastor'},
+    {code: '12', role: 'Primary'},
+    {code: '144', role: 'Member(144)'},
+    {code: '1728', role: 'Member(1728)'},
   ]
   public marital_status = ["Single", "Married", "Divorce", "Widowed"]
   public listOfLeaders = []
@@ -41,14 +44,15 @@ export class AddNewUserComponent implements OnInit {
   };
 
   constructor(
-    private userService: LoginAndLogout
+    private userService: LoginAndLogout,
+    private dataService: DataServicesService
   ) { }
 
   ngOnInit(): void {
-    const getAllLeaders = this.userService.getAllLeaders()
-    getAllLeaders.subscribe((leaders: any) => {
-      this.listOfLeaders = leaders
-    })
+    // const getAllLeaders = this.userService.getAllLeaders()
+    // getAllLeaders.subscribe((leaders: any) => {
+    //   this.listOfLeaders = leaders
+    // })
   }
 
 
@@ -73,12 +77,41 @@ export class AddNewUserComponent implements OnInit {
 
   // Kini siya nga function kay ang pag add new user nga makita sa submit nga button 
   submitUser() {
-    if(this.signup.role.code == '2') {
+    if(this.signup.role.code == '1') {
       this.signup.groupBelong.Leader = '1'
     }
     const newUser = this.userService.addNewUser(this.signup)
     newUser.subscribe((response: any) => {
+      Swal.fire('User Added!', this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF', 'success');
       console.log(response)
+    })
+  }
+
+  // Kini siya nga function kay i identify kung unsa ang role nga iyang gipili 
+  getRoleChosen(value) {
+    const leadersOfChosen = this.userService.getUsersRole(Number(value.target.value) / 12)
+    leadersOfChosen.subscribe((response: any) => {
+      this.listOfLeaders = response
+    })
+    this.getUserGender({target: {value: "Male"}})
+  }
+
+  // Kini siya nga function kay kuhaon ang gender sa new added member 
+  getUserGender(value) {
+    const allUsers = this.dataService.getAllUsers()
+    allUsers.subscribe((response: any) => {
+      response.forEach(element => {
+        if(element.gender == value.target.value) {
+          const userAccount = this.dataService.getUserAccount(element.id)
+          userAccount.subscribe((user: any) => {
+            if(user.roles == (Number(this.signup.role.code) * 12).toString()) {
+              console.log(element)
+              this.listOfLeaders.length = 0
+              this.listOfLeaders.push(element)
+            }
+          })
+        }
+      });
     })
   }
 

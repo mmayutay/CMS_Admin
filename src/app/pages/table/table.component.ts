@@ -41,10 +41,10 @@ export class TableComponent implements OnInit{
 
     roleConverter(role) {
         var roles = new Array();
-        roles[1] = "Admin"
-        roles[2] = "Pastor"
-        roles[3] = "Leader"
-        roles[4] = "Member"
+        roles[0] = "Admin"
+        roles[1] = "Pastor"
+        roles[12] = "Leader"
+        roles[144] = "Member"
         return roles[Number(role)]
     }
 

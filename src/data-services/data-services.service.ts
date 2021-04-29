@@ -56,6 +56,11 @@ export class DataServicesService {
         return this.http.post(this.url + 'info', {userID: id})
     }
 
+    // Kini siya nga function kay i return niya ang log in account sa certain user 
+    getUserAccount(id) {
+        return this.http.get(this.url + 'user-account/' + id)
+    }
+
     // This function is to get all the students of a certain events and announcements
     getStudents(eventId) {
         return this.http.get(this.url + 'add-event-announcement/return-all-students/' + eventId)
@@ -107,7 +112,8 @@ export class DataServicesService {
     }
     //This function will fetch all member users from the database except to the VIP members
     getRegularMembers() {
-        return this.http.get(this.url + 'regular-members')
+        let membersCode = "144"
+        return this.http.get(this.url + 'regular-members/' + membersCode)
     } 
 
     getAllUsersId() {
@@ -163,9 +169,9 @@ getAllPastorsWithItsLeaders() {
 
 // Kini siya nga function kay i return niya ang tanan nga mga members  
 returnMembersOfALeader() {
-    const allMembers = this.http.get(this.url + 'regular-members')
+    let getMembersCode = "144"
+    const allMembers = this.http.get(this.url + 'regular-members/' + getMembersCode)
     allMembers.subscribe((response: any) => {
-        console.log()
         this.allMembers = response
     })
 }

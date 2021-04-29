@@ -36,7 +36,11 @@ export class LoginAndLogout {
     // Kini siya nga function kay kuhaon ang tanan nga leaders 
     getAllLeaders() {
         return this.http.get(this.url + 'get-leaders');
+    }
 
+    // Kini siya nga function kay kuhaon depende sa role 
+    getUsersRole(code) {
+        return this.http.get(this.url + 'return-all-pastors/' + code)
     }
     
     logOut() {

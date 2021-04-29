@@ -40,7 +40,6 @@ export class DashboardComponent implements OnInit{
     }
 
     ngOnInit(){
-      console.log(this.returnTypeOfMember())
       this.statistics("chartHours")
       this.statistics("sundayCelebration")
     }
@@ -48,12 +47,10 @@ export class DashboardComponent implements OnInit{
       var members = [];
       this.dataRequest.allVipUsers().subscribe((data:any) => {
         members.push({type: "VIP/New Members", length:data.length});
-        console.log(members);
       })
   
       this.dataRequest.getRegularMembers().subscribe((data:any) => {
         members.push({type: "Regular Members", length:data.length});
-        console.log(members);
       })
   
       members.push({type: "Active Members", length: this.activeMember.length });
