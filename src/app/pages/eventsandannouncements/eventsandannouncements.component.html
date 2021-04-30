@@ -78,9 +78,11 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
-                                        <td>
+                                        <td class="container">
                                             <p>{{ value.training.title }}</p>
-                                            <img class="show" src="https://img.icons8.com/metro/64/26e07f/visible.png" />
+                                            <div class="middle">
+                                                <button class="text">Show Details</button>
+                                            </div>
                                         </td>
                                         <td>
                                     <tr *ngFor="let class of value.classes">
