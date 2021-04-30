@@ -28,6 +28,7 @@ export class MynetworkgroupComponent implements OnInit {
 
   // Kini siya kay mag kuha sa mga members sa usa ka leader 
   getCertainLeadersMembers(leader, hideAndShow) {
+    console.log(this.service.allMembers)
     if(hideAndShow  == 'show') {
       this.selectedLeadersMembers = []
       this.service.allMembers.forEach(element => {
