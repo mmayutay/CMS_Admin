@@ -23,8 +23,8 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
-                                <div class="add">
-                                    <img class="addImg" src="https://img.icons8.com/pastel-glyph/64/26e07f/plus--v1.png" />
+                                <div class="add" (click)="addEvent()">
+                                    <img src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Events And Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
@@ -62,7 +62,7 @@
                         <div class="card ">
                             <div class="card-header ">
                                 <div class="add">
-                                    <img src="https://img.icons8.com/pastel-glyph/64/26e07f/plus--v1.png" />
+                                    <img src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Trainings And Classes</h5>
                                 <p class="card-category">Trainings for the members</p>
@@ -98,6 +98,40 @@
                     </div>
                 </div>
             </section>
+        </div>
+    </div>
+</div>
+<div class="card" [hidden]="isShow">
+    <div role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add Event and Announcement</h4>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" [(ngModel)]="title" class="form-control" #Title="ngModel" mdbInput mdbValidate
+                        required>
+                    <label for="defaultForm-email">Title</label>
+                </div>
+                <div class="md-form mb-5">
+                    <input type="text" [(ngModel)]="description" class="form-control" #Description="ngModel" mdbInput
+                        mdbValidate required>
+                    <label for="defaultForm-email">Description</label>
+                </div>
+                <div class="md-form mb-5">
+                    <input type="date" [(ngModel)]="startDate" class="form-control" #StartDate="ngModel" mdbInput
+                        mdbValidate required>
+                    <label for="defaultForm-email">Start Date</label>
+                </div>
+                <div class="md-form mb-5">
+                    <input type="date" [(ngModel)]="endDate" class="form-control" #EndDate="ngModel" mdbInput
+                        mdbValidate required>
+                    <label for="defaultForm-email">End Date</label>
+                </div>
+            </div>
+            <div class="update ml-auto mr-auto">
+                <button type="submit" (click)="isShow=true" class="btn btn-primary btn-round">Add</button>
+            </div>
         </div>
     </div>
 </div>

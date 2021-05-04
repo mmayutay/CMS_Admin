@@ -13,6 +13,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 export class EventsandannouncementsComponent implements OnInit {
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
+    public isShow = true;
 
     constructor(
         private route: Router,
@@ -69,6 +70,10 @@ export class EventsandannouncementsComponent implements OnInit {
                 )
             }
         })
+    }
+
+    addEvent(){
+        this.isShow = false;
     }
 
     deleteTraining(data, idSelectedItem) {
