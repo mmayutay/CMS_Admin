@@ -31,7 +31,7 @@ export class EventsandannouncementsComponent implements OnInit {
         if (idSelectedItem == 'Events') {
             this.route.navigate(['/view-events/' + data.events.id + '/' + idSelectedItem])
         } else {
-            this.route.navigate(['/view-events/' + data.trainings.id + '/' + idSelectedItem])
+            this.route.navigate(['/view-events/' + data.training.id + '/' + idSelectedItem])
         }
     }
 
