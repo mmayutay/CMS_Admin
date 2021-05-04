@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="spinning">
     <div *ngIf="eventsAndAnnouncements.length == 0 && trainingsAndClasses.length == 0" class="lds-spinner">
         <div></div>
@@ -23,7 +24,7 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
-                                <div class="add" (click)="addEvent()">
+                                <div class="add" (click)="addEvent()" onclick="document.getElementById('id01').style.display='block'">
                                     <img src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Events And Announcements</h5>
@@ -100,41 +101,52 @@
             </section>
         </div>
     </div>
-</div>
-<div class="card" [hidden]="isShow">
-    <div role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add Event and Announcement</h4>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <input type="text" [(ngModel)]="title" class="form-control" #Title="ngModel" mdbInput mdbValidate
-                        required>
-                    <label for="defaultForm-email">Title</label>
+    <div class="w3-container">
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+                <!-- w3-teal -->
+                <header class="w3-container" style="background-color:orange">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <h2>Add Event and Announcement</h2>
+                </header>
+                <!-- <div class="w3-container"> -->
+                <!-- <div class="card" [hidden]="isShow"> -->
+                <div role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                        </div>
+                        <div class="modal-body mx-3">
+                            <label for="defaultForm-email">Title</label>
+                            <input type="text" [(ngModel)]="title" class="form-control" #Title="ngModel" mdbInput
+                                mdbValidate required><br>
+                            <label for="defaultForm-email">Description</label>
+                            <input type="text" [(ngModel)]="description" class="form-control" #Description="ngModel"
+                                mdbInput mdbValidate required><br>
+                            <label for="defaultForm-email">Start Date</label>
+                            <input type="date" [(ngModel)]="startDate" class="form-control" #StartDate="ngModel"
+                                mdbInput mdbValidate required><br>
+                            <label for="defaultForm-email">Start Time</label>
+                            <input type="time" [(ngModel)]="startTime" class="form-control" #StartDate="ngModel"
+                                mdbInput mdbValidate required><br>
+                            <label for="defaultForm-email">End Date</label>
+                            <input type="date" [(ngModel)]="endDate" class="form-control" #EndDate="ngModel" mdbInput
+                                mdbValidate required><br>
+                            <label for="defaultForm-email">End Time</label>
+                            <input type="time" [(ngModel)]="endTime" class="form-control" #EndDate="ngModel" mdbInput
+                                mdbValidate required><br>
+                        </div>
+                        <div class="update ml-auto mr-auto">
+                            <button type="submit" (click)="isShow=true" class="btn btn-primary btn-round">Add</button>
+                        </div><br>
+                    </div>
                 </div>
-                <div class="md-form mb-5">
-                    <input type="text" [(ngModel)]="description" class="form-control" #Description="ngModel" mdbInput
-                        mdbValidate required>
-                    <label for="defaultForm-email">Description</label>
-                </div>
-                <div class="md-form mb-5">
-                    <input type="date" [(ngModel)]="startDate" class="form-control" #StartDate="ngModel" mdbInput
-                        mdbValidate required>
-                    <label for="defaultForm-email">Start Date</label>
-                </div>
-                <div class="md-form mb-5">
-                    <input type="date" [(ngModel)]="endDate" class="form-control" #EndDate="ngModel" mdbInput
-                        mdbValidate required>
-                    <label for="defaultForm-email">End Date</label>
-                </div>
-            </div>
-            <div class="update ml-auto mr-auto">
-                <button type="submit" (click)="isShow=true" class="btn btn-primary btn-round">Add</button>
+                <!-- </div> -->
+                <!-- </div> -->
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Second Table  -->
 <!-- <div class="row">
