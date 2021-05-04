@@ -77,7 +77,7 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>VIP of Cell Group?</label>
-                                <select id="country" [(ngModel)]="signup.newUser.isCGVIP" name="cgVip">
+                                <select id="cgVip" [(ngModel)]="signup.newUser.isCGVIP" name="cgVip">
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
@@ -86,7 +86,7 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>VIP of Sunday Celebration?</label>
-                                <select id="country" [(ngModel)]="signup.newUser.isSCVIP" name="scVip">
+                                <select id="scVip" [(ngModel)]="signup.newUser.isSCVIP" name="scVip">
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
@@ -96,9 +96,9 @@
                             <div class="form-group">
                                 <label>Who is his/her leader?</label>
                                 <!-- <input type="text" [(ngModel)]="signup.groupBelong.Leader" name="insta" class="form-control"> -->
-                                <select id="country" [(ngModel)]="signup.groupBelong.Leader" name="cgVip">
-                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname
-                                        }} {{ leader.lastname }}</option>
+                                <select [(ngModel)]="signup.groupBelong.Leader" name="isCgVip">
+                                    <option>Select A Leader</option>
+                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname }} {{ leader.lastname }}</option>
                                 </select>
                             </div>
                         </div>

@@ -84,6 +84,7 @@ export class AddNewUserComponent implements OnInit {
     newUser.subscribe((response: any) => {
       Swal.fire('User Added!', this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF', 'success');
       console.log(response)
+      location.reload()
     })
   }
 
@@ -114,5 +115,5 @@ export class AddNewUserComponent implements OnInit {
       });
     })
   }
-
+  
 }
