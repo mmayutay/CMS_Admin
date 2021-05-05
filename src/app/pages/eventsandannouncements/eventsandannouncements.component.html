@@ -24,39 +24,46 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
-                                <div class="add" (click)="addEvent()" onclick="document.getElementById('id01').style.display='block'">
+                                <div class="add" (click)="addEvent()"
+                                    onclick="document.getElementById('id01').style.display='block'">
                                     <img src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
-                                <h5 class="card-title">Events And Announcements</h5>
+                                <h5 class="card-title">Events_And_Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
                             </div>
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Events And Announcements
-                                    </th>
-                                    <th>
-                                        Author
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let value of eventsAndAnnouncements">
-                                        <td>
-                                            {{ value.events.title }}
-                                        </td>
-                                        <td>
-                                            {{ value.user.lastname }}, {{ value.user.firstname }}
-                                        </td>
-                                        <td>
-                                            <img class="action" (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                                            <img class="action" (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                Events_And_Announcements
+                                            </th>
+                                            <th>
+                                                Author
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let value of eventsAndAnnouncements">
+                                                <td>
+                                                    {{ value.events.title }}
+                                                </td>
+                                                <td>
+                                                    {{ value.user.lastname + ', ' + value.user.firstname}}
+                                                </td>
+                                                <td>
+                                                    <img class="action" (click)="showStudent(value, 'Events')"
+                                                        src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                                    <img class="action" (click)="deleteEvent(value, 'Events')"
+                                                        src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -82,13 +89,15 @@
                                         <td class="container">
                                             <p>{{ value.training.title }}</p>
                                             <div class="middle">
-                                                <button class="text buttonSubmit" (click)="navigateToView(value.training.id)">Show Details</button>
+                                                <button class="text buttonSubmit"
+                                                    (click)="navigateToView(value.training.id)">Show Details</button>
                                             </div>
                                         </td>
                                         <td>
                                     <tr *ngFor="let class of value.classes">
                                         <td>
-                                            <p (click)="showStudent(class, 'Class')">{{ class.name }}</p>
+                                            <!-- (click)="showStudent(class, 'Class')" -->
+                                            <a href="/#/view-events/{{class.id}}/{{'Class'}}">{{ class.name }}</a>
                                         </td>
                                     </tr>
                                     </td>
@@ -106,7 +115,8 @@
             <div class="w3-modal-content">
                 <!-- w3-teal -->
                 <header class="w3-container" style="background-color:orange">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
                     <h2>Add Event and Announcement</h2>
                 </header>
                 <!-- <div class="w3-container"> -->

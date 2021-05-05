@@ -6,6 +6,10 @@ import { DataServicesService } from 'data-services/data-services.service';
 })
 
 export class TableFunctions {
+    public leaderCounter = 0
+    public listOfLeadersAndItsMembers = [];
+    public pastorsData = {firstname: '', lastname: ''};
+
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
 
@@ -16,6 +20,7 @@ export class TableFunctions {
         private service: DataServicesService
     ) {
         this.getEventsAnnouncementsAndClasses()
+        this.returnLeadersAndMembers();
     }
 
 
@@ -45,16 +50,21 @@ export class TableFunctions {
                     this.trainingsAndClasses.push({training: element, classes: allClass})  
                 })
             });
-        }) 
-        console.log(this.trainingsAndClasses)
-        // const trainings = this.service.getTrainingsAndClasses()
-        // trainings.subscribe((trai: any) => {
-        //     trai.trainings.forEach(element => {
-        //         const user = this.service.getUserDetails(element.instructor)
-        //         user.subscribe((response: any) => {
-        //             this.trainingsAndClasses.push({trainings: element, user: response[0]})
-        //         })
-        //     });
-        // })
+        })
+    }
+
+    // Kini siya nga function kay para sa network ni siya 
+    returnLeadersAndMembers() {
+        const getPastor = this.service.getAllPastorsWithItsLeaders()
+        getPastor.subscribe((response: any) => {
+            this.pastorsData = response[0].pastor
+            response[0].leaders.forEach(element => {
+                const members = this.service.returnMembersOfACertainLeader(element.id)
+                members.subscribe((member: any) => {
+                    this.listOfLeadersAndItsMembers.push({leader: element, members: member})
+                    this.leaderCounter += 1
+                })
+            });
+        })
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableFunctions } from 'app/component-functions/table.function';
 import { DataServicesService } from '../../../data-services/data-services.service';
 
 @Component({
@@ -11,11 +12,12 @@ export class MynetworkgroupComponent implements OnInit {
   public pastorsWithItsMembers = []
 
   constructor(
-    private service: DataServicesService
+    private service: DataServicesService,
+    private built: TableFunctions
   ) { }
 
   ngOnInit(): void {
-    this.allPastorsWithItsLeaders()
+    // this.allPastorsWithItsLeaders()
   }
 
   // Kini siya nga function kay kuhaon niya ang tanan nga pastors 
@@ -23,6 +25,7 @@ export class MynetworkgroupComponent implements OnInit {
     const pastors = this.service.getAllPastorsWithItsLeaders()
     pastors.subscribe((response: any) => {
       this.pastorsWithItsMembers = response
+      console.log(this.pastorsWithItsMembers)
     })
   }
 

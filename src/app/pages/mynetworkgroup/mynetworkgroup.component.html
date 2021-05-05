@@ -1,31 +1,33 @@
-<div class="row" *ngFor="let pastor of pastorsWithItsMembers">
+<div *ngIf="built.listOfLeadersAndItsMembers.length == 0">
+  <div class="spinning">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="row" *ngIf="built.listOfLeadersAndItsMembers.length == built.leaderCounter">
   <div class="col-md-12">
     <div class="networkCard">
       <!-- <div class="card-header">
         <h4 class="card-title">My Network</h4>
       </div> -->
       <div style="text-align: center;">
-        <h1>{{ pastor.pastor.firstname }} {{ pastor.pastor.lastname }}</h1>
+        <h1>{{ built.pastorsData.firstname }} {{ built.pastorsData.lastname }}</h1>
       </div>
       <div style="overflow-x: auto;">
-
-        <div class="imgNothing" *ngIf="pastor.leaders.length == 0">
+        <!-- <div class="imgNothing">
           <div class="imgCard">
             <img src="../../../assets/img/empty.png">
             <h2 style="font-weight: 100;">Nothing to show!</h2>
           </div>
-        </div>
+        </div> -->
 
         <table>
           <tr>
-            <td *ngFor="let leaders of pastor.leaders">
+            <td *ngFor="let leaders of built.listOfLeadersAndItsMembers">
               <div class="leaderCard">
-                <h3>{{ leaders.firstname }} {{ leaders.lastname }} </h3>
-                <p *ngIf="selectedLeadersMembers.length == 0"><button (click)="getCertainLeadersMembers(leaders, 'show')"><b>Show Members >></b></button></p>
-                <p *ngIf="selectedLeadersMembers.length != 0"><button (click)="getCertainLeadersMembers(leaders, 'hide')"><b>Hide Members >></b></button></p>
+                <h3>{{ leaders.leader.firstname }} {{ leaders.leader.lastname }} </h3>
                 <div class="w3-container">
                   <ul class="w3-ul">
-                    <li *ngFor="let member of selectedLeadersMembers">{{ member.firstname }} {{ member.lastname }}</li>
+                    <li *ngFor="let member of leaders.members">{{ member.firstname }} {{ member.lastname }}</li>
                   </ul>
                 </div>
               </div>

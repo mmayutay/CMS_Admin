@@ -51,7 +51,6 @@ export class ViewEventsComponent implements OnInit {
         response.end_time = new Date(response.end_time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         response.start_date = this.attendance.convertMonth(new Date(response.start_date).getMonth()) + '/' + new Date(response.start_date).getDate() + '/' + new Date(response.start_date).getFullYear()
         response.end_date = this.attendance.convertMonth(new Date(response.end_date).getMonth()) + '/' + new Date(response.end_date).getDate() + '/' + new Date(response.end_date).getFullYear()
-        console.log(response)
       })
     } else {
       this.studentToAdd.trainings = params
