@@ -88,7 +88,7 @@ export class DataServicesService {
 
     // This function is to return all the leaders listed in the database
     returnLeaders() {
-        const leaders = this.http.get(this.url + 'get-leaders');
+        const leaders = this.http.get(this.url + 'get-leaders/12');
         leaders.subscribe((data: any) => {
             data.forEach(element => {
                 const members = this.http.post(this.url + 'return-members-group', {leaderID: element.id})
