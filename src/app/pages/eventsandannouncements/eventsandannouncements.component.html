@@ -78,17 +78,17 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let value of trainingsAndClasses" (click)="showStudent(value, 'Trainings')">
+                                    <tr *ngFor="let value of trainingsAndClasses">
                                         <td class="container">
                                             <p>{{ value.training.title }}</p>
                                             <div class="middle">
-                                                <button class="text buttonSubmit">Show Details</button>
+                                                <button class="text buttonSubmit" (click)="navigateToView(value.training.id)">Show Details</button>
                                             </div>
                                         </td>
                                         <td>
                                     <tr *ngFor="let class of value.classes">
                                         <td>
-                                            <p>{{ class.name }}</p>
+                                            <p (click)="showStudent(class, 'Class')">{{ class.name }}</p>
                                         </td>
                                     </tr>
                                     </td>

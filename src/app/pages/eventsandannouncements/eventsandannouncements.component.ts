@@ -26,12 +26,17 @@ export class EventsandannouncementsComponent implements OnInit {
         this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
     }
 
+    // Kini siya nga function kay iyang i navigate sa view training 
+    navigateToView(trainingID) {
+        this.route.navigate(['/view-selected-class/' + trainingID])
+    }
+
     // This function is to show the students belong to a certain class
     showStudent(data, idSelectedItem) {
         if (idSelectedItem == 'Events') {
             this.route.navigate(['/view-events/' + data.events.id + '/' + idSelectedItem])
         } else {
-            this.route.navigate(['/view-events/' + data.training.id + '/' + idSelectedItem])
+            this.route.navigate(['/view-events/' + data.id + '/' + idSelectedItem])
         }
     }
 
