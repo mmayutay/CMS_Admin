@@ -13,7 +13,22 @@ import 'sweetalert2/src/sweetalert2.scss'
 export class EventsandannouncementsComponent implements OnInit {
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
+    public returnAllUsers = []
     public isShow = true;
+    public createdEventOrAnnouncement = {
+        newEvents: {
+            Title: '',
+            Description: '',
+            Start_date: '',
+            Start_time: '',
+            End_date: '',
+            End_time: '',
+            Location: ''
+        },
+        currentUser: {
+            userID: ''
+        }
+    }
 
     constructor(
         private route: Router,
@@ -22,6 +37,8 @@ export class EventsandannouncementsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.returnAllUsers = this.builtFunction.allUsers
+        console.log(this.builtFunction.allUsers)
         this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
         this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
     }
@@ -116,6 +133,11 @@ export class EventsandannouncementsComponent implements OnInit {
                 )
             }
         })
+    }
+
+    // Kini siya nga function kay ang pag add ug new event or training
+    addNewEventOrTraining() {
+        this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
     }
 }
 

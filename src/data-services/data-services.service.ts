@@ -36,6 +36,11 @@ export class DataServicesService {
         return this.http.get(this.url + 'add-event-announcement/display')
     }
 
+    // This function is to add a new events or announcements 
+    addEventsOrAnnouncements(newEvent) {
+        return this.http.post(this.url + 'add-event-announcement', newEvent)
+    }
+
     // This function is to get all the users except to the admin
     getAllUsers() {
         return this.http.get(this.url + 'list')

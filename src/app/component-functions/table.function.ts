@@ -21,6 +21,7 @@ export class TableFunctions {
     ) {
         this.getEventsAnnouncementsAndClasses()
         this.returnLeadersAndMembers();
+        this.allUsersFromAdminToMembers();
     }
 
 
@@ -65,6 +66,15 @@ export class TableFunctions {
                     this.leaderCounter += 1
                 })
             });
+        })
+    }
+
+    // Kini siya nga function kay mauy mu add sa bag o nga events and announcements 
+    addNewEventsAndAnnouncements(newEvent) {
+        const addEvent = this.service.addEventsOrAnnouncements(newEvent)
+        addEvent.subscribe((response: any) => {
+            this.eventsAndAnnouncements.length = 0
+            this.getEventsAnnouncementsAndClasses()
         })
     }
 }

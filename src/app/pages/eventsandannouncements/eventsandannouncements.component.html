@@ -51,7 +51,7 @@
                                                     {{ value.events.title }}
                                                 </td>
                                                 <td>
-                                                    {{ value.user.lastname + ', ' + value.user.firstname}}
+                                                    {{ value.user.firstname + '_' + value.user.lastname}}
                                                 </td>
                                                 <td>
                                                     <img class="action" (click)="showStudent(value, 'Events')"
@@ -127,26 +127,43 @@
                         </div>
                         <div class="modal-body mx-3">
                             <label for="defaultForm-email">Title</label>
-                            <input type="text" [(ngModel)]="title" class="form-control" #Title="ngModel" mdbInput
-                                mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title" class="form-control"
+                                #Title="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">Description</label>
-                            <input type="text" [(ngModel)]="description" class="form-control" #Description="ngModel"
-                                mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description" class="form-control"
+                                #Description="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">Start Date</label>
-                            <input type="date" [(ngModel)]="startDate" class="form-control" #StartDate="ngModel"
-                                mdbInput mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date" class="form-control"
+                                #StartDate="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">Start Time</label>
-                            <input type="time" [(ngModel)]="startTime" class="form-control" #StartDate="ngModel"
-                                mdbInput mdbValidate required><br>
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time" class="form-control"
+                                #StartDate="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">End Date</label>
-                            <input type="date" [(ngModel)]="endDate" class="form-control" #EndDate="ngModel" mdbInput
-                                mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">End Time</label>
-                            <input type="time" [(ngModel)]="endTime" class="form-control" #EndDate="ngModel" mdbInput
-                                mdbValidate required><br>
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
+                                
+                            <label for="defaultForm-email">Location</label>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
+
+                            <label>Select Author:</label>
+                            <select name="users" id="users" [(ngModel)]="createdEventOrAnnouncement.currentUser.userID"
+                                class="form-control">
+                                <option *ngFor="let user of returnAllUsers" [value]="user.id">{{ user.firstname + ' ' +
+                                    user.lastname}}</option>
+                            </select>
                         </div>
                         <div class="update ml-auto mr-auto">
-                            <button type="submit" (click)="isShow=true" class="btn btn-primary btn-round">Add</button>
+                            <button type="submit" (click)="addNewEventOrTraining()"
+                                class="btn btn-primary btn-round">Add</button>
                         </div><br>
                     </div>
                 </div>
