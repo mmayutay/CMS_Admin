@@ -214,3 +214,12 @@ button {
   background-color: #4CAF50;
   color: white;
 }
+
+.modal {
+  height: 400px;
+  max-height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

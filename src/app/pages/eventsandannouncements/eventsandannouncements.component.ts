@@ -4,6 +4,9 @@ import { TableFunctions } from '../../component-functions/table.function';
 import { EventAndAnnouncementsService } from '../../../data-services/events-announcements-classes.service';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ViewTrainingsAndClassesComponent } from '../view-trainings-and-classes/view-trainings-and-classes.component';
 
 @Component({
     selector: 'app-eventsandannouncements',
@@ -19,7 +22,13 @@ export class EventsandannouncementsComponent implements OnInit {
         private route: Router,
         private builtFunction: TableFunctions,
         private eventsRequest: EventAndAnnouncementsService,
+        private modalService: NgbModal,
     ) { }
+  
+    showMessagesModal(){
+      const modalRef = this.modalService.open(ViewTrainingsAndClassesComponent);
+    }
+
 
     ngOnInit(): void {
         this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
@@ -77,7 +86,7 @@ export class EventsandannouncementsComponent implements OnInit {
         })
     }
 
-    addEvent(){
+    addEvent() {
         this.isShow = false;
     }
 
@@ -117,6 +126,8 @@ export class EventsandannouncementsComponent implements OnInit {
             }
         })
     }
+
+    
 }
 
 
