@@ -24,6 +24,8 @@ import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.c
 import { AddNewUserComponent } from './pages/add-new-user/add-new-user.component';
 import { ViewTrainingsAndClassesComponent } from './pages/view-trainings-and-classes/view-trainings-and-classes.component';
 import { AddNewTrainingComponent } from './pages/add-new-training/add-new-training.component';
+import { AddNewLessonComponent } from './pages/add-new-lesson/add-new-lesson.component';
+import { AddNewClassesComponent } from './pages/add-new-classes/add-new-classes.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { AddNewTrainingComponent } from './pages/add-new-training/add-new-traini
     AddNewUserComponent,
     ViewTrainingsAndClassesComponent,
     AddNewTrainingComponent,
+    AddNewLessonComponent,
+    AddNewClassesComponent,
   ],
   imports: [
     FormsModule,
