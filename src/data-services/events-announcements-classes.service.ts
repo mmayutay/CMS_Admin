@@ -35,5 +35,10 @@ export class EventAndAnnouncementsService {
     deleteSelectedEvent(id) {
         return this.http.delete(this.url + 'event-announcement/delete/' + id)
       }
+
+    //   Kini siya nga function kay i return niya ang tanan nga lessons sa selected training 
+    returnLessons(trainingID) {
+        return this.http.get(this.url + 'trainings-and-classes/return-lesson-of-selected-training/' + trainingID)
+    }
     
 }

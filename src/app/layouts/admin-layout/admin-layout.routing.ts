@@ -44,5 +44,4 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'view-selected-class/:trainingID', component: ViewTrainingsAndClassesComponent }
 
     
-
 ];

@@ -89,8 +89,11 @@
                                         <td class="container">
                                             <p>{{ value.training.title }}</p>
                                             <div class="middle">
-                                                <button class="text buttonSubmit"
-                                                    (click)="navigateToView(value.training.id)">Show Details</button>
+                                                <!-- (click)="navigateToView(value.training.id)" -->
+                                                <button (click)="displayLessons(value.training)"
+                                                    class="text buttonSubmit"
+                                                    onclick="document.getElementById('id02').style.display='block'">Show
+                                                    Details</button>
                                             </div>
                                         </td>
                                         <td>
@@ -109,6 +112,20 @@
                 </div>
             </section>
         </div>
+        <ng-template #content let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>
     </div>
     <div class="w3-container">
         <div id="id01" class="w3-modal">
@@ -127,32 +144,32 @@
                         </div>
                         <div class="modal-body mx-3">
                             <label for="defaultForm-email">Title</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title" class="form-control"
-                                #Title="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title"
+                                class="form-control" #Title="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Description</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description" class="form-control"
-                                #Description="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description"
+                                class="form-control" #Description="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Start Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date" class="form-control"
-                                #StartDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date"
+                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Start Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time" class="form-control"
-                                #StartDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time"
+                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">End Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date" class="form-control"
-                                #EndDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date"
+                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">End Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time" class="form-control"
-                                #EndDate="ngModel" mdbInput mdbValidate required><br>
-                                
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time"
+                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+
                             <label for="defaultForm-email">Location</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location" class="form-control"
-                                #EndDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location"
+                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label>Select Author:</label>
                             <select name="users" id="users" [(ngModel)]="createdEventOrAnnouncement.currentUser.userID"
@@ -174,6 +191,78 @@
     </div>
 </div>
 
+<div class="w3-container">
+    <div id="id02" class="w3-modal">
+        <div class="w3-modal-content">
+            <!-- w3-teal -->
+            <header class="w3-container" style="background-color:aqua">
+                <span onclick="document.getElementById('id02').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+                <h2>Training Details</h2>
+            </header>
+            <!-- <div class="w3-container"> -->
+            <!-- <div class="card" [hidden]="isShow"> -->
+            <div role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h1>{{ selectedTraining }}</h1>
+                        <img class="action" style="margin-right:0%;vertical-align: middle;
+                        position: absolute;
+                        right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                    </div>
+                    <div class="trainingRow">
+                        <div class="trainingColumn" *ngFor="let lesson of lessonsOfTraining">
+                            <div class="trainingCard">
+                                <h3>{{ lesson.title }}</h3>
+                                <p>{{ lesson.name }}</p>
+                                <p>{{ lesson.description }}</p>
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                        position: absolute;
+                        right: 5%;bottom: 100px;" src="https://img.icons8.com/metro/26/fa314a/trash.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <mat-card>
+                        <tr>
+                            <td>
+                                <h2>Lesson 1</h2>
+                            </td>
+                            <td>
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                                    position: absolute;
+                                    right: 10%;"
+                                    src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                                    position: absolute;
+                                    right: 5%;"
+                                    src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                            </td>
+                        </tr>
+                    </mat-card>
+                    <mat-card>
+                        <tr>
+                            <td>
+                                <h2>Lesson 2</h2>
+                            </td>
+                            <td>
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                                    position: absolute;
+                                    right: 10%;"
+                                    src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                                    position: absolute;
+                                    right: 5%;"
+                                    src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                            </td>
+                        </tr>
+                    </mat-card> -->
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
 
 <!-- Second Table  -->
 <!-- <div class="row">

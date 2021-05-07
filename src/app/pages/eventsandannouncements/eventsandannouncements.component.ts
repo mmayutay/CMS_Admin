@@ -4,6 +4,9 @@ import { TableFunctions } from '../../component-functions/table.function';
 import { EventAndAnnouncementsService } from '../../../data-services/events-announcements-classes.service';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ViewTrainingsAndClassesComponent } from '../view-trainings-and-classes/view-trainings-and-classes.component';
 
 @Component({
     selector: 'app-eventsandannouncements',
@@ -11,6 +14,9 @@ import 'sweetalert2/src/sweetalert2.scss'
     styleUrls: ['./eventsandannouncements.component.css']
 })
 export class EventsandannouncementsComponent implements OnInit {
+    public selectedTraining  = ''
+    public lessonsOfTraining = []
+
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
     public returnAllUsers = []
@@ -34,7 +40,13 @@ export class EventsandannouncementsComponent implements OnInit {
         private route: Router,
         private builtFunction: TableFunctions,
         private eventsRequest: EventAndAnnouncementsService,
+        private modalService: NgbModal,
     ) { }
+  
+    showMessagesModal(){
+      const modalRef = this.modalService.open(ViewTrainingsAndClassesComponent);
+    }
+
 
     ngOnInit(): void {
         this.returnAllUsers = this.builtFunction.allUsers
@@ -94,7 +106,7 @@ export class EventsandannouncementsComponent implements OnInit {
         })
     }
 
-    addEvent(){
+    addEvent() {
         this.isShow = false;
     }
 
@@ -138,6 +150,21 @@ export class EventsandannouncementsComponent implements OnInit {
     // Kini siya nga function kay ang pag add ug new event or training
     addNewEventOrTraining() {
         this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
+    }
+
+    // Kini siya nga function kay pag kuha sa mga lessons sa certain training 
+    displayLessons(value) {
+        this.selectedTraining = value.title
+        const lessons = this.eventsRequest.returnLessons(value.id)
+        lessons.subscribe((trainingLessons: any) => {
+            console.log(trainingLessons)
+            this.lessonsOfTraining = trainingLessons
+        })
+    }
+
+    // Kini siya nga function kay i delete ang selected lesson 
+    deleteSelectedLesson(lesson) {
+        console.log(lesson)
     }
 }
 
