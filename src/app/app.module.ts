@@ -23,6 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.component';
 import { AddNewUserComponent } from './pages/add-new-user/add-new-user.component';
 import { ViewTrainingsAndClassesComponent } from './pages/view-trainings-and-classes/view-trainings-and-classes.component';
+import { AddNewTrainingComponent } from './pages/add-new-training/add-new-training.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ViewTrainingsAndClassesComponent } from './pages/view-trainings-and-cla
     DisplaymembersComponent,
     AddNewUserComponent,
     ViewTrainingsAndClassesComponent,
+    AddNewTrainingComponent,
   ],
   imports: [
     FormsModule,

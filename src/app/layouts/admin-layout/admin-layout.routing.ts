@@ -16,6 +16,7 @@ import { ReportingsComponent } from '../../pages/reportings/reportings.component
 import { EventsandannouncementsComponent } from '../../pages/eventsandannouncements/eventsandannouncements.component';
 import { DisplaymembersComponent } from '../../pages/displaymembers/displaymembers.component';
 import { ViewTrainingsAndClassesComponent } from '../../pages/view-trainings-and-classes/view-trainings-and-classes.component';
+import { AddNewTrainingComponent } from 'app/pages/add-new-training/add-new-training.component';
 
 
 
@@ -41,7 +42,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'eventsandannouncements', component: EventsandannouncementsComponent },
     { path: 'reportings', component: ReportingsComponent },
     { path: 'displaymembers/:type', component: DisplaymembersComponent },
-    { path: 'view-selected-class/:trainingID', component: ViewTrainingsAndClassesComponent }
+    { path: 'view-selected-class/:trainingID', component: ViewTrainingsAndClassesComponent },
+    { path: 'add-new-training', component: AddNewTrainingComponent}
 
     
 ];

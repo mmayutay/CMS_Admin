@@ -17,8 +17,8 @@ export class EventsandannouncementsComponent implements OnInit {
     public selectedTraining  = ''
     public lessonsOfTraining = []
 
-    public eventsAndAnnouncements = []
-    public trainingsAndClasses = []
+    public eventsAndAnnouncements;
+    public trainingsAndClasses;
     public returnAllUsers = []
     public isShow = true;
     public createdEventOrAnnouncement = {
@@ -110,6 +110,9 @@ export class EventsandannouncementsComponent implements OnInit {
         this.isShow = false;
     }
 
+    addNewTrainings() {
+        this.route.navigate(['/add-new-training'])
+    }
     deleteTraining(data, idSelectedItem) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {

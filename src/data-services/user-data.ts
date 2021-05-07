@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataServicesService } from './data-services.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +11,15 @@ import Swal from 'sweetalert2';
 export class LoginAndLogout {
     public url = 'http://localhost:8000/api/'
     public authenticationKey = 'usersLogged'
+    public allUsers = []
 
     constructor(
         private router: Router,
-        private http: HttpClient
-    ) {}
+        private http: HttpClient,
+        private dataRequest: DataServicesService
+    ) {
+        this.getAllUsers()
+    }
 
     logIn(userID) {
         const login = this.http.post(this.url + 'login', userID);
@@ -46,5 +51,15 @@ export class LoginAndLogout {
     logOut() {
         localStorage.removeItem(this.authenticationKey)
         this.router.navigate(['/login'])
+    }
+
+    // Kini siya nga function kay gi render niya daan nga iyaha na nga kuhaon tanan nga user 
+    getAllUsers() {
+        const users = this.dataRequest.getAllUsers()
+        users.subscribe((response: any) => {
+            console.log(response)
+            this.allUsers = response
+        })
+
     }
 }

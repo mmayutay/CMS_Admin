@@ -82,9 +82,17 @@ export class AddNewUserComponent implements OnInit {
     }
     const newUser = this.userService.addNewUser(this.signup)
     newUser.subscribe((response: any) => {
-      Swal.fire('User Added!', this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF', 'success');
       console.log(response)
-      location.reload()
+      Swal.fire({
+        title: 'Successfully added!',
+        text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
     })
   }
 

@@ -1,0 +1,79 @@
+<div style="margin-left: 10%;">
+    <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+        <div class="card card-user">
+            <div class="card-header" style="text-align: center;">
+                <h5 class="card-title">Add New Training</h5>
+            </div>
+            <div class="card-body">
+                <form #addEventsForm="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Code</label>
+                                <input [(ngModel)]="addTrainings.newTrainings.code" class="form-control" name="Code"
+                                    type="text" #Name="ngModel" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input [(ngModel)]="addTrainings.newTrainings.title" class="form-control"
+                                    #nameCtrl="ngModel" name="Title" type="text" #Title="ngModel" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="addTrainings.newTrainings.description" class="form-control"
+                                    #nameCtrl="ngModel" name="Description" type="text" #Description="ngModel"
+                                    required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Choose level of Training:</label>
+                                <select name="level" [(ngModel)]="addTrainings.newTrainings.level" class="form-control"
+                                    okText="Okay" cancelText="Dismiss">
+                                    <option value="12">Primary/Leader</option>
+                                    <option value="144">Member(144)</option>
+                                    <option value="1728">Member(1728)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Choose who will be the instructor:</label>
+                                <select name="instructor" [(ngModel)]="addTrainings.newTrainings.instructor"
+                                    class="form-control" okText="Okay" cancelText="Dismiss">
+                                    <option *ngFor="let user of user_data.allUsers" [value]="user"> {{ user.firstname +
+                                        ' ' +
+                                        user.lastname }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button (click)="onaddEvents(addEventsForm)" type="submit"
+                                    class="btn btn-primary btn-round" expand="block">Add a Training</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
