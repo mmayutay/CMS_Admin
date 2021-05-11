@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="spinning">
-    <div *ngIf="eventsAndAnnouncements.length == 0 && trainingsAndClasses.length == 0" class="lds-spinner">
+    <div *ngIf="eventsAndAnnouncements == undefined && trainingsAndClasses == undefined" class="lds-spinner">
         <div></div>
         <div></div>
         <div></div>
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0" class="row">
+<div class="row">
     <div class="card-body all-icons">
         <div id="icons-wrapper">
             <section>
@@ -31,7 +31,7 @@
                                 <h5 class="card-title">Events_And_Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
                                 <table class="table">
                                     <table class="table">
                                         <thead class=" text-primary">

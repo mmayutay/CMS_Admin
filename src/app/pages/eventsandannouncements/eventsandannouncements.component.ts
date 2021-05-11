@@ -50,7 +50,6 @@ export class EventsandannouncementsComponent implements OnInit {
 
     ngOnInit(): void {
         this.returnAllUsers = this.builtFunction.allUsers
-        console.log(this.builtFunction.allUsers)
         this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
         this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
     }

@@ -57,7 +57,6 @@ export class LoginAndLogout {
     getAllUsers() {
         const users = this.dataRequest.getAllUsers()
         users.subscribe((response: any) => {
-            console.log(response)
             this.allUsers = response
         })
 

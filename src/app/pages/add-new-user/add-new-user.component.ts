@@ -85,14 +85,31 @@ export class AddNewUserComponent implements OnInit {
       console.log(response)
       Swal.fire({
         title: 'Successfully added!',
-        text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
+        text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Show'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'User Account',
+            response.username + ' is the username and the password is ' + this.signup.newUser.Lastname + 'Member' + response.userid,
+            'success'
+          )
         }
       })
+      // Swal.fire({
+      //   title: 'Successfully added!',
+      //   text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
+      //   showClass: {
+      //     popup: 'animate__animated animate__fadeInDown'
+      //   },
+      //   hideClass: {
+      //     popup: 'animate__animated animate__fadeOutUp'
+      //   }
+      // })
     })
   }
 

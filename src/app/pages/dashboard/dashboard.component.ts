@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { DataServicesService } from 'data-services/data-services.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'dashboard-cmp',
@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 
 export class DashboardComponent implements OnInit{
+  public selectedMemberType = {
+    type: '',
+    length: []
+  };
+
+  public allVipUsers = []
   public url = "http://localhost:8000/api/"
   public canvas : any;
   public sundayCelebration : any;
@@ -46,15 +52,23 @@ export class DashboardComponent implements OnInit{
     returnTypeOfMember() {
       var members = [];
       this.dataRequest.allVipUsers().subscribe((data:any) => {
-        members.push({type: "VIP/New Members", length:data.length});
+        this.allVipUsers = data
+        members.push({type: "VIP/New Members", length: data});
       })
   
-      this.dataRequest.getRegularMembers().subscribe((data:any) => {
-        members.push({type: "Regular Members", length:data.length});
+      this.dataRequest.getAllUsers().subscribe((data:any) => {
+        data.forEach(user => {
+          this.allVipUsers.forEach(vip => {
+            if(user.id == vip.id) {
+              data.splice(data.indexOf(user), 1)
+            }
+          })
+        })
+        members.push({type: "Regular Members", length: data});
       })
   
-      members.push({type: "Active Members", length: this.activeMember.length });
-      members.push({type: "Inactive Members", length: this.inactiveMember.length });
+      members.push({type: "Active Members", length: this.activeMember });
+      members.push({type: "Inactive Members", length: this.inactiveMember });
       
       return members;
     }
@@ -168,5 +182,11 @@ export class DashboardComponent implements OnInit{
         }
       });
 
+    }
+
+
+    // Kini siya nga functions kay i return niya ang tanan nga mga members 
+    showMembers(value) {
+      this.selectedMemberType = value
     }
 }
