@@ -113,7 +113,8 @@ export class EventsandannouncementsComponent implements OnInit {
     addNewTrainings() {
         this.route.navigate(['/add-new-training'])
     }
-    deleteTraining(data, idSelectedItem) {
+    deleteTraining() {
+        // data, idSelectedItem
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -124,7 +125,7 @@ export class EventsandannouncementsComponent implements OnInit {
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this " + data.trainings.title + "!",
+            // text: "You won't be able to revert this " + data.trainings.title + "!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',

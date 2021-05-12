@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginAndLogout } from 'data-services/user-data';
+import { DataServicesService } from 'data-services/data-services.service'
 
 @Component({
   selector: 'app-add-new-training',
@@ -18,10 +19,17 @@ export class AddNewTrainingComponent implements OnInit {
   }
 
   constructor(
-    public user_data: LoginAndLogout
+    public user_data: LoginAndLogout,
+    public dataService: DataServicesService
   ) { }
 
   ngOnInit(): void {
   }
+
+  onaddEvents(addEventsForm){
+    this.addTrainings = addEventsForm;
+    console.log("Training:: ", addEventsForm.form.value);
+  }
+
 
 }

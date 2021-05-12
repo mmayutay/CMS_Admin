@@ -208,7 +208,7 @@
                         <h1>{{ selectedTraining }}</h1>
                         <img class="action" style="margin-right:0%;vertical-align: middle;
                         position: absolute;
-                        right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                        right: 5%;" (click)="deleteTraining()" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
                     </div>
                     <div class="trainingRow">
                         <div class="trainingColumn" *ngFor="let lesson of lessonsOfTraining">
