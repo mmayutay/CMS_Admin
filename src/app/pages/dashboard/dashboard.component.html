@@ -11,9 +11,9 @@
                     <p class="card-title" *ngIf="value.length.length != 0">{{value.length.length}}<p>
                 </div>
                 <div id="id01" class="w3-modal">
-                    <div style="margin-left: 308px;" class="w3-modal-content w3-animate-top w3-card-4">
-                      <header class="w3-container" style="background-color: orange;"> 
-                        <span onclick="document.getElementById('id01').style.display='none'" 
+                    <div style="margin-left: 308px; border-radius: 10px;" class="w3-modal-content w3-animate-top w3-card-4">
+                      <header class="w3-container" style="background-color: orange; border-top-left-radius: 10px; border-top-right-radius: 10px;"> 
+                        <span style="border-top-right-radius: 10px;" onclick="document.getElementById('id01').style.display='none'" 
                         class="w3-button w3-display-topright">&times;</span>
                         <h2 style="padding: 10px;">{{selectedMemberType.type}}</h2>
                       </header>
@@ -28,7 +28,7 @@
                             <h2>No {{ selectedMemberType.type }}</h2>
                         </div>
                     </div>
-                      <footer class="w3-container" style="text-align: left; padding: 22px; background-color: orange;"></footer>
+                      <footer class="w3-container" style="text-align: left; padding: 22px; background-color: orange; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"></footer>
                     </div>
                   </div>
             </div>

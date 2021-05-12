@@ -160,7 +160,6 @@ export class EventsandannouncementsComponent implements OnInit {
         this.selectedTraining = value.title
         const lessons = this.eventsRequest.returnLessons(value.id)
         lessons.subscribe((trainingLessons: any) => {
-            console.log(trainingLessons)
             this.lessonsOfTraining = trainingLessons
         })
     }
