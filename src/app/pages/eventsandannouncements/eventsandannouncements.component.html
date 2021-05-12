@@ -85,19 +85,20 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let value of trainingsAndClasses">
+                                    <tr *ngFor="let value of trainingsAndClasses; let i = index">
                                         <td class="container">
-                                            <p>{{ value.training.title }}</p>
+                                            <p>{{ value.title }}</p>
                                             <div class="middle">
                                                 <!-- (click)="navigateToView(value.training.id)" -->
-                                                <button (click)="displayLessons(value.training)"
+                                                <button (click)="displayLessons(value)"
                                                     class="text buttonSubmit"
                                                     onclick="document.getElementById('id02').style.display='block'">Show
                                                     Details</button>
                                             </div>
                                         </td>
                                         <td>
-                                    <tr *ngFor="let class of value.classes">
+
+                                    <tr *ngFor="let class of classOfCertainTraining[i]">
                                         <td>
                                             <!-- (click)="showStudent(class, 'Class')" -->
                                             <a href="/#/view-events/{{class.id}}/{{'Class'}}">{{ class.name }}</a>
@@ -197,7 +198,7 @@
             <!-- w3-teal -->
             <header class="w3-container" style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color:orange">
                 <span style="border-top-right-radius: 10px;" onclick="document.getElementById('id02').style.display='none'"
-                    class="w3-button w3-display-topright">&times;</span>
+                    class="w3-button w3-display-topright" (click)="clearLessonsArray()">&times;</span>
                 <h2>Training Details</h2>
             </header>
             <!-- <div class="w3-container"> -->
@@ -209,19 +210,19 @@
                         <div>
                             <img class="action" style="margin-right:0%;vertical-align: middle;
                             position: absolute;
-                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
-                            Delete Training
+                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" onclick="document.getElementById('id02').style.display='none'" (click)="deleteConfirmation()" />
                         </div>
+                        Delete Training
                     </div>
                     <div class="modal-header text-center">
                         <div>
-                            <a href="/#/add-new-lesson">
+                            <a href="/#/add-new-lesson/{{ selectedTrainingID }}">
                                 <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
                                 Add Lesson/s
                             </a>
                         </div>
                         <div>
-                            <a href="/#/add-new-classes">
+                            <a href="/#/add-new-classes/{{ selectedTrainingID }}">
                                 <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
                                 Add Class
                             </a>
@@ -237,7 +238,7 @@
                     </div>
                     <div class="trainingRow">
                         <div class="trainingColumn" *ngFor="let lesson of lessonsOfTraining">
-                            <div class="trainingCard">
+                            <div class="w3-display-container trainingCard">
                                 <h3>{{ lesson.title }}</h3>
                                 <p>{{ lesson.name }}</p>
                                 <p>{{ lesson.description }}</p>

@@ -31,6 +31,11 @@ export class DataServicesService {
         return this.http.get(this.url + 'trainings-and-classes/return-classes-of-selected-training/' + trainingID)
     }
 
+    // Kini siya nga function kay ang pag add ug new lesson sa certain training 
+    addLessonOfCertainTraining(trainingID, newLessons) {
+        return this.http.post(this.url + 'trainings-and-classes/add-lesson-of-training/' + trainingID, newLessons)
+    }
+
     // This function is to get all the events and announcements
     getEventsAndAnnouncements() {
         return this.http.get(this.url + 'add-event-announcement/display')

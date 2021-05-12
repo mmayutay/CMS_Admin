@@ -1,0 +1,33 @@
+.cardHeight {
+    width: 35%; 
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+    height: 500px;
+}
+.submitButton {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    border-radius: 10px;
+    bottom: 25%;
+    width: 95%;
+    text-align: center;
+}
+
+.designButton {
+    display: block;
+    border: none;
+    background-color: rgb(138, 255, 165);
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.designButton:hover {
+    background-color: #ddd;
+    color: black;
+}

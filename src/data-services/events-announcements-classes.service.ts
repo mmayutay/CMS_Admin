@@ -40,5 +40,20 @@ export class EventAndAnnouncementsService {
     returnLessons(trainingID) {
         return this.http.get(this.url + 'trainings-and-classes/return-lesson-of-selected-training/' + trainingID)
     }
+
+    // Kini siya nga function kay ang pag sa admin ug new training 
+    addTraining(trainingData) {
+        return this.http.post(this.url + 'trainings-and-classes/add-trainings-with-lessons', trainingData)
+    }
+
+    // Kini siya nga function kay i delete ang certain trainings at the same time kay i delete na sad ang lessons under ana nga training
+    deleteTrainingWithLessons(trainingID) {
+        return this.http.delete(this.url + 'trainings-and-classes/delete-selected-training/' + trainingID)
+    }
+
+    // Kini siya nga function kay mag add ug new class sa certain training 
+    addCLassOfCertainTraining(classAdded) {
+        return this.http.post(this.url + 'trainings-and-classes/add-classes-with-students', classAdded)
+    }
     
 }

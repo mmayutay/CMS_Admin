@@ -14,11 +14,13 @@ import { ViewTrainingsAndClassesComponent } from '../view-trainings-and-classes/
     styleUrls: ['./eventsandannouncements.component.css']
 })
 export class EventsandannouncementsComponent implements OnInit {
-    public selectedTraining  = ''
+    public selectedTraining = ''
     public lessonsOfTraining = []
+    public selectedTrainingID = ''
 
     public eventsAndAnnouncements;
     public trainingsAndClasses;
+    public classOfCertainTraining;
     public returnAllUsers = []
     public isShow = true;
     public createdEventOrAnnouncement = {
@@ -42,9 +44,9 @@ export class EventsandannouncementsComponent implements OnInit {
         private eventsRequest: EventAndAnnouncementsService,
         private modalService: NgbModal,
     ) { }
-  
-    showMessagesModal(){
-      const modalRef = this.modalService.open(ViewTrainingsAndClassesComponent);
+
+    showMessagesModal() {
+        const modalRef = this.modalService.open(ViewTrainingsAndClassesComponent);
     }
 
 
@@ -52,6 +54,7 @@ export class EventsandannouncementsComponent implements OnInit {
         this.returnAllUsers = this.builtFunction.allUsers
         this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
         this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
+        this.classOfCertainTraining = this.builtFunction.classOfCertainTraining
     }
 
     // Kini siya nga function kay iyang i navigate sa view training 
@@ -157,6 +160,7 @@ export class EventsandannouncementsComponent implements OnInit {
     // Kini siya nga function kay pag kuha sa mga lessons sa certain training 
     displayLessons(value) {
         this.selectedTraining = value.title
+        this.selectedTrainingID = value.id
         const lessons = this.eventsRequest.returnLessons(value.id)
         lessons.subscribe((trainingLessons: any) => {
             this.lessonsOfTraining = trainingLessons
@@ -166,6 +170,66 @@ export class EventsandannouncementsComponent implements OnInit {
     // Kini siya nga function kay i delete ang selected lesson 
     deleteSelectedLesson(lesson) {
         console.log(lesson)
+    }
+
+    // Kini siya nga function kay i delete ang selected training 
+    deleteSelectedTraining() {
+        this.trainingsAndClasses.forEach(element => {
+            if (element.id == this.selectedTrainingID) {
+                this.trainingsAndClasses.splice(this.trainingsAndClasses.indexOf(element), 1)
+            }
+        })
+        const deleteTraining = this.eventsRequest.deleteTrainingWithLessons(this.selectedTrainingID)
+        deleteTraining.subscribe((response: any) => {
+            Swal.fire(
+                'Deleted!',
+                'Selected training has been deleted.',
+                'success'
+              )
+        })
+    }
+
+    // Kini siya nga function kay i clear ang array sa lessons 
+    clearLessonsArray() {
+        this.lessonsOfTraining = []
+    }
+
+
+    // Kini siya nga function kay para sa loader 
+    loadFunction() {
+        let timerInterval
+        Swal.fire({
+            title: 'Auto close alert!',
+            html: 'I will close in <b></b> milliseconds.',
+            timer: 5000,
+            timerProgressBar: true,
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
+    }
+    
+    // Kini siya nga function kay ask ug confirmation delete 
+    deleteConfirmation() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this " + this.selectedTraining + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.loadFunction()
+              this.deleteSelectedTraining()
+            }
+          })
     }
 }
 

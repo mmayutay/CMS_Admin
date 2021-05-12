@@ -12,6 +12,7 @@ export class TableFunctions {
 
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
+    public classOfCertainTraining = []
 
     public allUsers = [];
     public allEventsAndAnnouncements = []
@@ -48,7 +49,8 @@ export class TableFunctions {
             trainings.forEach(element => {
                 const classes = this.service.returnClassesOfTraining(element.id)
                 classes.subscribe((allClass: any) => {
-                    this.trainingsAndClasses.push({training: element, classes: allClass})  
+                    this.classOfCertainTraining.push(allClass)
+                    this.trainingsAndClasses.push(element)  
                 })
             });
         })

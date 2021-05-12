@@ -56,7 +56,7 @@
                                 <label>Choose who will be the instructor:</label>
                                 <select name="instructor" [(ngModel)]="addTrainings.newTrainings.instructor"
                                     class="form-control" okText="Okay" cancelText="Dismiss">
-                                    <option *ngFor="let user of user_data.allUsers" [value]="user"> {{ user.firstname +
+                                    <option *ngFor="let user of user_data.allUsers" [value]="user.id"> {{ user.firstname +
                                         ' ' +
                                         user.lastname }}</option>
                                 </select>
@@ -67,7 +67,7 @@
                     <div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button (click)="onaddEvents(addEventsForm)" type="submit"
+                                <button (click)="addNewTraining(addEventsForm)" type="submit"
                                     class="btn btn-primary btn-round" expand="block">Add a Training</button>
                             </div>
                         </div>
