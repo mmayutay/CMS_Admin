@@ -4,14 +4,39 @@
             <div class="icon-big text-center icon-warning">
                 <i class="nc-icon nc-single-02 text-warning"></i>
             </div>
-            <div class="numbers">
-                <p class="card-category">{{value.type}}</p>
-                <p class="card-title">{{value.length}}
-                <p>
+            <div class="w3-container">
+                <div class="numbers" onclick="document.getElementById('id01').style.display='block'" (click)="showMembers(value)">
+                    <p class="card-category">{{value.type}}</p>
+                    <p class="card-title" *ngIf="value.length.length == 0">0</p>
+                    <p class="card-title" *ngIf="value.length.length != 0">{{value.length.length}}<p>
+                </div>
+                <div id="id01" class="w3-modal">
+                    <div style="margin-left: 308px;" class="w3-modal-content w3-animate-top w3-card-4">
+                      <header class="w3-container" style="background-color: orange;"> 
+                        <span onclick="document.getElementById('id01').style.display='none'" 
+                        class="w3-button w3-display-topright">&times;</span>
+                        <h2 style="padding: 10px;">{{selectedMemberType.type}}</h2>
+                      </header>
+                      <div *ngIf="selectedMemberType.length != 0" class="w3-container">
+                          <ul class="w3-ul">
+                            <li *ngFor="let members of selectedMemberType.length" style="text-align: left; padding: 20px;">{{ members.firstname + ' ' + members.lastname }}</li>
+                          </ul>
+                      </div>
+                      <div *ngIf="selectedMemberType.length == 0">
+                        <div class="w3-container">
+                            <img style="width: 50%; height: 50%;" src="../../../assets/img/empty.png">
+                            <h2>No {{ selectedMemberType.type }}</h2>
+                        </div>
+                    </div>
+                      <footer class="w3-container" style="text-align: left; padding: 22px; background-color: orange;"></footer>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-body ">
@@ -36,71 +61,71 @@
 </div> -->
 <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-  
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Cell Group</h5>
-                        <p class="card-category">24 Hours performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id=chartHours width="800" height="300"></canvas>
-                    </div>
-                    <!-- <div class="card-footer ">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h5 class="card-title">Cell Group</h5>
+                            <p class="card-category">24 Hours performance</p>
+                        </div>
+                        <div class="card-body ">
+                            <canvas id=chartHours width="800" height="300"></canvas>
+                        </div>
+                        <!-- <div class="card-footer ">
                     <hr>
                     <div class="stats">
                         <i class="fa fa-history"></i> Updated 3 minutes ago
                     </div>
                 </div> -->
+                    </div>
                 </div>
             </div>
-        </div>
-  
-        <div class="item">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Sunday Celebration</h5>
-                        <p class="card-category">24 Hours performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id="sundayCelebration" width="800" height="300"></canvas>
-                    </div>
-                    <!-- <div class="card-footer ">
+
+            <div class="item">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h5 class="card-title">Sunday Celebration</h5>
+                            <p class="card-category">24 Hours performance</p>
+                        </div>
+                        <div class="card-body ">
+                            <canvas id="sundayCelebration" width="800" height="300"></canvas>
+                        </div>
+                        <!-- <div class="card-footer ">
                     <hr>
                     <div class="stats">
                         <i class="fa fa-history"></i> Updated 3 minutes ago
                     </div>
                 </div> -->
+                    </div>
                 </div>
             </div>
-        </div>
-      
-        <!-- <div class="item">
+
+            <!-- <div class="item">
           <img src="ny.jpg" alt="New york" style="width:100%;">
         </div> -->
-      </div>
-  
-      <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-      </a>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-  </div>
+</div>
 <!--  <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-body ">

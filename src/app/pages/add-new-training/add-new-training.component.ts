@@ -8,13 +8,14 @@ import { DataServicesService } from 'data-services/data-services.service'
   styleUrls: ['./add-new-training.component.css']
 })
 export class AddNewTrainingComponent implements OnInit {
+  // public allUsers;
   public addTrainings = {
     newTrainings: {
       code: '',
       title: '',
       description: '',
       level: '',
-      instructor: ''
+      instructor: ""
     }
   }
 
@@ -24,6 +25,7 @@ export class AddNewTrainingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.allUsers = this.user_data;    
   }
 
   onaddEvents(addEventsForm){

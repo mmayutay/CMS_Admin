@@ -43,8 +43,9 @@ export class TableComponent implements OnInit{
         var roles = new Array();
         roles[0] = "Admin"
         roles[1] = "Pastor"
-        roles[12] = "Leader"
-        roles[144] = "Member"
+        roles[12] = "Primary Leader"
+        roles[144] = "Member(144)"
+        roles[1728] = "Member(1728)"
         return roles[Number(role)]
     }
 

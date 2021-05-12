@@ -1,0 +1,51 @@
+<div style="margin-left: 10%;">
+    <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+        <div class="card card-user">
+            <div class="card-header" style="text-align: center;">
+                <h5 class="card-title">Add New Lesson/s</h5>
+            </div>
+            <div class="card-body">
+                <form #addEventsForm="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Lesson</label>
+                                <input [(ngModel)]="newLesson.lesson" class="form-control" name="Code"
+                                    type="text" #Name="ngModel" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input [(ngModel)]="newLesson.title" class="form-control"
+                                    #nameCtrl="ngModel" name="Title" type="text" #Title="ngModel" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="newLesson.description" class="form-control"
+                                    #nameCtrl="ngModel" name="Description" type="text" #Description="ngModel"
+                                    required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button (click)="onaddEvents(addEventsForm)" type="submit"
+                                    class="btn btn-primary btn-round" expand="block">Add Created Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

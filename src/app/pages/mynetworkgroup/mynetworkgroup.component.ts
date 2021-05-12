@@ -8,6 +8,7 @@ import { DataServicesService } from '../../../data-services/data-services.servic
   styleUrls: ['./mynetworkgroup.component.css']
 })
 export class MynetworkgroupComponent implements OnInit {
+  public membersOfSelectedLeader = []
   public selectedLeadersMembers  = []
   public pastorsWithItsMembers = []
 
@@ -52,5 +53,16 @@ export class MynetworkgroupComponent implements OnInit {
     roles[3] = "Leader"
     roles[4] = "Member"
     return roles[Number(role)]
+  }
+
+  // Kini siya nga function kay kuhaon ang mga members under anang certain leader 
+  getMembers(members) {
+    console.log(members)
+    this.built.listOfLeadersAndItsMembers.forEach(element => {
+      if(element.leader.id == members) {
+        console.log(element.members)
+        this.membersOfSelectedLeader = element.members
+      }
+    });
   }
 }

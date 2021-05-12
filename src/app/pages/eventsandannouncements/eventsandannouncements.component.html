@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="spinning">
-    <div *ngIf="eventsAndAnnouncements.length == 0 && trainingsAndClasses.length == 0" class="lds-spinner">
+    <div *ngIf="eventsAndAnnouncements == undefined && trainingsAndClasses == undefined" class="lds-spinner">
         <div></div>
         <div></div>
         <div></div>
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0" class="row">
+<div class="row">
     <div class="card-body all-icons">
         <div id="icons-wrapper">
             <section>
@@ -31,7 +31,7 @@
                                 <h5 class="card-title">Events_And_Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
                                 <table class="table">
                                     <table class="table">
                                         <thead class=" text-primary">
@@ -195,7 +195,7 @@
     <div id="id02" class="w3-modal">
         <div class="w3-modal-content">
             <!-- w3-teal -->
-            <header class="w3-container" style="background-color:aqua">
+            <header class="w3-container" style="background-color:orange">
                 <span onclick="document.getElementById('id02').style.display='none'"
                     class="w3-button w3-display-topright">&times;</span>
                 <h2>Training Details</h2>
@@ -206,9 +206,34 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h1>{{ selectedTraining }}</h1>
-                        <img class="action" style="margin-right:0%;vertical-align: middle;
-                        position: absolute;
-                        right: 5%;" (click)="deleteTraining()" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                        <div>
+                            <img class="action" style="margin-right:0%;vertical-align: middle;
+                            position: absolute;
+                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                            Delete Training
+                        </div>
+                    </div>
+                    <div class="modal-header text-center">
+                        <div>
+                            <a href="/#/add-new-lesson">
+                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
+                                Add Lesson/s
+                            </a>
+                        </div>
+                        <div>
+                            <a href="/#/add-new-classes">
+                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
+                                Add Class
+                            </a>
+                        </div>
+                        <!-- <div>
+                            <div>
+                                <img class="action" style="margin-right:0%;vertical-align: middle;
+                                position: absolute;
+                                right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                                Delete Training
+                            </div>
+                        </div> -->
                     </div>
                     <div class="trainingRow">
                         <div class="trainingColumn" *ngFor="let lesson of lessonsOfTraining">

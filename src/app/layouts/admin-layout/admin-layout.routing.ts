@@ -17,6 +17,8 @@ import { EventsandannouncementsComponent } from '../../pages/eventsandannounceme
 import { DisplaymembersComponent } from '../../pages/displaymembers/displaymembers.component';
 import { ViewTrainingsAndClassesComponent } from '../../pages/view-trainings-and-classes/view-trainings-and-classes.component';
 import { AddNewTrainingComponent } from 'app/pages/add-new-training/add-new-training.component';
+import { AddNewLessonComponent } from 'app/pages/add-new-lesson/add-new-lesson.component';
+import { AddNewClassesComponent } from 'app/pages/add-new-classes/add-new-classes.component';
 
 
 
@@ -43,7 +45,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'reportings', component: ReportingsComponent },
     { path: 'displaymembers/:type', component: DisplaymembersComponent },
     { path: 'view-selected-class/:trainingID', component: ViewTrainingsAndClassesComponent },
-    { path: 'add-new-training', component: AddNewTrainingComponent}
+    { path: 'add-new-training', component: AddNewTrainingComponent},
+    { path: 'add-new-lesson', component: AddNewLessonComponent},
+    { path: 'add-new-classes', component: AddNewClassesComponent}
 
     
 ];

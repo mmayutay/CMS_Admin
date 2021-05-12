@@ -1,6 +1,19 @@
 <div *ngIf="built.listOfLeadersAndItsMembers.length == 0">
   <div class="spinning">
-    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </div>
 <div class="row" *ngIf="built.listOfLeadersAndItsMembers.length == built.leaderCounter">
@@ -10,17 +23,28 @@
         <h4 class="card-title">My Network</h4>
       </div> -->
       <div style="text-align: center;">
-        <h1>{{ built.pastorsData.firstname }} {{ built.pastorsData.lastname }}</h1>
+        <h1 *ngIf="built.listOfLeadersAndItsMembers != 0">{{ built.pastorsData.firstname }} {{
+          built.pastorsData.lastname }}</h1>
       </div>
-      <div style="overflow-x: auto;">
-        <!-- <div class="imgNothing">
-          <div class="imgCard">
-            <img src="../../../assets/img/empty.png">
-            <h2 style="font-weight: 100;">Nothing to show!</h2>
+      <div>
+        <div *ngIf="built.listOfLeadersAndItsMembers != 0">
+          <div class="memberRow">
+            <div class="memberColumn">
+              <div class="memberCard">
+                <select (change)="getMembers($event.target.value)">
+                  <option *ngFor="let leaders of built.listOfLeadersAndItsMembers" [value]="leaders.leader.id">{{ leaders.leader.firstname + " " + leaders.leader.lastname }}</option>
+                </select>
+                <div class="w3-container">
+                  <ul class="w3-ul">
+                    <li *ngFor="let member of membersOfSelectedLeader">{{ member.firstname }} {{ member.lastname }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
 
-        <table>
+        <!-- <table>
           <tr>
             <td *ngFor="let leaders of built.listOfLeadersAndItsMembers">
               <div class="leaderCard">
@@ -33,7 +57,7 @@
               </div>
             </td>
           </tr>
-        </table>
+        </table> -->
       </div>
       <!-- <div class="card-body">
         <div class="table-responsive" style="overflow-x: auto;">
