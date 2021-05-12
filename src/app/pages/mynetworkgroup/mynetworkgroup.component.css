@@ -166,3 +166,26 @@ table {
   padding: 16px;
   background-color: #f1f1f1;
 }
+
+.focus {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid var(--select-focus);
+  border-radius: 10px;
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+.w3-ul{
+  text-align: center;
+}
+
+.list{
+  border-bottom: 1px solid black;
+}
+
+.memberCard2{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  background-color: #f1f1f1;
+}
