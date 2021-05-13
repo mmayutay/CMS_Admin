@@ -46,8 +46,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'displaymembers/:type', component: DisplaymembersComponent },
     { path: 'view-selected-class/:trainingID', component: ViewTrainingsAndClassesComponent },
     { path: 'add-new-training', component: AddNewTrainingComponent},
-    { path: 'add-new-lesson', component: AddNewLessonComponent},
-    { path: 'add-new-classes', component: AddNewClassesComponent}
+    { path: 'add-new-lesson/:trainingID', component: AddNewLessonComponent},
+    { path: 'add-new-classes/:trainingID', component: AddNewClassesComponent}
 
     
 ];

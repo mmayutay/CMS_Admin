@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TableFunctions } from 'app/component-functions/table.function';
+import { EventAndAnnouncementsService } from 'data-services/events-announcements-classes.service';
 import { LoginAndLogout } from 'data-services/user-data';
-import { DataServicesService } from 'data-services/data-services.service'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-new-training',
@@ -21,17 +24,21 @@ export class AddNewTrainingComponent implements OnInit {
 
   constructor(
     public user_data: LoginAndLogout,
-    public dataService: DataServicesService
+    public eventsAndAnnouncements: EventAndAnnouncementsService,
+    public router: Router,
+    public builtFunction: TableFunctions
   ) { }
 
   ngOnInit(): void {
     // this.allUsers = this.user_data;    
   }
 
-  onaddEvents(addEventsForm){
-    this.addTrainings = addEventsForm;
-    console.log("Training:: ", addEventsForm.form.value);
+  addNewTraining(training) {
+    const addNewTraining = this.eventsAndAnnouncements.addTraining(this.addTrainings.newTrainings)
+    addNewTraining.subscribe((response: any) => {
+      this.builtFunction.trainingsAndClasses.push(response)
+      Swal.fire('Added!', 'A training is added successfully', 'success')
+      this.router.navigate(['/eventsandannouncements'])
+    })
   }
-
-
 }

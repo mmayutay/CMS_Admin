@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventAndAnnouncementsService } from 'data-services/events-announcements-classes.service';
 
 @Component({
   selector: 'app-add-new-classes',
@@ -13,9 +14,13 @@ export class AddNewClassesComponent implements OnInit {
     type: ''
   }
 
-  constructor() { }
+  constructor(
+    public eventsRequest: EventAndAnnouncementsService
+  ) { }
 
   ngOnInit(): void {
   }
+
+  // Kini siya nga function kay ang pag add ug class 
 
 }
