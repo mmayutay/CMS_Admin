@@ -31,7 +31,7 @@
                                 <h5 class="card-title">Events_And_Announcements</h5>
                                 <p class="card-category">Last Campaign Performance</p>
                             </div>
-                            <div class="table-responsive" *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
+                            <div>
                                 <table class="table">
                                     <table class="table">
                                         <thead class=" text-primary">
@@ -45,7 +45,7 @@
                                                 Action
                                             </th>
                                         </thead>
-                                        <tbody>
+                                        <tbody *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
                                             <tr *ngFor="let value of eventsAndAnnouncements">
                                                 <td>
                                                     {{ value.events.title }}
@@ -70,7 +70,8 @@
                         <div class="card ">
                             <div class="card-header ">
                                 <div class="add">
-                                    <img (click)="addNewTrainings()" src="https://img.icons8.com/android/24/26e07f/plus.png" />
+                                    <img (click)="addNewTrainings()"
+                                        src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Trainings And Classes</h5>
                                 <p class="card-category">Trainings for the members</p>
@@ -90,8 +91,7 @@
                                             <p>{{ value.title }}</p>
                                             <div class="middle">
                                                 <!-- (click)="navigateToView(value.training.id)" -->
-                                                <button (click)="displayLessons(value)"
-                                                    class="text buttonSubmit"
+                                                <button (click)="displayLessons(value)" class="text buttonSubmit"
                                                     onclick="document.getElementById('id02').style.display='block'">Show
                                                     Details</button>
                                             </div>
@@ -101,7 +101,7 @@
                                     <tr *ngFor="let class of classOfCertainTraining[i]">
                                         <td>
                                             <!-- (click)="showStudent(class, 'Class')" -->
-                                            <a href="/#/view-events/{{class.id}}/{{'Class'}}">{{ class.name }}</a>
+                                            <a href="/#/view-records/{{class.id}}">{{ class.name }}</a>
                                         </td>
                                     </tr>
                                     </td>
@@ -196,9 +196,11 @@
     <div id="id02" class="w3-modal">
         <div style="border-radius: 10px;" class="w3-modal-content w3-animate-top w3-card-4">
             <!-- w3-teal -->
-            <header class="w3-container" style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color:orange">
-                <span style="border-top-right-radius: 10px;" onclick="document.getElementById('id02').style.display='none'"
-                    class="w3-button w3-display-topright" (click)="clearLessonsArray()">&times;</span>
+            <header class="w3-container"
+                style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color:orange">
+                <span style="border-top-right-radius: 10px;"
+                    onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright"
+                    (click)="clearLessonsArray()">&times;</span>
                 <h2>Training Details</h2>
             </header>
             <!-- <div class="w3-container"> -->
@@ -210,20 +212,22 @@
                         <div>
                             <img class="action" style="margin-right:0%;vertical-align: middle;
                             position: absolute;
-                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png" onclick="document.getElementById('id02').style.display='none'" (click)="deleteConfirmation()" />
+                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png"
+                                onclick="document.getElementById('id02').style.display='none'"
+                                (click)="deleteConfirmation()" />
                         </div>
                         Delete Training
                     </div>
                     <div class="modal-header text-center">
                         <div>
                             <a href="/#/add-new-lesson/{{ selectedTrainingID }}">
-                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
+                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;" />
                                 Add Lesson/s
                             </a>
                         </div>
                         <div>
                             <a href="/#/add-new-classes/{{ selectedTrainingID }}">
-                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;"/>
+                                <img src="https://img.icons8.com/android/24/26e07f/plus.png" style="color: white;" />
                                 Add Class
                             </a>
                         </div>

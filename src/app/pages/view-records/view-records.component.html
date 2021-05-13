@@ -1,0 +1,94 @@
+<!-- <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head> -->
+
+<div class="w3-panel w3-card" style="padding: 40px;" *ngIf="!eventsOrClass">
+    <h2 style="text-align: center;">{{ className }}</h2>
+    <div class="w3-container">
+        <div style="float: right;" class="dropdown">
+            <img class="addStudent" onclick="document.getElementById('id01').style.display='block'" src="https://img.icons8.com/pastel-glyph/50/26e07f/add-user-male--v2.png" />
+            <div class="addStudentText">Add Student</div>
+        </div><br>
+        <div style="float: right;" class="dropdown">
+            <img class="deleteAll" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+            <div class="deleteText">Delete All</div>
+            <!-- <div style="float: right;">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="dropdown-choices">
+                <button class="addstudent" onclick="document.getElementById('id01').style.display='block'">Add
+                    Student</button>
+                <button class="deleteStudent">Delete All</button>
+            </div> -->
+        </div>
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top w3-card-4" style="margin-left: 35%; width: 50%;">
+                <header class="w3-container" style="background-color: orange;">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-display-topright">&times;</span><br>
+                    <center>
+                        <h2>List of names</h2>
+                    </center>
+                </header>
+                <div class="w3-container"><br>
+                    <ul class="w3-ul w3-hoverable">
+                        <li style="padding: 10px;" *ngFor="let value of allUsers" (click)="addStudent(value)"><a>{{ value.firstname }} {{ value.lastname }}</a> </li>
+                      </ul>
+                </div>
+                <footer class="w3-container" style="background-color: orange;"><br>
+                    <p>Click the name you want to add!</p>
+                </footer>
+            </div>
+        </div>
+    </div>    
+    <div class="w3-container">
+        <div *ngIf="studentsNames.length == 0">
+            <h1>No students enrolled!</h1>
+        </div>
+        <ul class="w3-ul w3-card-4" style="width:50%;">
+            <li style="padding: 30px;" *ngFor="let student of studentsNames" class="w3-display-container">
+                {{ student.lastname }}, {{ student.firstname }}
+                <span class="w3-button w3-display-right" (click)="deleteSelectedStudent(student)">X</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="detailsCard">
+    <!-- <div class="w3-container details" *ngIf="eventsOrClass">
+        <center>
+            <h2>{{ eventDetails.title }}</h2>
+        </center>
+
+        <div class="w3-card-4" style="width:50%;margin-left: 25%;">
+            <header class="w3-container w3-blue">
+                <h1> {{ eventDetails.location }} </h1>
+                <p> {{ eventDetails.start_date }} - {{ eventDetails.end_date }} </p>
+                <p> {{ eventDetails.start_time }} - {{ eventDetails.end_time }} </p>
+            </header>
+
+            <div class="w3-container">
+                <p>{{ eventDetails.description }}</p>
+            </div>
+
+            <footer class="w3-container w3-blue">
+                <h5>Footer</h5>
+            </footer>
+        </div>
+        #2196F3!important
+    </div> -->
+
+    <div class="blog-card spring-fever" *ngIf="eventsOrClass">
+        <div class="title-content">
+            <h3> {{ eventDetails.title }} </h3>
+            <div class="intro"> <a>{{ eventDetails.location }}</a>
+                <p> Start Date: {{ eventDetails.start_date }} <br> End Date: {{ eventDetails.end_date }} </p>
+                <p> {{ eventDetails.start_time }} - {{ eventDetails.end_time }} </p>
+            </div>
+        </div>
+        <p class="card-info"> {{ eventDetails.description }} </p>
+        <div class="gradient-overlay"></div>
+        <div class="color-overlay"></div>
+    </div><!-- /.blog-card -->
+</div>

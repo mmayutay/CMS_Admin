@@ -257,3 +257,8 @@ button {
   padding: 16px;
   background-color: #f1f1f1;
 }
+
+th {
+  color: #3dca73;
+  font-weight: 100;
+}

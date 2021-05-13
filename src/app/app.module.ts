@@ -22,10 +22,10 @@ import { ClassesComponent } from './pages/trainings/classes/classes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DisplaymembersComponent } from './pages/displaymembers/displaymembers.component';
 import { AddNewUserComponent } from './pages/add-new-user/add-new-user.component';
-import { ViewTrainingsAndClassesComponent } from './pages/view-trainings-and-classes/view-trainings-and-classes.component';
 import { AddNewTrainingComponent } from './pages/add-new-training/add-new-training.component';
 import { AddNewLessonComponent } from './pages/add-new-lesson/add-new-lesson.component';
 import { AddNewClassesComponent } from './pages/add-new-classes/add-new-classes.component';
+import { ViewRecordsComponent } from './pages/view-records/view-records.component';
 
 
 @NgModule({
@@ -40,10 +40,10 @@ import { AddNewClassesComponent } from './pages/add-new-classes/add-new-classes.
     LoginComponent,
     DisplaymembersComponent,
     AddNewUserComponent,
-    ViewTrainingsAndClassesComponent,
     AddNewTrainingComponent,
     AddNewLessonComponent,
     AddNewClassesComponent,
+    ViewRecordsComponent,
   ],
   imports: [
     FormsModule,
