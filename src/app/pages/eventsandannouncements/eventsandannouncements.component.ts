@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ViewTrainingsAndClassesComponent } from '../view-trainings-and-classes/view-trainings-and-classes.component';
 
 @Component({
     selector: 'app-eventsandannouncements',
@@ -46,7 +45,6 @@ export class EventsandannouncementsComponent implements OnInit {
     ) { }
 
     showMessagesModal() {
-        const modalRef = this.modalService.open(ViewTrainingsAndClassesComponent);
     }
 
 

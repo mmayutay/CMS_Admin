@@ -44,7 +44,7 @@ export class ViewEventsComponent implements OnInit {
     let type = this.activatedRoute.snapshot.paramMap.get('idSelectedItem')
     if (type == 'Events') {
       this.eventsOrClass = true
-      const trainingsDetails = this.eventsAndAnnouncements.returnTrainingsDetails(params)
+      const trainingsDetails = this.eventsAndAnnouncements.returnEventsDetails(params)
       trainingsDetails.subscribe((response: any) => {
         this.eventDetails = response
         response.start_time = new Date(response.start_time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })

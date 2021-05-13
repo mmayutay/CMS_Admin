@@ -63,8 +63,9 @@ export class AddNewLessonComponent implements OnInit {
   // Kini siya nga function i add sa database ang mga lessons nga iyang g create 
   submitCreatedLessons() {
     for (let index = 0; index < this.listOfLessons.length; index++) {
-      this.listOfLessons[index].lesson = this.lessonCounter[index + 1]
-      this.listOfLessons[index].name = "Lesson " + this.lessonCounter[index + 1]
+      console.log(this.lessonCounter)
+      this.listOfLessons[index].lesson = this.lessonCounter[index]
+      this.listOfLessons[index].name = "Lesson " + this.lessonCounter[index]
       const addLesson = this.dataRequest.addLessonOfCertainTraining(this.selectedTrainingID,  this.listOfLessons[index])
       addLesson.subscribe((response: any) => {
         console.log(response)

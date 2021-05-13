@@ -1,65 +1,69 @@
-<div style="margin-left: 10%;">
-    <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
-        <div class="card card-user">
-            <div class="card-header" style="text-align: center;">
-                <h5 class="card-title">Add New Class</h5>
-            </div>
-            <div class="card-body">
-                <form #addEventsForm="ngForm" novalidate>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Selected Training:</label>
-                                <input [(ngModel)]="newLesson.training" class="form-control" name="Code"
-                                    type="text" #Name="ngModel" required />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Class Name</label>
-                                <input [(ngModel)]="newLesson.class_name" class="form-control"
-                                    #nameCtrl="ngModel" name="Title" type="text" #Title="ngModel" required />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Choose type of Class:</label>
-                                <select name="level" [(ngModel)]="newLesson.type" class="form-control"
-                                    okText="Okay" cancelText="Dismiss">
-                                    <option value="Attendance">Attendance</option>
-                                    <option value="Quiz">Quiz</option>
-                                    <option value="Assignment">Assignment</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea [(ngModel)]="newLesson.description" class="form-control"
-                                    #nameCtrl="ngModel" name="Description" type="text" #Description="ngModel"
-                                    required></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
+<div class="row">
+    <div style="width: 50%;">
+        <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+            <div class="card card-user">
+                <div class="card-header" style="text-align: center;">
+                    <h3 class="card-title">Add New Class</h3><br>
+                    <p>Fill all the blanks in adding a new class</p>
+                </div>
+                <div class="card-body">
+                    <form #addEventsForm="ngForm" novalidate>
                         <div class="row">
-                            <div class="update ml-auto mr-auto">
-                                <button (click)="onaddEvents(addEventsForm)" type="submit"
-                                    class="btn btn-primary btn-round" expand="block">Add Created Class</button>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Selected Training:</label>
+                                    <input [(ngModel)]="newLesson" class="form-control" name="Code" type="text"
+                                        #Name="ngModel" disabled />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Class Name</label>
+                                    <input [(ngModel)]="newClass.Name" class="form-control" #nameCtrl="ngModel"
+                                        name="Title" type="text" #Title="ngModel" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Choose type of Class:</label>
+                                    <select name="level" [(ngModel)]="classType" class="form-control" okText="Okay"
+                                        cancelText="Dismiss">
+                                        <option value="Attendance">Attendance</option>
+                                        <option value="Quiz">Quiz</option>
+                                        <option value="Assignment">Assignment</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea [(ngModel)]="newClass.Description" class="form-control"
+                                        #nameCtrl="ngModel" name="Description" type="text" #Description="ngModel"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    <div class="w3-container cardHeight">
+        <h2>List of Users</h2>
+        <p>Click the checkbox if you want to add the certain user to a class</p>
+        <ul class="w3-ul w3-card-4">
+            <li style="padding: 16px;" class="w3-display-container" *ngFor="let user of allUsers">{{ user.firstname + ' ' + user.lastname }} <input type="checkbox" class="w3-button w3-transparent w3-display-right"
+                    style="margin-right: 10px;" (change)="addStudent(user)"></li>
+        </ul>
+    </div>
+    <button class="block" (click)="addNewClass()">Submit Class Added!</button>
 </div>
