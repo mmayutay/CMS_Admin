@@ -47,3 +47,44 @@
     text-align: left;
     padding: 8px;
   }
+
+  .topnav {
+    width: 97%;
+    margin-left: 15px;
+    overflow: hidden;
+    background-color: rgb(139, 139, 139);
+    border-radius: 5px;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+
+  select {
+    padding: 10px;
+    outline: none;
+    margin: 10px;
+    width: 250px;
+    border-radius: 5px;
+  }
+
+  option {
+    font-size: 15px;
+    outline: none;
+    margin: 10px;
+    width: 250px;
+    border-radius: 5px;
+  }
+
+  input {
+    padding: 10px;
+    outline: none;
+    margin: 10px;
+    border-radius: 5px;
+  }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TableFunctions } from 'app/component-functions/table.function';
 import { DataServicesService } from 'data-services/data-services.service';
 import { EventAndAnnouncementsService } from 'data-services/events-announcements-classes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-records',
@@ -9,6 +11,7 @@ import { EventAndAnnouncementsService } from 'data-services/events-announcements
   styleUrls: ['./view-records.component.css']
 })
 export class ViewRecordsComponent implements OnInit {
+  public classID = ''
   public allUsers = []
   public className = ''
   public studentsNames = []
@@ -16,12 +19,14 @@ export class ViewRecordsComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public eventsRequest: EventAndAnnouncementsService,
-    public dataRequest: DataServicesService
+    public dataRequest: DataServicesService,
+    public router: Router,
+    public tableFunction: TableFunctions
   ) { }
 
   ngOnInit(): void {
     let classID = this.activatedRoute.snapshot.paramMap.get('classID')
-
+    this.classID = classID
     console.log(classID)
     this.getStudents(classID)
     this.classDetails(classID)
@@ -57,5 +62,26 @@ export class ViewRecordsComponent implements OnInit {
       this.allUsers = response
     })
   } 
+
+  // Kini siya nga function kay i delete niya ang class 
+  deleteSelectedClass() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete this class?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const classSelected = this.eventsRequest.deleteSelectedClass(this.classID)
+        classSelected.subscribe((response: any) => {
+          Swal.fire('Deleted!', 'Class Deleted Successfully!', 'success')
+          this.router.navigate(['/eventsandannouncements'])
+        })
+      }
+    })
+  }
 
 }

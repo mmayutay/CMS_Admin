@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import { DataServicesService } from 'data-services/data-services.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AttendanceService } from 'data-services/attendance.service';
 
 @Component({
     selector: 'dashboard-cmp',
@@ -12,6 +13,16 @@ import Swal from 'sweetalert2';
 })
 
 export class DashboardComponent implements OnInit{
+  public today = ''
+  public allUsersAttendance  = []
+  public chosenTypeOfDisplay = 'Weekly'
+  public choices = [
+    {value: '1', choice: '1st Week'},
+    {value: '2', choice: '2nd Week'},
+    {value: '3', choice: '3rd Week'},
+    {value: '4', choice: '4th Week'}
+  ]
+  public all144and1728Members = []
   public selectedMemberType = {
     type: '',
     length: []
@@ -40,14 +51,19 @@ export class DashboardComponent implements OnInit{
 
     constructor( 
       public dataRequest:DataServicesService,
-      public router: Router
+      public router: Router,
+      public attendanceService: AttendanceService 
     ) {
 
+      // this.computeStats()
+      this.getChosenDate({target: {value: this.chosenTypeOfDisplay}})
     }
 
     ngOnInit(){
-      this.statistics("chartHours")
-      this.statistics("sundayCelebration")
+      this.today = new Date().toISOString().split('T')[0];
+      this.statistics("chartHours", [])
+      this.statistics("sundayCelebration",  [])
+      // this.get144And1728Users()
     }
     returnTypeOfMember() {
       var members = [];
@@ -102,7 +118,7 @@ export class DashboardComponent implements OnInit{
       this.router.navigate(['displaymembers/' + value.type])
     }
 
-    statistics(id) {
+    statistics(id, values) {
       this.chartColor = "#FFFFFF";
 
       this.canvas = document.getElementById(id);
@@ -112,30 +128,15 @@ export class DashboardComponent implements OnInit{
         type: 'line',
 
         data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [{
+          labels: ["1st", "2nd", "3rd", "4th", "5th", "6th"],
+          datasets: [
+            {
               borderColor: "#6bd098",
               backgroundColor: "#6bd098",
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
-              data: [20, 10, 80, 40, 70, 30, 50, 80, 30, 40, 100, 100]
-            },
-            {
-              borderColor: "#f17e5d",
-              backgroundColor: "#f17e5d",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [25, 15, 85, 45, 75, 35, 55, 85, 35, 45, 100, 100]
-            },
-            {
-              borderColor: "#fcc468",
-              backgroundColor: "#fcc468",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [30, 20, 90, 50, 80, 40, 60, 90, 40, 50, 100, 100]
+              data: values
             }
           ]
         },
@@ -189,4 +190,77 @@ export class DashboardComponent implements OnInit{
     showMembers(value) {
       this.selectedMemberType = value
     }
+
+
+    // Kini siya nga function kay kuhaon ang stats attendance sa cellgroup 
+    cellGroupStatsAttendance(id) {
+      const cgAttendance = this.attendanceService.returnCellgroupAttendance()
+      cgAttendance.subscribe((response: any) => {
+        this.get144And1728Users(response, id)
+      })
+    }
+
+    // Kini siya nga function kay kuhaon ang stats attendance sa sunday celebration 
+    sundayCelebrationAttendance(id) {
+      const scAttendance = this.attendanceService.returnSCAttendance()
+      scAttendance.subscribe((response: any) => {
+        this.get144And1728Users(response, id)
+      })
+    }
+
+    // Kini siya nga function kay kuhaon ang tanan nga member 144 ug 1728 nga user 
+    get144And1728Users(usersArray, statsID) {
+      const allUsers = this.dataRequest.getAllUsers()
+      allUsers.subscribe((users: any) => {
+        this.attendanceService.allMembers = users
+        if(this.chosenTypeOfDisplay == 'Weekly') {
+          this.statistics(statsID, this.weeklyStats(users ,usersArray, this.attendanceService.dates(new Date('05-09-2021'))))
+        }else if(this.chosenTypeOfDisplay == 'Monthly') {
+          this.statistics(statsID, this.attendanceService.getMonthlyStats(usersArray, 'May', 2021))
+        }else if(this.chosenTypeOfDisplay == 'Quarterly') {
+
+        }
+      })
+    }
+
+
+    // Kini siya nga function kay kuhaon ang date nga gipili sa user 
+    getChosenDate(value) {
+      this.chosenTypeOfDisplay = value.target.value
+      if(value.target.value == 'Monthly') {
+        this.choices = []
+        this.attendanceService.retunYears().reverse().forEach(element => {
+          this.choices.push({value: element, choice: element})
+        })
+      }
+      this.cellGroupStatsAttendance("chartHours")
+      this.sundayCelebrationAttendance("sundayCelebration")
+      // this.statistics("chartHours", )
+      // this.statistics("sundayCelebration",  )
+    } 
+
+
+    // Kini siya nga function kay mao ang mu compute sa stats 
+    weeklyStats(allusers: any, usersAttendance: any, dates: any) {
+      var arrayOfStats = []
+      var counter = 0
+      for (let date = 0; date < dates.length; date++) {
+        for (let user = 0; user < usersAttendance.length; user++) {
+          if(
+            new Date(dates[date]).getMonth() + '-'  + new Date(dates[date]).getDate() + '-' + new Date(dates[date]).getFullYear() == 
+            new Date(usersAttendance[user].date).getMonth() + '-'  + new Date(usersAttendance[user].date).getDate() + '-' + new Date(usersAttendance[user].date).getFullYear()
+          ) {
+            counter += 1
+          }
+        }
+        if(counter != 0) {
+          arrayOfStats.push(Math.floor(((counter + 2) / allusers.length) * 100))
+        }else {
+          arrayOfStats.push(0)
+        }
+        counter = 0
+      }
+      return arrayOfStats
+    }
+
 }

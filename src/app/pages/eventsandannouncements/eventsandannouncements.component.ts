@@ -167,7 +167,23 @@ export class EventsandannouncementsComponent implements OnInit {
 
     // Kini siya nga function kay i delete ang selected lesson 
     deleteSelectedLesson(lesson) {
-        console.log(lesson)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete lesson " + lesson.title + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const lessonDeleted = this.eventsRequest.deleteSelectedLesson(lesson.id)
+                lessonDeleted.subscribe((response: any) => {
+                    Swal.fire('Deleted!', 'Selected lesson deleted successfully!', 'success')
+                    document.getElementById('id02').style.display = 'none'
+                })
+            }
+          })
     }
 
     // Kini siya nga function kay i delete ang selected training 

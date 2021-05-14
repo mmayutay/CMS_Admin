@@ -5,60 +5,61 @@
                 <i class="nc-icon nc-single-02 text-warning"></i>
             </div>
             <div class="w3-container">
-                <div class="numbers" onclick="document.getElementById('id01').style.display='block'" (click)="showMembers(value)">
+                <div class="numbers" onclick="document.getElementById('id01').style.display='block'"
+                    (click)="showMembers(value)">
                     <p class="card-category">{{value.type}}</p>
                     <p class="card-title" *ngIf="value.length.length == 0">0</p>
-                    <p class="card-title" *ngIf="value.length.length != 0">{{value.length.length}}<p>
+                    <p class="card-title" *ngIf="value.length.length != 0">{{value.length.length}}
+                    <p>
                 </div>
                 <div id="id01" class="w3-modal">
-                    <div style="margin-left: 308px; border-radius: 10px;" class="w3-modal-content w3-animate-top w3-card-4">
-                      <header class="w3-container" style="background-color: orange; border-top-left-radius: 10px; border-top-right-radius: 10px;"> 
-                        <span style="border-top-right-radius: 10px;" onclick="document.getElementById('id01').style.display='none'" 
-                        class="w3-button w3-display-topright">&times;</span>
-                        <h2 style="padding: 10px;">{{selectedMemberType.type}}</h2>
-                      </header>
-                      <div *ngIf="selectedMemberType.length != 0" class="w3-container">
-                          <ul class="w3-ul">
-                            <li *ngFor="let members of selectedMemberType.length" style="text-align: left; padding: 20px;">{{ members.firstname + ' ' + members.lastname }}</li>
-                          </ul>
-                      </div>
-                      <div *ngIf="selectedMemberType.length == 0">
-                        <div class="w3-container">
-                            <img style="width: 50%; height: 50%;" src="../../../assets/img/empty.png">
-                            <h2>No {{ selectedMemberType.type }}</h2>
+                    <div style="margin-left: 308px; border-radius: 10px;"
+                        class="w3-modal-content w3-animate-top w3-card-4">
+                        <header class="w3-container"
+                            style="background-color: orange; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                            <span style="border-top-right-radius: 10px;"
+                                onclick="document.getElementById('id01').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                            <h2 style="padding: 10px;">{{selectedMemberType.type}}</h2>
+                        </header>
+                        <div *ngIf="selectedMemberType.length != 0" class="w3-container">
+                            <ul class="w3-ul">
+                                <li *ngFor="let members of selectedMemberType.length"
+                                    style="text-align: left; padding: 20px;">{{ members.firstname + ' ' +
+                                    members.lastname }}</li>
+                            </ul>
                         </div>
+                        <div *ngIf="selectedMemberType.length == 0">
+                            <div class="w3-container">
+                                <img style="width: 50%; height: 50%;" src="../../../assets/img/empty.png">
+                                <h2>No {{ selectedMemberType.type }}</h2>
+                            </div>
+                        </div>
+                        <footer class="w3-container"
+                            style="text-align: left; padding: 22px; background-color: orange; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                        </footer>
                     </div>
-                      <footer class="w3-container" style="text-align: left; padding: 22px; background-color: orange; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"></footer>
-                    </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
- 
-            </div>
-        </div>
-    </div> -->
-
-<!-- <div class="row">
-    <div style="overflow-x: auto;">
-        <table>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </table>
-    </div>
-</div> -->
+<div class="topnav">
+    <select (change)="getChosenDate($event)">
+        <option value="Weekly">Weekly</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Yearly">Yearly</option>
+    </select>
+    <input type="date"  [(ngModel)]="today" style="float: right;">
+    <!-- <select *ngIf="chosenTypeOfDisplay != 'Yearly'" style="margin-right: 5%; margin-left: 5%;">
+        <option *ngFor="let month of monthChoices" [value]="month">{{ month }}</option>
+    </select> -->
+    <!-- <select style="float: right;">
+        <option *ngFor="let choice of choices" [value]="choice.value">{{ choice.choice }}</option>
+    </select> -->
+  </div>
 <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -80,12 +81,6 @@
                         <div class="card-body ">
                             <canvas id=chartHours width="800" height="300"></canvas>
                         </div>
-                        <!-- <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                    </div>
-                </div> -->
                     </div>
                 </div>
             </div>
@@ -100,19 +95,9 @@
                         <div class="card-body ">
                             <canvas id="sundayCelebration" width="800" height="300"></canvas>
                         </div>
-                        <!-- <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                    </div>
-                </div> -->
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="item">
-          <img src="ny.jpg" alt="New york" style="width:100%;">
-        </div> -->
         </div>
 
         <!-- Left and right controls -->
@@ -126,129 +111,3 @@
         </a>
     </div>
 </div>
-<!--  <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-single-02 text-success"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category">VIP Members</p>
-                            <p class="card-title">10
-                                <p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-<!-- <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-calendar-o"></i> Last day
-        </div>
-      </div> -->
-<!-- </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-single-02 text-danger"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category">Active Members</p>
-                            <p class="card-title">6
-                                <p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-<!-- <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-clock-o"></i> In the last hour
-                </div>
-            </div> -->
-<!-- </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-single-02 text-primary"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category">Inactive Members</p>
-                            <p class="card-title">4
-                                <p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-<!-- <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-refresh"></i> Update now
-                </div>
-            </div> -->
-<!-- </div>
-    </div>
-</div> -->
-<!-- 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card ">
-      <div class="card-header ">
-        <h5 class="card-title">Email Statistics</h5>
-        <p class="card-category">Last Campaign Performance</p>
-      </div>
-      <div class="card-body ">
-        <canvas id="chartEmail"></canvas>
-      </div>
-      <div class="card-footer ">
-        <div class="legend">
-          <i class="fa fa-circle text-primary"></i> Opened
-          <i class="fa fa-circle text-warning"></i> Read
-          <i class="fa fa-circle text-danger"></i> Deleted
-          <i class="fa fa-circle text-gray"></i> Unopened
-        </div>
-        <hr>
-        <div class="stats">
-          <i class="fa fa-calendar"></i> Number of emails sent
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-8">
-    <div class="card card-chart">
-      <div class="card-header">
-        <h5 class="card-title">NASDAQ: AAPL</h5>
-        <p class="card-category">Line Chart with Points</p>
-      </div>
-      <div class="card-body">
-        <canvas id="speedChart" width="400" height="100"></canvas>
-      </div>
-      <div class="card-footer">
-        <div class="chart-legend">
-          <i class="fa fa-circle text-info"></i> Tesla Model S
-          <i class="fa fa-circle text-warning"></i> BMW 5 Series
-        </div>
-        <hr/>
-        <div class="card-stats">
-          <i class="fa fa-check"></i> Data information certified
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
