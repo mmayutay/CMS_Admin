@@ -24,8 +24,7 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="card-header ">
-                                <div class="add" (click)="addEvent()"
-                                    onclick="document.getElementById('id01').style.display='block'">
+                                <div class="add" (click)="addEvent()" onclick="document.getElementById('id01').style.display='block'">
                                     <img src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Events_And_Announcements</h5>
@@ -54,10 +53,8 @@
                                                     {{ value.user.firstname + '_' + value.user.lastname}}
                                                 </td>
                                                 <td>
-                                                    <img class="action" (click)="showStudent(value, 'Events')"
-                                                        src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                                                    <img class="action" (click)="deleteEvent(value, 'Events')"
-                                                        src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                                                    <img class="action" (click)="showStudent(value, 'Events')" src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                                    <img class="action" (click)="deleteEvent(value, 'Events')" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -70,8 +67,7 @@
                         <div class="card ">
                             <div class="card-header ">
                                 <div class="add">
-                                    <img (click)="addNewTrainings()"
-                                        src="https://img.icons8.com/android/24/26e07f/plus.png" />
+                                    <img (click)="addNewTrainings()" src="https://img.icons8.com/android/24/26e07f/plus.png" />
                                 </div>
                                 <h5 class="card-title">Trainings And Classes</h5>
                                 <p class="card-category">Trainings for the members</p>
@@ -133,8 +129,7 @@
             <div class="w3-modal-content">
                 <!-- w3-teal -->
                 <header class="w3-container" style="background-color:orange">
-                    <span onclick="document.getElementById('id01').style.display='none'"
-                        class="w3-button w3-display-topright">&times;</span>
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                     <h2>Add Event and Announcement</h2>
                 </header>
                 <!-- <div class="w3-container"> -->
@@ -145,32 +140,32 @@
                         </div>
                         <div class="modal-body mx-3">
                             <label for="defaultForm-email">Title</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title"
-                                class="form-control" #Title="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title" class="form-control"
+                                #Title="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Description</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description"
-                                class="form-control" #Description="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description" class="form-control"
+                                #Description="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Start Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date"
-                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date" class="form-control"
+                                #StartDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Start Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time"
-                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time" class="form-control"
+                                #StartDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">End Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">End Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label for="defaultForm-email">Location</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location" class="form-control"
+                                #EndDate="ngModel" mdbInput mdbValidate required><br>
 
                             <label>Select Author:</label>
                             <select name="users" id="users" [(ngModel)]="createdEventOrAnnouncement.currentUser.userID"
@@ -180,8 +175,7 @@
                             </select>
                         </div>
                         <div class="update ml-auto mr-auto">
-                            <button type="submit" (click)="addNewEventOrTraining()"
-                                class="btn btn-primary btn-round">Add</button>
+                            <button type="submit" (click)="addNewEventOrTraining()" class="btn btn-primary btn-round">Add</button>
                         </div><br>
                     </div>
                 </div>
@@ -196,11 +190,9 @@
     <div id="id02" class="w3-modal">
         <div style="border-radius: 10px;" class="w3-modal-content w3-animate-top w3-card-4">
             <!-- w3-teal -->
-            <header class="w3-container"
-                style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color:orange">
-                <span style="border-top-right-radius: 10px;"
-                    onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright"
-                    (click)="clearLessonsArray()">&times;</span>
+            <header class="w3-container" style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color:orange">
+                <span style="border-top-right-radius: 10px;" onclick="document.getElementById('id02').style.display='none'"
+                    class="w3-button w3-display-topright" (click)="clearLessonsArray()">&times;</span>
                 <h2>Training Details</h2>
             </header>
             <!-- <div class="w3-container"> -->
@@ -212,8 +204,8 @@
                         <div>
                             <img class="action" style="margin-right:0%;vertical-align: middle;
                             position: absolute;
-                            right: 5%;" src="https://img.icons8.com/metro/26/fa314a/trash.png"
-                                onclick="document.getElementById('id02').style.display='none'"
+                            right: 5%;"
+                                src="https://img.icons8.com/metro/26/fa314a/trash.png" onclick="document.getElementById('id02').style.display='none'"
                                 (click)="deleteConfirmation()" />
                         </div>
                         Delete Training
@@ -248,7 +240,8 @@
                                 <p>{{ lesson.description }}</p>
                                 <img class="action" style="margin-right:0%;vertical-align: middle;
                         position: absolute;
-                        right: 5%;bottom: 100px;" src="https://img.icons8.com/metro/26/fa314a/trash.png">
+                        right: 5%;bottom: 100px;"
+                                    src="https://img.icons8.com/metro/26/fa314a/trash.png">
                             </div>
                         </div>
                     </div>

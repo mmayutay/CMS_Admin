@@ -9,7 +9,7 @@ import { DataServicesService } from './data-services.service';
 })
 
 export class LoginAndLogout {
-    public url = 'http://localhost:8000/api/'
+    public url = 'http://thesisprojectgroup8.herokuapp.com/api/'
     public authenticationKey = 'usersLogged'
     public allUsers = []
 

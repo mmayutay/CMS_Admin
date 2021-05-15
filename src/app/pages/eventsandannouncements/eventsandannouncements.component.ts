@@ -197,20 +197,20 @@ export class EventsandannouncementsComponent implements OnInit {
     // Kini siya nga function kay para sa loader 
     loadFunction() {
         let timerInterval
-        Swal.fire({
-            title: 'Auto close alert!',
-            html: 'I will close in <b></b> milliseconds.',
-            timer: 5000,
-            timerProgressBar: true,
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
-            }
-        })
+        // Swal.fire({
+        //     title: 'Auto close alert!',
+        //     html: 'I will close in <b></b> milliseconds.',
+        //     timer: 5000,
+        //     timerProgressBar: true,
+        //     willClose: () => {
+        //         clearInterval(timerInterval)
+        //     }
+        // }).then((result) => {
+        //     /* Read more about handling dismissals below */
+        //     if (result.dismiss === Swal.DismissReason.timer) {
+        //         console.log('I was closed by the timer')
+        //     }
+        // })
     }
     
     // Kini siya nga function kay ask ug confirmation delete 
