@@ -81,3 +81,12 @@
     width: 100%;
     text-align: center;
 }
+
+i {
+  font-size: 30px;
+}
+
+i:hover {
+  color: #23c962
+  ;
+}

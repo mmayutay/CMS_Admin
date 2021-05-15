@@ -52,14 +52,14 @@
         <option value="Quarterly">Quarterly</option>
         <option value="Yearly">Yearly</option>
     </select>
-    <input type="date"  [(ngModel)]="today" style="float: right;">
+    <input *ngIf="chosenTypeOfDisplay != 'Quarterly'" type="date" [(ngModel)]="today" (change)="getDateValue()" style="float: right;">
     <!-- <select *ngIf="chosenTypeOfDisplay != 'Yearly'" style="margin-right: 5%; margin-left: 5%;">
         <option *ngFor="let month of monthChoices" [value]="month">{{ month }}</option>
     </select> -->
-    <!-- <select style="float: right;">
-        <option *ngFor="let choice of choices" [value]="choice.value">{{ choice.choice }}</option>
-    </select> -->
-  </div>
+    <select *ngIf="chosenTypeOfDisplay == 'Quarterly'" (change)="quarterlyChose($event)" style="float: right;">
+        <option *ngFor="let choice of monthChoices; let i = index" [value]="i">{{  choice.type }}</option>
+    </select>
+</div>
 <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->

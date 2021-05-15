@@ -51,6 +51,11 @@ export class DataServicesService {
         return this.http.get(this.url + 'list')
     }
 
+    // Kini siya nga function kay kuhaon ang mga inactive or active users
+    getInactiveOrActiveUsers(boolean) {
+        return this.http.get(this.url + 'get-active-or-inactive-users/' + boolean)
+    } 
+
     // This function is to get the certain user's role
     getUserRole(id) {
         return this.http.post(this.url + 'currentUserRole', { id: id })

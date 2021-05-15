@@ -79,5 +79,10 @@ export class EventAndAnnouncementsService {
     deleteSelectedClass(classID) {
         return this.http.delete(this.url + 'trainings-and-classes/delete-selected-class/' + classID)
     }
+
+    // Kini siya nga function kay pag modify sa user to active or inactive 
+    isActive(boolean) {
+        return this.http.post(this.url + 'addInactiveUser', boolean)
+    }
     
 }

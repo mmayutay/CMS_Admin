@@ -76,7 +76,11 @@ export class AttendanceService {
     }
 
     returnQuarterly() {
-        return ['1st Quarter(Jan, Feb, Mar, Apr)', '2ns Quarter(May, Jun, Jul, Aug)', '3rd Quarter(Sep, Oct, Nov, Dec)']
+        return [
+            { type: '1st Quarter (Jan, Feb, Mar, Apr)', months: ['Jan', 'Feb', 'Mar', 'Apr']},
+            {type: '2nd Quarter (May, Jun, Jul, Aug)', months: ['May', 'Jun', 'Jul', 'Aug']},
+            {type: '3rd Quarter (Sep, Oct, Nov, Dec)', months: ['Sep', 'Oct', 'Nov', 'Dec']},
+        ]
     }
 
     // Kini siya kay i return ra niya ang date for a week 
