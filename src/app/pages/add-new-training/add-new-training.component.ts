@@ -11,13 +11,14 @@ import Swal from 'sweetalert2'
   styleUrls: ['./add-new-training.component.css']
 })
 export class AddNewTrainingComponent implements OnInit {
+  // public allUsers;
   public addTrainings = {
     newTrainings: {
       code: '',
       title: '',
       description: '',
       level: '',
-      instructor: ''
+      instructor: ""
     }
   }
 
@@ -29,6 +30,7 @@ export class AddNewTrainingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.allUsers = this.user_data;    
   }
 
   addNewTraining(training) {

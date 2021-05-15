@@ -30,13 +30,18 @@
         <div *ngIf="built.listOfLeadersAndItsMembers != 0">
           <div class="memberRow">
             <div class="memberColumn">
-              <div class="memberCard">
-                <select (change)="getMembers($event.target.value)">
-                  <option *ngFor="let leaders of built.listOfLeadersAndItsMembers" [value]="leaders.leader.id">{{ leaders.leader.firstname + " " + leaders.leader.lastname }}</option>
-                </select>
+              <div class="memberCard"><br>
+                <select (change)="getMembers($event.target.value)" class="focus">
+                  <option class="focus" *ngFor="let leaders of built.listOfLeadersAndItsMembers" [value]="leaders.leader.id">{{ leaders.leader.firstname + " " + leaders.leader.lastname }}</option>
+                </select><br><br>
                 <div class="w3-container">
                   <ul class="w3-ul">
-                    <li *ngFor="let member of membersOfSelectedLeader">{{ member.firstname }} {{ member.lastname }}</li>
+                    <li class="parent" *ngFor="let member of membersOfSelectedLeader">{{ member.firstname }} {{ member.lastname }}
+                     <ul class="child">
+                       <li>Geneva Rivas</li>
+                       <li>Kimberly Rivas</li>
+                     </ul>
+                    </li>
                   </ul>
                 </div>
               </div>

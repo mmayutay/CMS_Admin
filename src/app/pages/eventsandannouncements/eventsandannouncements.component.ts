@@ -113,7 +113,8 @@ export class EventsandannouncementsComponent implements OnInit {
     addNewTrainings() {
         this.route.navigate(['/add-new-training'])
     }
-    deleteTraining(data, idSelectedItem) {
+    deleteTraining() {
+        // data, idSelectedItem
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -124,7 +125,7 @@ export class EventsandannouncementsComponent implements OnInit {
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this " + data.trainings.title + "!",
+            // text: "You won't be able to revert this " + data.trainings.title + "!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
@@ -212,20 +213,20 @@ export class EventsandannouncementsComponent implements OnInit {
     // Kini siya nga function kay para sa loader 
     loadFunction() {
         let timerInterval
-        Swal.fire({
-            title: 'Auto close alert!',
-            html: 'I will close in <b></b> milliseconds.',
-            timer: 5000,
-            timerProgressBar: true,
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
-            }
-        })
+        // Swal.fire({
+        //     title: 'Auto close alert!',
+        //     html: 'I will close in <b></b> milliseconds.',
+        //     timer: 5000,
+        //     timerProgressBar: true,
+        //     willClose: () => {
+        //         clearInterval(timerInterval)
+        //     }
+        // }).then((result) => {
+        //     /* Read more about handling dismissals below */
+        //     if (result.dismiss === Swal.DismissReason.timer) {
+        //         console.log('I was closed by the timer')
+        //     }
+        // })
     }
     
     // Kini siya nga function kay ask ug confirmation delete 

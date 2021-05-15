@@ -1,148 +1,168 @@
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even){background-color: #f2f2f2}
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
 
+th, td {
+  text-align: left;
+  padding: 8px;
+}
 
-  
-  /* Style the counter cards */
-  .leaderCard {
-    box-shadow: 0 4px 8px 0 rgb(117, 113, 113);
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
-    width: 100%;
-    height: 250px;
-    overflow: auto;
-  }
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
 
-  .networkCard {
-      padding: 10px;
-  }
+/* Style the counter cards */
 
-  img {
-      width: 350px;
-      height: 350px;
-  }
-  .imgNothing {
-    width: 100%;
-    text-align: center;
-  }
-  .imgCard {
-    box-shadow: 0 4px 8px 0 rgba(167, 167, 167, 0.2);
-    padding: 16px;
-    text-align: center;
-    width: 70%;
-    height: 50%;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.leaderCard {
+  box-shadow: 0 4px 8px 0 rgb(117, 113, 113);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  width: 100%;
+  height: 250px;
+  overflow: auto;
+}
 
-  button {
-      outline: none;
-      border: none;
-      transition: transform 250ms;
-  }
-  button:hover {
-    transform: translateY(-10px);
-    color: rgb(83, 212, 169);
-    text-decoration: underline;
-  }
+.networkCard {
+  padding: 10px;
+}
 
-  .lds-spinner {
-    color: official;
-    display: inline-block;
-    position: relative;
-    width: 90px;
-    height: 90px;
+img {
+  width: 350px;
+  height: 350px;
+}
+
+.imgNothing {
+  width: 100%;
+  text-align: center;
+}
+
+.imgCard {
+  box-shadow: 0 4px 8px 0 rgba(167, 167, 167, 0.2);
+  padding: 16px;
+  text-align: center;
+  width: 70%;
+  height: 50%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  outline: none;
+  border: none;
+  transition: transform 250ms;
+}
+
+button:hover {
+  transform: translateY(-10px);
+  color: rgb(83, 212, 169);
+  text-decoration: underline;
+}
+
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: rgb(177, 177, 177);
+}
+
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
   }
-  .lds-spinner div {
-    transform-origin: 40px 40px;
-    animation: lds-spinner 1.2s linear infinite;
+  100% {
+    opacity: 0;
   }
-  .lds-spinner div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 3px;
-    left: 37px;
-    width: 6px;
-    height: 18px;
-    border-radius: 20%;
-    background: rgb(177, 177, 177);
-  }
-  .lds-spinner div:nth-child(1) {
-    transform: rotate(0deg);
-    animation-delay: -1.1s;
-  }
-  .lds-spinner div:nth-child(2) {
-    transform: rotate(30deg);
-    animation-delay: -1s;
-  }
-  .lds-spinner div:nth-child(3) {
-    transform: rotate(60deg);
-    animation-delay: -0.9s;
-  }
-  .lds-spinner div:nth-child(4) {
-    transform: rotate(90deg);
-    animation-delay: -0.8s;
-  }
-  .lds-spinner div:nth-child(5) {
-    transform: rotate(120deg);
-    animation-delay: -0.7s;
-  }
-  .lds-spinner div:nth-child(6) {
-    transform: rotate(150deg);
-    animation-delay: -0.6s;
-  }
-  .lds-spinner div:nth-child(7) {
-    transform: rotate(180deg);
-    animation-delay: -0.5s;
-  }
-  .lds-spinner div:nth-child(8) {
-    transform: rotate(210deg);
-    animation-delay: -0.4s;
-  }
-  .lds-spinner div:nth-child(9) {
-    transform: rotate(240deg);
-    animation-delay: -0.3s;
-  }
-  .lds-spinner div:nth-child(10) {
-    transform: rotate(270deg);
-    animation-delay: -0.2s;
-  }
-  .lds-spinner div:nth-child(11) {
-    transform: rotate(300deg);
-    animation-delay: -0.1s;
-  }
-  .lds-spinner div:nth-child(12) {
-    transform: rotate(330deg);
-    animation-delay: 0s;
-  }
-  @keyframes lds-spinner {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
+}
 
 .spinning {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 /* Float four columns side by side */
+
 .memberColumn {
   width: 98%;
   display: block;
@@ -151,9 +171,13 @@ table {
 }
 
 /* Remove extra left and right margins, due to padding */
-.memberRow {margin: 0 -5px;}
+
+.memberRow {
+  margin: 0 -5px;
+}
 
 /* Clear floats after the columns */
+
 .memberRow:after {
   content: "";
   display: table;
@@ -161,8 +185,108 @@ table {
 }
 
 /* Style the counter cards */
+
 .memberCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   background-color: #f1f1f1;
+}
+
+.focus {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid var(--select-focus);
+  border-radius: 10px;
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+
+
+.w3-ul {
+  text-align: center;
+}
+
+.list {
+  border-bottom: 1px solid black;
+}
+
+.memberCard2 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+}
+
+.parent {
+  /* display: block; */
+  position: relative;
+  /* float: left; */
+  line-height: 30px;
+  background-color: white;
+  width: 33%;
+  position: relative;
+  left: 0%;
+  /* border-right: #CCC 1px solid; */
+}
+
+.parent a {
+  margin: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.parent:hover{
+  background-color: #51cbce;
+}
+
+.parent:hover>ul {
+  display: block;
+  /* position: absolute; */
+  position: absolute;
+  top: 10%;
+  left: 100%;
+}
+
+.child {
+  display: none;
+  width: 33%;
+}
+
+.child li {
+  background-color: #E4EFF7;
+  line-height: 30px;
+  border-bottom: #CCC 1px solid;
+  border-right: #CCC 1px solid;
+  width: 100%;
+}
+
+.child li a {
+  color: #000000;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  min-width: 10em;
+}
+
+ul ul ul {
+  /* left: 100%; */
+  top: 0;
+  margin-left: 1px;
+}
+
+li:hover {
+  background-color: #95B4CA;
+}
+
+.parent li:hover {
+  background-color: #F0F0F0;
+}
+
+.expand {
+  font-size: 12px;
+  float: right;
+  margin-right: 5px;
 }

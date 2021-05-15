@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class UserDetailsService {
-    public url = "http://localhost:8000/api/"
+    public url = "http://thesisprojectgroup8.herokuapp.com/api/"
 
     constructor(
         private http: HttpClient

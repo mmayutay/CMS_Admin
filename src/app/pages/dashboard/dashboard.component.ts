@@ -222,18 +222,24 @@ export class DashboardComponent implements OnInit {
   // Kini siya nga function kay kuhaon ang tanan nga member 144 ug 1728 nga user 
   get144And1728Users(usersArray, statsID) {
     var quarterlyValues =  []
+    var yearlyValues  = []
     const allUsers = this.dataRequest.getAllUsers()
     allUsers.subscribe((users: any) => {
       this.attendanceService.allMembers = users
       if (this.chosenTypeOfDisplay == 'Weekly') {
         this.statistics(statsID, this.weeklyStats(users, usersArray, this.attendanceService.dates(new Date(this.today))), ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
       } else if (this.chosenTypeOfDisplay == 'Monthly') {
-        this.statistics(statsID, this.attendanceService.getMonthlyStats(usersArray, 'May', 2021), ["1st", "2nd", "3rd", "4th", "5th", "6th"])
+        this.statistics(statsID, this.attendanceService.getMonthlyStats(usersArray, this.attendanceService.convertMonth(new Date(this.today).getMonth()), 2021), ["1st", "2nd", "3rd", "4th", "5th", "6th"])
       } else if (this.chosenTypeOfDisplay == 'Quarterly') {
         this.quarterSelected.forEach(element => {
-          quarterlyValues.push(this.getArraySum(this.attendanceService.getMonthlyStats(usersArray, element, 2021)))
+          quarterlyValues.push(this.getArraySum(this.attendanceService.getMonthlyStats(usersArray, element, new Date(this.today).getFullYear())))
         })
         this.statistics(statsID, quarterlyValues, this.quarterSelected)
+      }else {
+        this.attendanceService.returnMonth().forEach(element => {
+          yearlyValues.push(this.getArraySum(this.attendanceService.getMonthlyStats(usersArray, element, new Date(this.today).getFullYear())))
+        })
+        this.statistics(statsID, yearlyValues, this.attendanceService.returnMonth())
       }
     })
   }
