@@ -1,5 +1,18 @@
 <div *ngIf="data.length == 0" class="spinning">
-    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
 
 <div *ngIf="data.length != 0" class="row">
@@ -9,14 +22,24 @@
                 <h5 class="card-title">Reportings</h5>
                 <p class="card-category">Attendances</p>
             </div>
+            <div class="wrap">
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="Search for a Leader here...">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
             <div class="card-body all-icons">
                 <div id="icons-wrapper">
                     <section>
                         <div class="row">
-                            <div class="col-md-6" *ngFor="let in of counter(data.length); let i = index" >
+                            <div class="col-md-6" *ngFor="let in of counter(data.length); let i = index">
                                 <div class="card"><br>
-                                    <p style="margin-left: 5px;">Date Attendance: <input style="width: 50%; margin: 10px;" type="date"  (change)="getInputedDate($event, data[i].members)"></p>
-                                    <p style="text-align: center;font-size: 20px;">{{ data[i].leader.firstname }} {{ data[i].leader.lastname }}</p><br>
+                                    <p style="margin-left: 5px;">Date Attendance: <input style="width: 50%; margin: 10px;"
+                                            type="date" (change)="getInputedDate($event, data[i].members)"></p>
+                                    <p style="text-align: center;font-size: 20px;">{{ data[i].leader.firstname }} {{
+                                        data[i].leader.lastname }}</p><br>
                                     <table class="table">
                                         <thead class=" text-primary">
                                             <th>
