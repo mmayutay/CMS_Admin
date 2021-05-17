@@ -11,7 +11,7 @@ export class DataServicesService {
     public leaders = []
     public allUsers = []
 
-    public url = "http://thesisprojectgroup8.herokuapp.com/api/"
+    public url = "http://localhost:8000/api/"
 
 
     constructor(
