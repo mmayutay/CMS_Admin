@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataServicesService } from './data-services.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class LoginAndLogout {
+    private currentUserSubject: BehaviorSubject<any>;
+    public currentUser: Observable<any>;
     public url = 'http://localhost:8000/api/'
     public authenticationKey = 'usersLogged'
     public allUsers = []
@@ -19,14 +22,24 @@ export class LoginAndLogout {
         private dataRequest: DataServicesService
     ) {
         this.getAllUsers()
+        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem(this.authenticationKey)));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    public get currentUserValue() {
+        return this.currentUserSubject.value;
     }
 
     logIn(userID) {
         const login = this.http.post(this.url + 'login', userID);
         login.subscribe((data: any) => {
             if(data.length != 0) {
-                localStorage.setItem(this.authenticationKey, data[0].id)
-                this.router.navigate(['/dashboard'])
+                if(data[0].roles != 0) {
+                    Swal.fire('User Unacceptable', "You can't logged because it is for ADMIN user only", 'warning')
+                }else {
+                    localStorage.setItem(this.authenticationKey, data[0].id)
+                    location.reload(true)
+                }           
             }else {
                 Swal.fire('Ooopssss', 'Username or password is incorrect!', 'warning');
             }
@@ -50,7 +63,8 @@ export class LoginAndLogout {
     
     logOut() {
         localStorage.removeItem(this.authenticationKey)
-        this.router.navigate(['/login'])
+        // this.router.navigate(['/login'])
+        location.reload(true)
     }
 
     // Kini siya nga function kay gi render niya daan nga iyaha na nga kuhaon tanan nga user 

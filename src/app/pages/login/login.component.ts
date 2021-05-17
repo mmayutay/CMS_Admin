@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginAndLogout } from 'data-services/user-data';
 
 @Component({
@@ -16,10 +17,14 @@ export class LoginComponent implements OnInit {
   public showPass = false;
 
   constructor(
-    private loginAndLogout: LoginAndLogout
+    private loginAndLogout: LoginAndLogout,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem(this.loginAndLogout.authenticationKey) != null) {
+      this.router.navigate(['/dashboard']) 
+    }
   }
 
   logIn() {
