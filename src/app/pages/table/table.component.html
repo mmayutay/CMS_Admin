@@ -19,16 +19,19 @@
                 Address
               </th>
               <th>
-                Marital Status
+                Marital_Status
               </th>
               <th class="text-right">
                 Email
               </th>
               <th>
-                Contact Number
+                Contact_Number
               </th>
               <th>
                 Role
+              </th>
+              <th>
+                Action
               </th>
             </thead>
             <tbody>
@@ -50,6 +53,9 @@
                 </td>
                 <td>
                   {{ value.role }}
+                </td>
+                <td style="text-align: center;">
+                  <i class="fa fa-eye" aria-hidden="true" (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"></i>
                 </td>
               </tr>
               <!-- <tr>

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class EventAndAnnouncementsService {
-    public url = "http://thesisprojectgroup8.herokuapp.com/api/"
+    public url = "http://localhost:8000/api/"
 
     constructor(
         private http: HttpClient
@@ -41,6 +41,11 @@ export class EventAndAnnouncementsService {
         return this.http.get(this.url + 'trainings-and-classes/return-lesson-of-selected-training/' + trainingID)
     }
 
+    // Kini siya nga function kay i delete ang selected lesson 
+    deleteSelectedLesson(lessonID) {
+        return this.http.get(this.url + 'trainings-and-classes/deleteLessonOfTraining/' + lessonID)
+    }
+
     // Kini siya nga function kay i return ang details sa training 
     returnTrainingDetails(trainingID) {
         return this.http.get(this.url + 'trainings-and-classes/return-selected-training/' + trainingID)
@@ -68,6 +73,16 @@ export class EventAndAnnouncementsService {
     // Kini siya nga function kay i return ang class details 
     returnClassDetails(classID) {
         return this.http.get(this.url + 'trainings-and-classes/return-selected-class/' + classID)
+    }
+
+    // Kini siya nga function kay i delete ang selected class 
+    deleteSelectedClass(classID) {
+        return this.http.delete(this.url + 'trainings-and-classes/delete-selected-class/' + classID)
+    }
+
+    // Kini siya nga function kay pag modify sa user to active or inactive 
+    isActive(boolean) {
+        return this.http.post(this.url + 'addInactiveUser', boolean)
     }
     
 }
