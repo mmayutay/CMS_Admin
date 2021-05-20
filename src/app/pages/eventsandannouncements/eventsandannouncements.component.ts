@@ -5,6 +5,7 @@ import { EventAndAnnouncementsService } from '../../../data-services/events-anno
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataServicesService } from 'data-services/data-services.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class EventsandannouncementsComponent implements OnInit {
         private builtFunction: TableFunctions,
         private eventsRequest: EventAndAnnouncementsService,
         private modalService: NgbModal,
+        public dataRequest: DataServicesService
     ) { }
 
     showMessagesModal() {
@@ -69,7 +71,7 @@ export class EventsandannouncementsComponent implements OnInit {
         }
     }
 
-    deleteEvent(data, idSelectedItem) {
+    deleteEvent(data, idSelectedItem, index) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -88,11 +90,15 @@ export class EventsandannouncementsComponent implements OnInit {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                const deleteEvent = this.eventsRequest.deleteSelectedEvent(data.user.id)
+                deleteEvent.subscribe((response: any) => {
+                    this.eventsAndAnnouncements.splice(index, 1)
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        'Event/Announcement deleted successfully.',
+                        'success'
+                    )
+                })
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
@@ -176,7 +182,7 @@ export class EventsandannouncementsComponent implements OnInit {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 const lessonDeleted = this.eventsRequest.deleteSelectedLesson(lesson.id)
                 lessonDeleted.subscribe((response: any) => {
@@ -184,7 +190,7 @@ export class EventsandannouncementsComponent implements OnInit {
                     document.getElementById('id02').style.display = 'none'
                 })
             }
-          })
+        })
     }
 
     // Kini siya nga function kay i delete ang selected training 
@@ -200,7 +206,7 @@ export class EventsandannouncementsComponent implements OnInit {
                 'Deleted!',
                 'Selected training has been deleted.',
                 'success'
-              )
+            )
         })
     }
 
@@ -228,7 +234,7 @@ export class EventsandannouncementsComponent implements OnInit {
         //     }
         // })
     }
-    
+
     // Kini siya nga function kay ask ug confirmation delete 
     deleteConfirmation() {
         Swal.fire({
@@ -239,12 +245,12 @@ export class EventsandannouncementsComponent implements OnInit {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-              this.loadFunction()
-              this.deleteSelectedTraining()
+                this.loadFunction()
+                this.deleteSelectedTraining()
             }
-          })
+        })
     }
 }
 

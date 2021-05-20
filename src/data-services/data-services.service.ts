@@ -11,7 +11,7 @@ export class DataServicesService {
     public leaders = []
     public allUsers = []
 
-    public url = "http://localhost:8000/api/"
+    public url = "https://group8finalthesis.herokuapp.com/api/"
 
 
     constructor(
@@ -54,7 +54,7 @@ export class DataServicesService {
     // Kini siya nga function kay kuhaon ang mga inactive or active users
     getInactiveOrActiveUsers(boolean) {
         return this.http.get(this.url + 'get-active-or-inactive-users/' + boolean)
-    } 
+    }
 
     // This function is to get the certain user's role
     getUserRole(id) {
@@ -193,7 +193,7 @@ export class DataServicesService {
 
     // Kini siya nga function kay i return ang members under ana nga certain leader 
     returnMembersOfACertainLeader(leaderID) {
-        return this.http.post(this.url + 'return-members-group', {leaderID: leaderID})
+        return this.http.post(this.url + 'return-members-group', { leaderID: leaderID })
     }
 
 

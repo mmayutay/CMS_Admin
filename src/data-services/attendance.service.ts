@@ -6,14 +6,14 @@ import { Injectable } from '@angular/core';
 })
 
 export class AttendanceService {
-    public url = "http://localhost:8000/api/"
+    public url = "https://group8finalthesis.herokuapp.com/api/"
     public allMembers = []
 
     constructor(
         private http: HttpClient
     ) {
         // console.log(this.returnDatesOfMonth(new Date().getMonth(), new Date().getFullYear()))
-        
+
     }
 
     // This function is to get a certain users attendance
@@ -77,9 +77,9 @@ export class AttendanceService {
 
     returnQuarterly() {
         return [
-            { type: '1st Quarter (Jan, Feb, Mar, Apr)', months: ['Jan', 'Feb', 'Mar', 'Apr']},
-            {type: '2nd Quarter (May, Jun, Jul, Aug)', months: ['May', 'Jun', 'Jul', 'Aug']},
-            {type: '3rd Quarter (Sep, Oct, Nov, Dec)', months: ['Sep', 'Oct', 'Nov', 'Dec']},
+            { type: '1st Quarter (Jan, Feb, Mar, Apr)', months: ['Jan', 'Feb', 'Mar', 'Apr'] },
+            { type: '2nd Quarter (May, Jun, Jul, Aug)', months: ['May', 'Jun', 'Jul', 'Aug'] },
+            { type: '3rd Quarter (Sep, Oct, Nov, Dec)', months: ['Sep', 'Oct', 'Nov', 'Dec'] },
         ]
     }
 
@@ -148,9 +148,9 @@ export class AttendanceService {
         var date = new Date(year, month, 1);
         var days = [];
         while (date.getMonth() === month) {
-          days.push(new Date(date));
-          date.setDate(date.getDate() + 1);
+            days.push(new Date(date));
+            date.setDate(date.getDate() + 1);
         }
         return days;
-      }
+    }
 }

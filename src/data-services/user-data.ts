@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoginAndLogout {
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
-    public url = 'http://localhost:8000/api/'
+    public url = 'https://group8finalthesis.herokuapp.com/api/'
     public authenticationKey = 'usersLogged'
     public allUsers = []
 
@@ -33,14 +33,15 @@ export class LoginAndLogout {
     logIn(userID) {
         const login = this.http.post(this.url + 'login', userID);
         login.subscribe((data: any) => {
-            if(data.length != 0) {
-                if(data[0].roles != 0) {
+            console.log(data)
+            if (data.length != 0) {
+                if (data[0].roles != 0) {
                     Swal.fire('User Unacceptable', "You can't logged because it is for ADMIN user only", 'warning')
-                }else {
+                } else {
                     localStorage.setItem(this.authenticationKey, data[0].id)
                     location.reload(true)
-                }           
-            }else {
+                }
+            } else {
                 Swal.fire('Ooopssss', 'Username or password is incorrect!', 'warning');
             }
         })
@@ -60,7 +61,7 @@ export class LoginAndLogout {
     getUsersRole(code) {
         return this.http.get(this.url + 'return-all-pastors/' + code)
     }
-    
+
     logOut() {
         localStorage.removeItem(this.authenticationKey)
         // this.router.navigate(['/login'])

@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 })
 
 export class EventAndAnnouncementsService {
-    public url = "http://localhost:8000/api/"
+    public url = "https://group8finalthesis.herokuapp.com/api/"
 
     constructor(
         private http: HttpClient
-    ) {}
+    ) { }
 
     // This function is to add a student to a class or a trainings
     addStudent(dataToAdd) {
@@ -19,7 +19,7 @@ export class EventAndAnnouncementsService {
 
     // This function is to get the details of a selected events
     returnEventsDetails(eventID) {
-        return this.http.get(this.url +  'event-return/' + eventID)
+        return this.http.get(this.url + 'event-return/' + eventID)
     }
 
     // This function is to get the student from the students collection 
@@ -29,12 +29,12 @@ export class EventAndAnnouncementsService {
 
     // This function is to delete the record of a student inside the collection record and collection student
     deleteStudentRecord(studentID) {
-        return this.http.get(this.url  + 'student-trainings-or-class/delete-student/' + studentID)
+        return this.http.get(this.url + 'student-trainings-or-class/delete-student/' + studentID)
     }
 
     deleteSelectedEvent(id) {
         return this.http.delete(this.url + 'event-announcement/delete/' + id)
-      }
+    }
 
     //   Kini siya nga function kay i return niya ang tanan nga lessons sa selected training 
     returnLessons(trainingID) {
@@ -84,5 +84,11 @@ export class EventAndAnnouncementsService {
     isActive(boolean) {
         return this.http.post(this.url + 'addInactiveUser', boolean)
     }
-    
+
+
+    // Kini siya nga function kay kung ang user kay vip pa.. himoon niya regular 
+    toRegularMember(userID) {
+        return this.http.get(this.url + 'current-vip-to-regular/' + userID)
+    }
+
 }

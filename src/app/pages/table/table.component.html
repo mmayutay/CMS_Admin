@@ -1,5 +1,18 @@
 <div class="spinning">
-  <div *ngIf="usersCounter != allUsers.length" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <div *ngIf="usersCounter != allUsers.length" class="lds-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
 
 <div *ngIf="usersCounter == allUsers.length" class="row">
@@ -55,7 +68,10 @@
                   {{ value.role }}
                 </td>
                 <td style="text-align: center;">
-                  <i class="fa fa-eye" aria-hidden="true" (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"></i>
+                  <button onclick="document.getElementById('id01').style.display='block'"
+                    (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"
+                    class="w3-button w3-black">Show User Status</button>
+                  <!-- <i class="fa fa-eye" aria-hidden="true" (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"></i> -->
                 </td>
               </tr>
               <!-- <tr>
@@ -145,9 +161,29 @@
             </tbody>
           </table>
         </div>
+      </div>
     </div>
-  </div>
-  <!-- <div class="col-md-12">
+
+    <div class="w3-container">
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top w3-card-4">
+          <header class="w3-container w3-teal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+              class="w3-button w3-display-topright">&times;</span>
+            <h2>{{ toShowInModal.selectedUser }}</h2>
+          </header>
+          <div class="w3-container">
+            <button (click)="toInactiveActiveOrRegular('Active')">To Active</button><br>
+            <button (click)="toInactiveActiveOrRegular('Inactive')">To Inactive</button><br>
+            <button (click)="toInactiveActiveOrRegular('Regular')">To Regular</button>
+          </div>
+          <footer class="w3-container w3-teal">
+            <p>Modal Footer</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12">
     <div class="card card-plain">
       <div class="card-header">
         <h4 class="card-title"> Table on Plain Background</h4>
@@ -275,4 +311,4 @@
       </div>
     </div>
   </div> -->
-</div>
+  </div>

@@ -17,6 +17,11 @@ declare interface TableData {
 })
 
 export class TableComponent implements OnInit {
+    public toShowInModal = {
+        id: '',
+        selectedUser: ''
+    };
+
     public usersCounter = 0
     public allUsers = []
     public tableData1: TableData;
@@ -53,38 +58,68 @@ export class TableComponent implements OnInit {
     }
 
 
-    // Kini siya nga function kay ang modal ni para mu choose ang user 
+    // Kini siya nga function kay i execute ni kung ang mu select ang user ug certain user 
     toInactiveUser(selectedUser, userID) {
         var userInactive = {
             memberId: '',
             active: ''
         }
         userInactive.memberId = userID
-        Swal.fire({
-            title: 'Active or Inactive?',
-            text: 'Do you want to add ' + selectedUser +' to Inactive or Active?',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: `Active`,
-            denyButtonText: `Inactive`,
-        }).then((result) => {
-            console.log(result.isConfirmed)
+        this.toShowInModal.selectedUser = selectedUser
+        this.toShowInModal.id = userID
 
-            if (result.isConfirmed) {
-                userInactive.active  = 'true'
-                const toActive = this.eventsRequest.isActive(userInactive)
-                toActive.subscribe((response: any) => {
-                    Swal.fire('Saved!', 'Successfully moved to Active', 'success')
-                })
-            } else if (result.isDenied) {
-                userInactive.active = 'false'
-                const toInactive = this.eventsRequest.isActive(userInactive)
-                toInactive.subscribe((response: any) => {
-                    console.log(response)
-                    Swal.fire('Saved!', 'Successfully moved to Inactive', 'success')                 
-                })
-            }
-        })
+        // Swal.fire({
+        //     title: 'Active or Inactive?',
+        //     text: 'Do you want to add ' + selectedUser + ' to Inactive or Active?',
+        //     showDenyButton: true,
+        //     showCancelButton: true,
+        //     confirmButtonText: `Active`,
+        //     denyButtonText: `Inactive`,
+        // }).then((result) => {
+        //     console.log(result.isConfirmed)
+
+        //     if (result.isConfirmed) {
+        //         userInactive.active = 'true'
+        //         const toActive = this.eventsRequest.isActive(userInactive)
+        //         toActive.subscribe((response: any) => {
+        //             Swal.fire('Saved!', 'Successfully moved to Active', 'success')
+        //         })
+        //     } else if (result.isDenied) {
+        //         userInactive.active = 'false'
+        //         const toInactive = this.eventsRequest.isActive(userInactive)
+        //         toInactive.subscribe((response: any) => {
+        //             console.log(response)
+        //             Swal.fire('Saved!', 'Successfully moved to Inactive', 'success')
+        //         })
+        //     }
+        // })
+    }
+
+    // Kini siya nga function kay ang certain execution sa selected action
+    toInactiveActiveOrRegular(type: string) {
+        var userInactive = {
+            memberID: '',
+            active: ''
+        }
+        userInactive.memberID = this.toShowInModal.id
+        if (type == 'Inactive') {
+            userInactive.active = 'false'
+            const toInactive = this.eventsRequest.isActive(userInactive)
+            toInactive.subscribe((response: any) => {
+                console.log(response)
+            })
+        } else if (type == 'Active') {
+            userInactive.active = 'true'
+            const toActive = this.eventsRequest.isActive(userInactive)
+            toActive.subscribe((response: any) => {
+                console.log(response)
+            })
+        } else {
+            const vipToRegular = this.eventsRequest.toRegularMember(this.toShowInModal.id)
+            vipToRegular.subscribe((response: any) => {
+                console.log(response)
+            })
+        }
     }
 
 

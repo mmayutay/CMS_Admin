@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   };
 
   public allVipUsers = []
-  public url = "http://localhost:8000/api/"
+  public url = "https://group8finalthesis.herokuapp.com/api/"
   public canvas: any;
   public sundayCelebration: any;
   public ctx;
@@ -221,8 +221,8 @@ export class DashboardComponent implements OnInit {
 
   // Kini siya nga function kay kuhaon ang tanan nga member 144 ug 1728 nga user 
   get144And1728Users(usersArray, statsID) {
-    var quarterlyValues =  []
-    var yearlyValues  = []
+    var quarterlyValues = []
+    var yearlyValues = []
     const allUsers = this.dataRequest.getAllUsers()
     allUsers.subscribe((users: any) => {
       this.attendanceService.allMembers = users
@@ -235,7 +235,7 @@ export class DashboardComponent implements OnInit {
           quarterlyValues.push(this.getArraySum(this.attendanceService.getMonthlyStats(usersArray, element, new Date(this.today).getFullYear())))
         })
         this.statistics(statsID, quarterlyValues, this.quarterSelected)
-      }else {
+      } else {
         this.attendanceService.returnMonth().forEach(element => {
           yearlyValues.push(this.getArraySum(this.attendanceService.getMonthlyStats(usersArray, element, new Date(this.today).getFullYear())))
         })
@@ -276,7 +276,7 @@ export class DashboardComponent implements OnInit {
   // Kini siya nga function kay para sa pag kuha ug value sa input field nga type kay date 
   getDateValue() {
     this.runQuarterly()
-  } 
+  }
 
   // Kini siya nga function kay mao ang mu compute sa stats 
   weeklyStats(allusers: any, usersAttendance: any, dates: any) {

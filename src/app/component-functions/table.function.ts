@@ -8,7 +8,7 @@ import { DataServicesService } from 'data-services/data-services.service';
 export class TableFunctions {
     public leaderCounter = 0
     public listOfLeadersAndItsMembers = [];
-    public pastorsData = {firstname: '', lastname: ''};
+    public pastorsData = { firstname: '', lastname: '' };
 
     public eventsAndAnnouncements = []
     public trainingsAndClasses = []
@@ -40,7 +40,7 @@ export class TableFunctions {
             evAndAnn.forEach(element => {
                 const user = this.service.getUserDetails(element.eventOwner)
                 user.subscribe((response: any) => {
-                    this.eventsAndAnnouncements.push({events: element, user: response[0]})
+                    this.eventsAndAnnouncements.push({ events: element, user: response[0] })
                 })
             });
         })
@@ -50,7 +50,7 @@ export class TableFunctions {
                 const classes = this.service.returnClassesOfTraining(element.id)
                 classes.subscribe((allClass: any) => {
                     this.classOfCertainTraining.push(allClass)
-                    this.trainingsAndClasses.push(element)  
+                    this.trainingsAndClasses.push(element)
                 })
             });
         })
@@ -64,7 +64,7 @@ export class TableFunctions {
             response[0].leaders.forEach(element => {
                 const members = this.service.returnMembersOfACertainLeader(element.id)
                 members.subscribe((member: any) => {
-                    this.listOfLeadersAndItsMembers.push({leader: element, members: member})
+                    this.listOfLeadersAndItsMembers.push({ leader: element, members: member })
                     this.leaderCounter += 1
                 })
             });
@@ -73,6 +73,7 @@ export class TableFunctions {
 
     // Kini siya nga function kay mauy mu add sa bag o nga events and announcements 
     addNewEventsAndAnnouncements(newEvent) {
+        console.log(newEvent)
         const addEvent = this.service.addEventsOrAnnouncements(newEvent)
         addEvent.subscribe((response: any) => {
             this.eventsAndAnnouncements.length = 0
