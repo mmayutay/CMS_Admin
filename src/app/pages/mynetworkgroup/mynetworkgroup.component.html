@@ -36,10 +36,9 @@
                 </select><br><br>
                 <div class="w3-container">
                   <ul class="w3-ul">
-                    <li class="parent" *ngFor="let member of membersOfSelectedLeader">{{ member.firstname }} {{ member.lastname }}
+                    <li class="parent" *ngFor="let member of membersOfSelectedLeader;let i = index">{{ member.firstname }} {{ member.lastname }}
                      <ul class="child">
-                       <li>Geneva Rivas</li>
-                       <li>Kimberly Rivas</li>
+                       <li *ngFor="let below of built.membersMembers[i]">{{ below.firstname + ' ' + below.lastname }}</li>
                      </ul>
                     </li>
                   </ul>

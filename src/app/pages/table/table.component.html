@@ -73,6 +73,9 @@
                     class="w3-button w3-black">Show User Status</button>
                   <!-- <i class="fa fa-eye" aria-hidden="true" (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"></i> -->
                 </td>
+                <!-- <td>
+                  <button (click)="deleteUser(value.userDetails.id)" style="border-radius: 5px;" class="w3-button w3-red">Delete This User</button>
+                </td> -->
               </tr>
               <!-- <tr>
                 <td>
@@ -166,16 +169,31 @@
 
     <div class="w3-container">
       <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-animate-top w3-card-4">
+        <div style="margin-left: 35%; width: 50%;" class="w3-modal-content w3-animate-top w3-card-4">
           <header class="w3-container w3-teal">
             <span onclick="document.getElementById('id01').style.display='none'"
               class="w3-button w3-display-topright">&times;</span>
             <h2>{{ toShowInModal.selectedUser }}</h2>
           </header>
           <div class="w3-container">
-            <button (click)="toInactiveActiveOrRegular('Active')">To Active</button><br>
-            <button (click)="toInactiveActiveOrRegular('Inactive')">To Inactive</button><br>
-            <button (click)="toInactiveActiveOrRegular('Regular')">To Regular</button>
+            <div class="row">
+              <div class="column">
+                <button class="w3-button w3-black" (click)="toInactiveActiveOrRegular('Active')">To Active</button><br>
+                <p>Do you want the user to tagged as active?</p>
+              </div>
+              <div class="column">
+                <button class="w3-button w3-black" (click)="toInactiveActiveOrRegular('Inactive')">To Inactive</button><br>
+                <p>Do you want to the user to tagged as inactive?</p>
+              </div>
+              <div class="column">
+                <button class="w3-button w3-black" (click)="toInactiveActiveOrRegular('Regular')">To Regular</button><br>
+                <p>Do you want to tagged the user as a regular member?</p>
+              </div>
+              <div class="column">
+                <button class="w3-button w3-black" (click)="deleteUser(value.userDetails.id)">Delete User</button><br>
+                <p>This is optional, if the selected user is deceased, here you can delete the user</p>
+              </div>
+            </div>
           </div>
           <footer class="w3-container w3-teal">
             <p>Modal Footer</p>

@@ -8,6 +8,7 @@ import { DataServicesService } from 'data-services/data-services.service';
 export class TableFunctions {
     public leaderCounter = 0
     public listOfLeadersAndItsMembers = [];
+    public membersMembers = []
     public pastorsData = { firstname: '', lastname: '' };
 
     public eventsAndAnnouncements = []
@@ -70,6 +71,14 @@ export class TableFunctions {
             });
         })
     }
+
+    // Kini siya nga function kay i return ang member's members
+    returnMembersMembers(leaderid) {
+        const members = this.service.returnMembersOfACertainLeader(leaderid)
+        members.subscribe((response: any) => {
+            this.membersMembers.push(response)
+        })
+    } 
 
     // Kini siya nga function kay mauy mu add sa bag o nga events and announcements 
     addNewEventsAndAnnouncements(newEvent) {

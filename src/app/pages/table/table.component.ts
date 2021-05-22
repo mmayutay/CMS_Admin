@@ -122,5 +122,26 @@ export class TableComponent implements OnInit {
         }
     }
 
+    // Kini siya nga function kay for the deletion of the certain user 
+    deleteUser(studentID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this user?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'User you selected is successfully deleted.',
+                'success'
+              )
+            }
+          })
+    }
+
 
 }

@@ -32,7 +32,6 @@ export class MynetworkgroupComponent implements OnInit {
 
   // Kini siya kay mag kuha sa mga members sa usa ka leader 
   getCertainLeadersMembers(leader, hideAndShow) {
-    console.log(this.service.allMembers)
     if(hideAndShow  == 'show') {
       this.selectedLeadersMembers = []
       this.service.allMembers.forEach(element => {
@@ -57,11 +56,12 @@ export class MynetworkgroupComponent implements OnInit {
 
   // Kini siya nga function kay kuhaon ang mga members under anang certain leader 
   getMembers(members) {
-    console.log(members)
     this.built.listOfLeadersAndItsMembers.forEach(element => {
       if(element.leader.id == members) {
-        console.log(element.members)
         this.membersOfSelectedLeader = element.members
+        this.membersOfSelectedLeader.forEach(member => {
+            this.built.returnMembersMembers(member.id)
+        });
       }
     });
   }
