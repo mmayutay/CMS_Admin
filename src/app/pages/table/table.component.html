@@ -48,7 +48,7 @@
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let value of allUsers">
+              <tr *ngFor="let value of allUsers; let i = index" [id]="i">
                 <td>
                   {{ value.userDetails.lastname }}, {{ value.userDetails.firstname }}
                 </td>
@@ -69,7 +69,7 @@
                 </td>
                 <td style="text-align: center;">
                   <button onclick="document.getElementById('id01').style.display='block'"
-                    (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"
+                    (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id, i)"
                     class="w3-button w3-black">Show User Status</button>
                   <!-- <i class="fa fa-eye" aria-hidden="true" (click)="toInactiveUser( value.userDetails.firstname + ' ' + value.userDetails.lastname, value.userDetails.id)"></i> -->
                 </td>
@@ -190,7 +190,7 @@
                 <p>Do you want to tagged the user as a regular member?</p>
               </div>
               <div class="column">
-                <button class="w3-button w3-black" (click)="deleteUser(value.userDetails.id)">Delete User</button><br>
+                <button class="w3-button w3-black" (click)="deleteUser()">Delete User</button><br>
                 <p>This is optional, if the selected user is deceased, here you can delete the user</p>
               </div>
             </div>

@@ -17,6 +17,7 @@ declare interface TableData {
 })
 
 export class TableComponent implements OnInit {
+    public selectedUserIndex  = 0
     public toShowInModal = {
         id: '',
         selectedUser: ''
@@ -59,7 +60,8 @@ export class TableComponent implements OnInit {
 
 
     // Kini siya nga function kay i execute ni kung ang mu select ang user ug certain user 
-    toInactiveUser(selectedUser, userID) {
+    toInactiveUser(selectedUser, userID, index) {
+        this.selectedUserIndex = index
         var userInactive = {
             memberId: '',
             active: ''
@@ -132,15 +134,19 @@ export class TableComponent implements OnInit {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                'User you selected is successfully deleted.',
-                'success'
-              )
+                document.getElementById(this.selectedUserIndex.toString()).style.display = 'none'
+                const deleteUser = this.service.deleteSelectedUser(this.toShowInModal.id)
+                deleteUser.subscribe((response: any) => {
+                    Swal.fire(
+                        'Deleted!',
+                        'User you selected is successfully deleted.',
+                        'success'
+                    )
+                })
             }
-          })
+        })
     }
 
 
