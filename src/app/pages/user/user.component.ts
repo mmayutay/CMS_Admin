@@ -4,7 +4,8 @@ import { UserDetailsService } from '../../../data-services/user-details.service'
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
-    templateUrl: 'user.component.html'
+    templateUrl: 'user.component.html',
+    styleUrls: ['./user.component.css']
 })
 
 export class UserComponent implements OnInit {
@@ -38,15 +39,16 @@ export class UserComponent implements OnInit {
     };
 
     constructor(
-        private userService: UserDetailsService
+        private userService: UserDetailsService,
     ) {
 
     }
     ngOnInit() {
-        const user = this.userService.getTheUsersInfo(1)
+        const user = this.userService.getTheUsersInfo(localStorage.getItem('usersLogged'))
         user.subscribe((data: any) => {
+            console.log(data)
             this.userDetails = data[0]
-            const account = this.userService.getUserAccount(1);
+            const account = this.userService.getUserAccount(localStorage.getItem('usersLogged'));
             account.subscribe((response: any) => {
                 this.userAccount = response
             })

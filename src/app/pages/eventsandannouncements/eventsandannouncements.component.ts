@@ -90,8 +90,9 @@ export class EventsandannouncementsComponent implements OnInit {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                const deleteEvent = this.eventsRequest.deleteSelectedEvent(data.user.id)
+                const deleteEvent = this.eventsRequest.deleteSelectedEvent(data.events.id)
                 deleteEvent.subscribe((response: any) => {
+                    console.log(response)
                     this.eventsAndAnnouncements.splice(index, 1)
                     swalWithBootstrapButtons.fire(
                         'Deleted!',
@@ -105,7 +106,7 @@ export class EventsandannouncementsComponent implements OnInit {
             ) {
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Selected event not deleted :)',
                     'error'
                 )
             }

@@ -33,6 +33,7 @@ export class EventAndAnnouncementsService {
     }
 
     deleteSelectedEvent(id) {
+        console.log(id)
         return this.http.delete(this.url + 'event-announcement/delete/' + id)
     }
 

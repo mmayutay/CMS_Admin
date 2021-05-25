@@ -38,7 +38,7 @@ export class LoginAndLogout {
                 if (data[0].roles != 0) {
                     Swal.fire('User Unacceptable', "You can't logged because it is for ADMIN user only", 'warning')
                 } else {
-                    localStorage.setItem(this.authenticationKey, data[0].id)
+                    localStorage.setItem(this.authenticationKey, data[0].userid)
                     location.reload(true)
                 }
             } else {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataServicesService } from 'data-services/data-services.service';
 import { EventAndAnnouncementsService } from 'data-services/events-announcements-classes.service';
 
@@ -24,7 +24,8 @@ export class AddNewLessonComponent implements OnInit {
   constructor(
     public eventsAnnouncements: EventAndAnnouncementsService,
     public activatedRoute: ActivatedRoute,
-    public dataRequest: DataServicesService
+    public dataRequest: DataServicesService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +70,7 @@ export class AddNewLessonComponent implements OnInit {
       const addLesson = this.dataRequest.addLessonOfCertainTraining(this.selectedTrainingID,  this.listOfLessons[index])
       addLesson.subscribe((response: any) => {
         console.log(response)
+        this.router.navigate(['/eventsandannouncements']) 
       })
     }
   }
