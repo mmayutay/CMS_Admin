@@ -26,14 +26,17 @@ export class AddNewLessonComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public dataRequest: DataServicesService,
     public router: Router
-  ) { }
+  ) {
+   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     let trainingID = this.activatedRoute.snapshot.paramMap.get('trainingID')
     this.selectedTrainingID = trainingID
     const lessonNumber = this.eventsAnnouncements.returnLessons(trainingID)
-    lessonNumber.subscribe((response: any) => {
-      if(response == []) {
+    lessonNumber.subscribe((response: any) => { 
+      if(response.length == 0) {        
+        this.lessonCounter.push(this.lessonNumber)
+      }else {
         this.lessonNumber = Number(response[response.length - 1].lesson)
         this.lessonCounter.push(this.lessonNumber)
       }
@@ -52,6 +55,7 @@ export class AddNewLessonComponent implements OnInit {
     lessonsDetails.description = this.newLesson.description[this.index]
     lessonsDetails.title = this.newLesson.title[this.index]
     this.listOfLessons.push(lessonsDetails)
+    lesson.reset()
   }
 
   // Kini siya nga function kay i delete ang selected lesson

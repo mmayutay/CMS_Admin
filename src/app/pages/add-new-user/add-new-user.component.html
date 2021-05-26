@@ -5,7 +5,7 @@
                 <h5 class="card-title">Add New User</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form #addNewMember="ngForm" novalidate>
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
@@ -216,7 +216,7 @@
                     </div>
                     <div class="row">
                         <div class="update ml-auto mr-auto">
-                            <button type="submit" (click)="submitUser()" class="btn btn-primary btn-round">Add
+                            <button type="submit" (click)="submitUser(addNewMember)" class="btn btn-primary btn-round">Add
                                 User</button>
                         </div>
                     </div>

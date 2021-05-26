@@ -48,7 +48,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'add-new-training', component: AddNewTrainingComponent, canActivate: [AuthGuard]},
     { path: 'add-new-lesson/:trainingID', component: AddNewLessonComponent, canActivate: [AuthGuard]},
     { path: 'add-new-classes/:trainingID', component: AddNewClassesComponent, canActivate: [AuthGuard]},
-    { path: 'view-records/:classID', component: ViewRecordsComponent, canActivate: [AuthGuard] }
+    { path: 'view-records/:classID/:trainingID', component: ViewRecordsComponent, canActivate: [AuthGuard] }
 
     
 ];

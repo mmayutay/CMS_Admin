@@ -51,6 +51,7 @@ export class EventsandannouncementsComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.builtFunction.allUsersFromAdminToMembers()
         this.returnAllUsers = this.builtFunction.allUsers
         this.eventsAndAnnouncements = this.builtFunction.eventsAndAnnouncements
         this.trainingsAndClasses = this.builtFunction.trainingsAndClasses
@@ -160,7 +161,28 @@ export class EventsandannouncementsComponent implements OnInit {
 
     // Kini siya nga function kay ang pag add ug new event or training
     addNewEventOrTraining() {
-        this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
+        if (
+            this.createdEventOrAnnouncement.newEvents.Description == "" ||
+            this.createdEventOrAnnouncement.newEvents.End_date == "" ||
+            this.createdEventOrAnnouncement.newEvents.End_time == "" ||
+            this.createdEventOrAnnouncement.newEvents.Location == "" ||
+            this.createdEventOrAnnouncement.newEvents.Start_date == "" ||
+            this.createdEventOrAnnouncement.newEvents.Start_time == "" ||
+            this.createdEventOrAnnouncement.newEvents.Title == "" ||
+            this.createdEventOrAnnouncement.currentUser.userID == ""
+        ) {
+            Swal.fire('Sorry', 'There are filled is empty, please check if their is an empty filled', 'error')
+        } else {
+            this.createdEventOrAnnouncement.newEvents.Description = ""
+            this.createdEventOrAnnouncement.newEvents.End_date = ""
+            this.createdEventOrAnnouncement.newEvents.End_time = ""
+            this.createdEventOrAnnouncement.newEvents.Location = ""
+            this.createdEventOrAnnouncement.newEvents.Start_date = ""
+            this.createdEventOrAnnouncement.newEvents.Start_time = ""
+            this.createdEventOrAnnouncement.newEvents.Title = ""
+            this.createdEventOrAnnouncement.currentUser.userID = ""
+            this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
+        }
     }
 
     // Kini siya nga function kay pag kuha sa mga lessons sa certain training 

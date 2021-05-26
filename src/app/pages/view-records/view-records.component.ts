@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class ViewRecordsComponent implements OnInit {
   public classID = ''
+  public trainingID = ''
+  public classType = ''
   public allUsers = []
   public className = ''
   public studentsNames = []
@@ -26,8 +28,12 @@ export class ViewRecordsComponent implements OnInit {
 
   ngOnInit(): void {
     let classID = this.activatedRoute.snapshot.paramMap.get('classID')
+    this.trainingID = this.activatedRoute.snapshot.paramMap.get('trainingID')
+    const training = this.eventsRequest.returnTrainingDetails(this.trainingID)
+    training.subscribe((response: any) => {
+      this.trainingID = response[0].id
+    })
     this.classID = classID
-    console.log(classID)
     this.getStudents(classID)
     this.classDetails(classID)
     this.getAllUsers()
@@ -38,6 +44,7 @@ export class ViewRecordsComponent implements OnInit {
   getStudents(classID) {
     const students = this.eventsRequest.getAllStudentsOfAClass(classID)
     students.subscribe((response: any) => {
+      this.classType = response[0].type
       response.forEach(element => {
         const studentNames = this.dataRequest.getUserDetails(element.students_id)
         studentNames.subscribe((names: any) => {
@@ -81,6 +88,21 @@ export class ViewRecordsComponent implements OnInit {
           this.router.navigate(['/eventsandannouncements'])
         })
       }
+    })
+  }
+
+  // Kini siya nga function kay mag add ug student sa class 
+  addStudentToAClass(studentID) {
+    this.studentsNames.push(studentID)
+    var studentData = {
+      selectedTrainingID: this.trainingID,
+      classesID: this.classID,
+      studentID: studentID.id,
+      type: this.classType
+    }
+    const studentsData = this.eventsRequest.addStudent(studentData)
+    studentsData.subscribe((response: any) => {
+      Swal.fire('Added!', studentID.firstname + ' ' + studentID.lastname + ' successfully added to the class!', 'success')
     })
   }
 

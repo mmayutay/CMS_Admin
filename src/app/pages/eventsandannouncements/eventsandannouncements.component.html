@@ -102,7 +102,7 @@
                                     <tr *ngFor="let class of classOfCertainTraining[i]">
                                         <td>
                                             <!-- (click)="showStudent(class, 'Class')" -->
-                                            <a href="/#/view-records/{{class.id}}">{{ class.name }}</a>
+                                            <a href="/#/view-records/{{class.id}}/{{ trainingsAndClasses[i].id }}">{{ class.name }}</a>
                                         </td>
                                     </tr>
                                     </td>
@@ -142,47 +142,96 @@
                 <!-- <div class="card" [hidden]="isShow"> -->
                 <div role="document">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                        </div>
                         <div class="modal-body mx-3">
-                            <label for="defaultForm-email">Title</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title"
-                                class="form-control" #Title="ngModel" mdbInput mdbValidate required><br>
+                            <form>
+                                <label for="defaultForm-email">Title</label>
+                                <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Title" name="Title"
+                                    class="form-control" #Title="ngModel" mdbInput mdbValidate required>
+                                <div *ngIf="Title.invalid && (Title.dirty || Title.touched)" class="error">
+                                    <div *ngIf="Title.errors.required">
+                                        <label class="addEvent">Title is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">Description</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description"
-                                class="form-control" #Description="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">Description</label>
+                                <textarea type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Description"
+                                    name="Description" class="form-control" #Description="ngModel" mdbInput mdbValidate
+                                    required></textarea>
+                                <div *ngIf="Description.invalid && (Description.dirty || Description.touched)"
+                                    class="error">
+                                    <div *ngIf="Description.errors.required">
+                                        <label class="addEvent">Description is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">Start Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date"
-                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">Start Date</label>
+                                <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_date"
+                                    name="StartDate" class="form-control" #StartDate="ngModel" mdbInput mdbValidate
+                                    required>
+                                <div *ngIf="StartDate.invalid && (StartDate.dirty || StartDate.touched)" class="error">
+                                    <div *ngIf="StartDate.errors.required">
+                                        <label class="addEvent">StartDate is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">Start Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time"
-                                class="form-control" #StartDate="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">Start Time</label>
+                                <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.Start_time"
+                                    name="StartTime" class="form-control" #StartTime="ngModel" mdbInput mdbValidate
+                                    required>
+                                <div *ngIf="StartTime.invalid && (StartTime.dirty || StartTime.touched)" class="error">
+                                    <div *ngIf="StartTime.errors.required">
+                                        <label class="addEvent">StartTime is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">End Date</label>
-                            <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">End Date</label>
+                                <input type="date" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_date"
+                                    name="EndDate" class="form-control" #EndDate="ngModel" mdbInput mdbValidate
+                                    required>
+                                <div *ngIf="EndDate.invalid && (EndDate.dirty || EndDate.touched)" class="error">
+                                    <div *ngIf="EndDate.errors.required">
+                                        <label class="addEvent">EndDate is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">End Time</label>
-                            <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">End Time</label>
+                                <input type="time" [(ngModel)]="createdEventOrAnnouncement.newEvents.End_time"
+                                    name="EndTime" class="form-control" #EndTime="ngModel" mdbInput mdbValidate
+                                    required>
+                                <div *ngIf="EndTime.invalid && (EndTime.dirty || EndTime.touched)" class="error">
+                                    <div *ngIf="EndTime.errors.required">
+                                        <label class="addEvent">EndTime is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label for="defaultForm-email">Location</label>
-                            <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location"
-                                class="form-control" #EndDate="ngModel" mdbInput mdbValidate required><br>
+                                <label for="defaultForm-email">Location</label>
+                                <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location" name="Location"
+                                    class="form-control" #Location="ngModel" mdbInput mdbValidate required>
+                                <div *ngIf="Location.invalid && (Location.dirty || Location.touched)" class="error">
+                                    <div *ngIf="Location.errors.required">
+                                        <label class="addEvent">Location is required.</label>
+                                    </div>
+                                </div>
+                                <br>
 
-                            <label>Select Author:</label>
-                            <select name="users" id="users" [(ngModel)]="createdEventOrAnnouncement.currentUser.userID"
-                                class="form-control">
-                                <option *ngFor="let user of returnAllUsers" [value]="user.id">{{ user.firstname + ' ' +
-                                    user.lastname}}</option>
-                            </select>
-                        </div>
-                        <div class="update ml-auto mr-auto">
-                            <button type="submit" (click)="addNewEventOrTraining()"
-                                class="btn btn-primary btn-round">Add</button>
+                                <label>Select Author:</label>
+                                <select name="users" id="users"
+                                    [(ngModel)]="createdEventOrAnnouncement.currentUser.userID" class="form-control" name="Author">
+                                    <option *ngFor="let user of returnAllUsers" [value]="user.id">{{ user.firstname + '
+                                        ' +
+                                        user.lastname}}</option>
+                                </select><br><br>
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" (click)="addNewEventOrTraining()"
+                                        class="btn btn-primary btn-round">Add</button>
+                                </div>
+                            </form>
                         </div><br>
                     </div>
                 </div>

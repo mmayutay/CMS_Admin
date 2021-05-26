@@ -13,17 +13,29 @@
                 <form>
                     <!-- <h2 style="color:black"> Admin </h2> -->
                     <div class="input">
-                        <input type="text" placeholder="Username" [(ngModel)]="loginDetails.username" name="email"
-                            required />
+                        <input type="text" placeholder="Username" [(ngModel)]="loginDetails.username" name="user"
+                            required #user="ngModel" />
                         <span><i class="fa fa-user"></i></span>
+                        <div *ngIf="user.invalid && (user.dirty || user.touched)" class="error">
+                            <div *ngIf="user.errors.required">
+                                <p>Username is required.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="input">
                         <input [type]="passwordType" placeholder="Password" [(ngModel)]="loginDetails.password"
-                            name="password" required />
+                            name="password" required #password="ngModel"/>
                         <span><i class="fa fa-lock"></i></span>
-                        <span *ngIf="showPass" class="eyeBtn" (click)="showPassword()"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                        <span *ngIf="!showPass" class="eyeBtn" (click)="showPassword()"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                        <span *ngIf="showPass" class="eyeBtn" (click)="showPassword()"><i class="fa fa-eye"
+                                aria-hidden="true"></i></span>
+                        <span *ngIf="!showPass" class="eyeBtn" (click)="showPassword()"><i class="fa fa-eye-slash"
+                                aria-hidden="true"></i></span>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+                            <div *ngIf="password.errors.required">
+                                <p>Password is required.</p>
+                            </div>
+                        </div>
                     </div>
                     <!-- style="margin-left: 88%;" -->
                     <button class="btnLogin" (click)="logIn()"> Log In </button><br><br>

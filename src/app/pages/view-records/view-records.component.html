@@ -1,8 +1,3 @@
-<!-- <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head> -->
-
 <div style="float: right; width: 20%; text-align: center;">
     <img class="deleteAll" (click)="deleteSelectedClass()" src="https://img.icons8.com/metro/26/fa314a/trash.png"/><br>
     <p>Delete this class</p>
@@ -14,20 +9,6 @@
             <img class="addStudent" onclick="document.getElementById('id01').style.display='block'" src="https://img.icons8.com/pastel-glyph/50/26e07f/add-user-male--v2.png" />
             <div class="addStudentText">Add Student</div>
         </div><br>
-        <!-- <div style="float: right;" class="dropdown">
-            <img class="deleteAll" src="https://img.icons8.com/metro/26/fa314a/trash.png" />
-            <div class="deleteText">Delete All</div> -->
-            <!-- <div style="float: right;">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-            <div class="dropdown-choices">
-                <button class="addstudent" onclick="document.getElementById('id01').style.display='block'">Add
-                    Student</button>
-                <button class="deleteStudent">Delete All</button>
-            </div> -->
-        <!-- </div> -->
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content w3-animate-top w3-card-4" style="margin-left: 35%; width: 50%;">
                 <header class="w3-container" style="background-color: orange;">
@@ -38,7 +19,7 @@
                 </header>
                 <div class="w3-container"><br>
                     <ul class="w3-ul w3-hoverable">
-                        <li style="padding: 10px;" *ngFor="let value of allUsers" (click)="addStudent(value)"><a>{{ value.firstname }} {{ value.lastname }}</a> </li>
+                        <li style="padding: 10px;" *ngFor="let value of allUsers" (click)="addStudentToAClass(value)"><a>{{ value.firstname }} {{ value.lastname }}</a> </li>
                       </ul>
                 </div>
                 <footer class="w3-container" style="background-color: orange;"><br>

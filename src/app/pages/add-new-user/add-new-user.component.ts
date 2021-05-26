@@ -76,13 +76,13 @@ export class AddNewUserComponent implements OnInit {
   }
 
   // Kini siya nga function kay ang pag add new user nga makita sa submit nga button 
-  submitUser() {
+  submitUser(memberInfo) {
     if(this.signup.role.code == '1') {
       this.signup.groupBelong.Leader = '1'
     }
     const newUser = this.userService.addNewUser(this.signup)
     newUser.subscribe((response: any) => {
-      console.log(response)
+      memberInfo.reset()
       Swal.fire({
         title: 'Successfully added!',
         text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
@@ -100,16 +100,6 @@ export class AddNewUserComponent implements OnInit {
           )
         }
       })
-      // Swal.fire({
-      //   title: 'Successfully added!',
-      //   text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
-      //   showClass: {
-      //     popup: 'animate__animated animate__fadeInDown'
-      //   },
-      //   hideClass: {
-      //     popup: 'animate__animated animate__fadeOutUp'
-      //   }
-      // })
     })
   }
 

@@ -208,3 +208,8 @@ img#icon {
 .eyeBtn{
   margin-left: 90%;
 }
+
+p {
+  color: red;
+  float: left;
+}
