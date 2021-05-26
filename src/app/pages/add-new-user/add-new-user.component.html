@@ -11,14 +11,30 @@
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Firstname" name="fname"
-                                    class="form-control">
+                                    class="form-control" required minlength="2" #fname="ngModel">
+                                <div *ngIf="fname.invalid && (fname.dirty || fname.touched)" class="error">
+                                    <div *ngIf="fname.errors.required">                                        
+                                        <p>First Name is required.</p>
+                                    </div>
+                                    <div *ngIf="fname.errors.minlength">
+                                        <p>First Name must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>Last Name</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Lastname" name="lname"
-                                    class="form-control">
+                                    class="form-control" minlength="2" #lname="ngModel" required>
+                                <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="error">
+                                    <div *ngIf="lname.errors.required">
+                                        <p>Last Name is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="lname.errors.minlength">
+                                        <p>Last Name must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -33,8 +49,16 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Email address</label>
-                                <input type="email" [(ngModel)]="signup.newUser.Email" name="email"
-                                    class="form-control">
+                                <input type="email" [(ngModel)]="signup.newUser.Email" name="email" class="form-control"
+                                    email required #email="ngModel">
+                                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                                    <div *ngIf="email.errors.required">
+                                        <p>Email is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="email.errors?.email">
+                                        <p>Email not valid.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 pr-1">
@@ -51,7 +75,8 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select id="country" (change)="getUserGender($event)" [(ngModel)]="signup.newUser.Gender" name="cgVip">
+                                <select id="country" (change)="getUserGender($event)"
+                                    [(ngModel)]="signup.newUser.Gender" name="cgVip">
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -60,14 +85,24 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Contact_number</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Contact_number" name="twit"
-                                    class="form-control">
+                                <input type="text" [(ngModel)]="signup.newUser.Contact_number" name="contact"
+                                    class="form-control" #contact="ngModel" required>
+                                <div *ngIf="contact.invalid && (contact.dirty || contact.touched)"
+                                    class="error">
+                                    <div *ngIf="contact.errors.required">
+                                        <p>Contact Number is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="contact.errors.minlength">
+                                        <p>Contact Number must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Role</label>
-                                <select id="country" [(ngModel)]="signup.role.code" (change)="getRoleChosen($event)" name="role">
+                                <select id="country" [(ngModel)]="signup.role.code" (change)="getRoleChosen($event)"
+                                    name="role">
                                     <option *ngFor="let role of roles" [value]="role.code">{{ role.role }}</option>
                                 </select>
                             </div>
@@ -98,7 +133,8 @@
                                 <!-- <input type="text" [(ngModel)]="signup.groupBelong.Leader" name="insta" class="form-control"> -->
                                 <select [(ngModel)]="signup.groupBelong.Leader" name="isCgVip">
                                     <option>Select A Leader</option>
-                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname }} {{ leader.lastname }}</option>
+                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname
+                                        }} {{ leader.lastname }}</option>
                                 </select>
                             </div>
                         </div>
@@ -108,7 +144,16 @@
                             <div class="form-group">
                                 <label>Address</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Address" name="address"
-                                    class="form-control">
+                                    class="form-control" required #address="ngModel">
+                                <div *ngIf="address.invalid && (address.dirty || address.touched)"
+                                    class="error">
+                                    <div *ngIf="address.errors.required">                                        
+                                        <p>Address is required.</p>
+                                    </div>
+                                    <div *ngIf="address.errors.minlength">
+                                        <p>Address must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,21 +161,47 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Facebook</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Facebook" name="fb" class="form-control">
+                                <input type="text" [(ngModel)]="signup.newUser.Facebook" name="fb" class="form-control"
+                                    required #fb="ngModel">
+                                <div *ngIf="fb.invalid && (fb.dirty || fb.touched)" class="error">
+                                    <div *ngIf="fb.errors.required">
+                                        <p>Facebook is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="fb.errors.minlength">
+                                        <p>Facebook must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 px-1">
                             <div class="form-group">
                                 <label>Twitter</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Twitter" name="twit"
-                                    class="form-control">
+                                <input type="text" [(ngModel)]="signup.newUser.Twitter" name="twit" class="form-control"
+                                    required #twit="ngModel">
+                                <div *ngIf="twit.invalid && (twit.dirty || twit.touched)" class="error">
+                                    <div *ngIf="twit.errors.required">
+                                        <p>Twitter is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="twit.errors.minlength">
+                                        <p>Twitter must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 pl-1">
                             <div class="form-group">
                                 <label>Instagram</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Instagram" name="insta"
-                                    class="form-control">
+                                    class="form-control" required #insta="ngModel">
+                                <div *ngIf="insta.invalid && (insta.dirty || insta.touched)"
+                                    class="error">
+                                    <div *ngIf="insta.errors.required">
+                                        <p>Contact Number is required.</p>                                        
+                                    </div>
+                                    <div *ngIf="insta.errors.minlength">
+                                        <p>Contact Number must be at least 2 characters long.</p>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
