@@ -87,13 +87,21 @@ export class DashboardComponent implements OnInit {
 
     const activeMembers = this.dataRequest.getInactiveOrActiveUsers('true')
     activeMembers.subscribe((response: any) => {
-      this.activeMember = response
+      response.forEach(element => {
+        if(element != null) {
+          this.activeMember.push(element)
+        }
+      })
       members.push({ type: "Active Members", length: this.activeMember })
     })
 
     const inactiveMembers = this.dataRequest.getInactiveOrActiveUsers('false')
     inactiveMembers.subscribe((response: any) => {
-      this.inactiveMember = response
+      response.forEach(element => {
+        if(element != null) {
+          this.inactiveMember.push(element)
+        }
+      })
       members.push({ type: "Inactive Members", length: this.inactiveMember })
     })
 

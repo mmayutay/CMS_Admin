@@ -205,4 +205,9 @@ export class DataServicesService {
     deleteSelectedUser(userID) {
         return this.http.delete(this.url + 'user/delete/' + userID)
     }
+
+    // Kini siya nga function kay i delete ang user account 
+    deleteUsersAccount(userid) {
+        return this.http.delete(this.url + 'user/delete/account/' + userid)
+    }
 }

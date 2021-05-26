@@ -24,7 +24,7 @@
                         </header>
                         <div *ngIf="selectedMemberType.length != 0" class="w3-container">
                             <ul class="w3-ul">
-                                <li *ngFor="let members of selectedMemberType.length"
+                                <li *ngFor="let members of selectedMemberType.length.reverse()"
                                     style="text-align: left; padding: 20px;">{{ members.firstname + ' ' +
                                     members.lastname }}</li>
                             </ul>

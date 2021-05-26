@@ -129,7 +129,7 @@ export class TableComponent implements OnInit {
     }
 
     // Kini siya nga function kay for the deletion of the certain user 
-    deleteUser(studentID) {
+    deleteUser() {
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to delete this user?",
@@ -143,11 +143,14 @@ export class TableComponent implements OnInit {
                 document.getElementById(this.selectedUserIndex.toString()).style.display = 'none'
                 const deleteUser = this.service.deleteSelectedUser(this.toShowInModal.id)
                 deleteUser.subscribe((response: any) => {
-                    Swal.fire(
-                        'Deleted!',
-                        'User you selected is successfully deleted.',
-                        'success'
-                    )
+                    this.service.deleteUsersAccount(this.toShowInModal.id).subscribe((response: any) => {
+                        document.getElementById('id01').style.display='none'
+                        Swal.fire(
+                            'Deleted!',
+                            'User you selected is successfully deleted.',
+                            'success'
+                        )
+                    })
                 })
             }
         })
