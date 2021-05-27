@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataServicesService } from './data-services.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -50,7 +51,6 @@ export class LoginAndLogout {
     addNewUser(newUser) {
         return this.http.post(this.url + 'sign-up', newUser)
     }
-
 
     // Kini siya nga function kay kuhaon ang tanan nga leaders 
     getAllLeaders() {

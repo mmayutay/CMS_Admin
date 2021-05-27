@@ -33,36 +33,34 @@
                             </div>
                             <div>
                                 <table class="table">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>
-                                                Events_And_Announcements
-                                            </th>
-                                            <th>
-                                                Author
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </thead>
-                                        <tbody
-                                            *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
-                                            <tr *ngFor="let value of eventsAndAnnouncements; let i = index">
-                                                <td>
-                                                    {{ value.events.title }}
-                                                </td>
-                                                <td>
-                                                    {{ value.user.firstname + '_' + value.user.lastname}}
-                                                </td>
-                                                <td>
-                                                    <img class="action" (click)="showStudent(value, 'Events')"
-                                                        src="https://img.icons8.com/metro/26/26e07f/info.png" />
-                                                    <img class="action" (click)="deleteEvent(value, 'Events', i)"
-                                                        src="https://img.icons8.com/metro/26/fa314a/trash.png" />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <thead class=" text-primary">
+                                        <th>
+                                            Events_And_Announcement
+                                        </th>
+                                        <th>
+                                            Author
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </thead>
+                                    <tbody
+                                        *ngIf="eventsAndAnnouncements.length != 0 || trainingsAndClasses.length != 0">
+                                        <tr *ngFor="let value of eventsAndAnnouncements; let i = index">
+                                            <td>
+                                                {{ value.events.title }}
+                                            </td>
+                                            <td>
+                                                {{ value.user.firstname + '_' + value.user.lastname}}
+                                            </td>
+                                            <td>
+                                                <img class="action" (click)="showStudent(value, 'Events')"
+                                                    src="https://img.icons8.com/metro/26/26e07f/info.png" />
+                                                <img class="action" (click)="deleteEvent(value, 'Events', i)"
+                                                    src="https://img.icons8.com/metro/26/fa314a/trash.png" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -102,7 +100,8 @@
                                     <tr *ngFor="let class of classOfCertainTraining[i]">
                                         <td>
                                             <!-- (click)="showStudent(class, 'Class')" -->
-                                            <a href="/#/view-records/{{class.id}}/{{ trainingsAndClasses[i].id }}">{{ class.name }}</a>
+                                            <a href="/#/view-records/{{class.id}}/{{ trainingsAndClasses[i].id }}">{{
+                                                class.name }}</a>
                                         </td>
                                     </tr>
                                     </td>
@@ -211,8 +210,9 @@
                                 <br>
 
                                 <label for="defaultForm-email">Location</label>
-                                <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location" name="Location"
-                                    class="form-control" #Location="ngModel" mdbInput mdbValidate required>
+                                <input type="text" [(ngModel)]="createdEventOrAnnouncement.newEvents.Location"
+                                    name="Location" class="form-control" #Location="ngModel" mdbInput mdbValidate
+                                    required>
                                 <div *ngIf="Location.invalid && (Location.dirty || Location.touched)" class="error">
                                     <div *ngIf="Location.errors.required">
                                         <label class="addEvent">Location is required.</label>
@@ -222,7 +222,8 @@
 
                                 <label>Select Author:</label>
                                 <select name="users" id="users"
-                                    [(ngModel)]="createdEventOrAnnouncement.currentUser.userID" class="form-control" name="Author">
+                                    [(ngModel)]="createdEventOrAnnouncement.currentUser.userID" class="form-control"
+                                    name="Author">
                                     <option *ngFor="let user of returnAllUsers" [value]="user.id">{{ user.firstname + '
                                         ' +
                                         user.lastname}}</option>
