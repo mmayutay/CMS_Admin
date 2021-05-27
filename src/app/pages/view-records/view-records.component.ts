@@ -44,13 +44,15 @@ export class ViewRecordsComponent implements OnInit {
   getStudents(classID) {
     const students = this.eventsRequest.getAllStudentsOfAClass(classID)
     students.subscribe((response: any) => {
-      this.classType = response[0].type
-      response.forEach(element => {
-        const studentNames = this.dataRequest.getUserDetails(element.students_id)
-        studentNames.subscribe((names: any) => {
-          this.studentsNames.push(names[0])
+      if (response.length != 0) {
+        this.classType = response[0].type
+        response.forEach(element => {
+          const studentNames = this.dataRequest.getUserDetails(element.students_id)
+          studentNames.subscribe((names: any) => {
+            this.studentsNames.push(names[0])
+          })
         })
-      });
+      }
     })
   }
 
@@ -68,7 +70,7 @@ export class ViewRecordsComponent implements OnInit {
     allUsers.subscribe((response: any) => {
       this.allUsers = response
     })
-  } 
+  }
 
   // Kini siya nga function kay i delete niya ang class 
   deleteSelectedClass() {
@@ -103,6 +105,31 @@ export class ViewRecordsComponent implements OnInit {
     const studentsData = this.eventsRequest.addStudent(studentData)
     studentsData.subscribe((response: any) => {
       Swal.fire('Added!', studentID.firstname + ' ' + studentID.lastname + ' successfully added to the class!', 'success')
+    })
+  }
+
+  // Kini siya nga function kay i delete ang selected student 
+  deleteSelectedStudent(student) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete " + student.firstname + "?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        const recordToDelete = this.eventsRequest.deleteStudentOfAClass(student.id, this.classID)
+        recordToDelete.subscribe((deleted: any) => {
+          this.studentsNames.splice(this.studentsNames.indexOf(student), 1)
+          Swal.fire(
+            'Deleted!',
+            student.firstname + ' deleted successfully!',
+            'success'
+          )
+        })
+      }
     })
   }
 

@@ -171,7 +171,7 @@ export class EventsandannouncementsComponent implements OnInit {
             this.createdEventOrAnnouncement.newEvents.Title == "" ||
             this.createdEventOrAnnouncement.currentUser.userID == ""
         ) {
-            Swal.fire('Sorry', 'There are filled is empty, please check if their is an empty filled', 'error')
+            Swal.fire('Sorry', 'There are empty field/s, please check if their is an empty filled', 'error')
         } else {
             this.createdEventOrAnnouncement.newEvents.Description = ""
             this.createdEventOrAnnouncement.newEvents.End_date = ""

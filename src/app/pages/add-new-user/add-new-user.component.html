@@ -85,7 +85,7 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Contact_number</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Contact_number" name="contact"
+                                <input type="number" [(ngModel)]="signup.newUser.Contact_number" name="contact"
                                     class="form-control" #contact="ngModel" required>
                                 <div *ngIf="contact.invalid && (contact.dirty || contact.touched)"
                                     class="error">
