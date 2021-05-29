@@ -11,6 +11,11 @@ import { Location} from '@angular/common';
 })
 
 export class NavbarComponent implements OnInit{
+    public foreignRoutes = [
+      {path: "view-events", title: 'View Events'}, 
+      {path: "view-records", title: "View Class"}, 
+      {path: "add-new-lesson", title: "Add New Lesson"}, 
+      {path: "add-new-classes", title: "Add New Class"}]
     private listTitles: any[];
     location: Location;
     private nativeElement: Node;
@@ -43,6 +48,13 @@ export class NavbarComponent implements OnInit{
           if(this.listTitles[item].path === titlee){
               return this.listTitles[item].title;
           }
+      }
+      // console.log(titlee)
+
+      for (let index = 0; index < this.foreignRoutes.length; index++) {
+        if(titlee.includes(this.foreignRoutes[index].path)) {
+          return this.foreignRoutes[index].title
+        }
       }
       return 'Dashboard';
     }
