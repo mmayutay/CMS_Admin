@@ -61,8 +61,8 @@ export class TableFunctions {
     returnLeadersAndMembers() {
         const getPastor = this.service.getAllPastorsWithItsLeaders()
         getPastor.subscribe((response: any) => {
-            this.pastorsData = response[0].pastor
-            response[0].leaders.forEach(element => {
+            this.pastorsData = response[1].pastor
+            response[1].leaders.forEach(element => {
                 const members = this.service.returnMembersOfACertainLeader(element.id)
                 members.subscribe((member: any) => {
                     this.listOfLeadersAndItsMembers.push({ leader: element, members: member })
@@ -74,8 +74,10 @@ export class TableFunctions {
 
     // Kini siya nga function kay i return ang member's members
     returnMembersMembers(leaderid) {
+        // conso
         const members = this.service.returnMembersOfACertainLeader(leaderid)
         members.subscribe((response: any) => {
+            console.log(response)
             this.membersMembers.push(response)
         })
     } 

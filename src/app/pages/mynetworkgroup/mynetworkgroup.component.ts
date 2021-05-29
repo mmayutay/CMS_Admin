@@ -18,7 +18,7 @@ export class MynetworkgroupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.allPastorsWithItsLeaders()
+    this.allPastorsWithItsLeaders()
   }
 
   // Kini siya nga function kay kuhaon niya ang tanan nga pastors 
@@ -28,6 +28,11 @@ export class MynetworkgroupComponent implements OnInit {
       this.pastorsWithItsMembers = response
       console.log(this.pastorsWithItsMembers)
     })
+  }
+
+  // Kini siya nga function kay kuhaon ang members sa selected leader 
+  returnMembersOfLeader(leaderID) {
+    console.log(leaderID.target.value)
   }
 
   // Kini siya kay mag kuha sa mga members sa usa ka leader 
@@ -57,6 +62,7 @@ export class MynetworkgroupComponent implements OnInit {
   // Kini siya nga function kay kuhaon ang mga members under anang certain leader 
   getMembers(members) {
     this.built.listOfLeadersAndItsMembers.forEach(element => {
+      console.log(element)
       if(element.leader.id == members) {
         this.membersOfSelectedLeader = element.members
         this.membersOfSelectedLeader.forEach(member => {
