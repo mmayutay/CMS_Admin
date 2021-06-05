@@ -132,7 +132,8 @@
                                 <label>Who is his/her leader?</label>
                                 <!-- <input type="text" [(ngModel)]="signup.groupBelong.Leader" name="insta" class="form-control"> -->
                                 <select [(ngModel)]="signup.groupBelong.Leader" name="isCgVip">
-                                    <option>Select A Leader</option>
+                                    <option *ngIf="listOfLeaders.length != 0">Select A Leader</option>
+                                    <option *ngIf="listOfLeaders.length === 0">No data to show!</option>
                                     <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname
                                         }} {{ leader.lastname }}</option>
                                 </select>

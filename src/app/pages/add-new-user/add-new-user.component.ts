@@ -110,9 +110,17 @@ export class AddNewUserComponent implements OnInit {
 
   // Kini siya nga function kay i identify kung unsa ang role nga iyang gipili 
   getRoleChosen(value) {
-    const leadersOfChosen = this.userService.getUsersRole(Number(value.target.value) / 12)
+    var listOfSelectedLeaders = []
+    // console.log(String(Number(value.target.value) / 12))
+    const leadersOfChosen = this.userService.getUsersRole(String(Number(value.target.value) / 12))
     leadersOfChosen.subscribe((response: any) => {
-      this.listOfLeaders = response
+      console.log(response)
+      response.forEach(element => {
+        if(element.gender == this.signup.newUser.Gender) {
+          listOfSelectedLeaders.push(element)
+        }
+      })
+      this.listOfLeaders = listOfSelectedLeaders
     })
     this.getUserGender({target: {value: "Male"}})
   }
@@ -125,7 +133,7 @@ export class AddNewUserComponent implements OnInit {
         if(element.gender == value.target.value) {
           const userAccount = this.dataService.getUserAccount(element.id)
           userAccount.subscribe((user: any) => {
-            if(user.roles == (Number(this.signup.role.code) * 12).toString()) {
+            if(user.roles == (Number(this.signup.role.code) / 12).toString()) {
               console.log(element)
               this.listOfLeaders.length = 0
               this.listOfLeaders.push(element)

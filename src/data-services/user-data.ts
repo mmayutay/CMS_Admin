@@ -59,6 +59,7 @@ export class LoginAndLogout {
 
     // Kini siya nga function kay kuhaon depende sa role 
     getUsersRole(code) {
+        console.log(code)
         return this.http.get(this.url + 'return-all-pastors/' + code)
     }
 
