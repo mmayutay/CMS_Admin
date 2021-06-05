@@ -111,7 +111,6 @@ export class AddNewUserComponent implements OnInit {
   // Kini siya nga function kay i identify kung unsa ang role nga iyang gipili 
   getRoleChosen(value) {
     var listOfSelectedLeaders = []
-    // console.log(String(Number(value.target.value) / 12))
     const leadersOfChosen = this.userService.getUsersRole(String(Number(value.target.value) / 12))
     leadersOfChosen.subscribe((response: any) => {
       console.log(response)
