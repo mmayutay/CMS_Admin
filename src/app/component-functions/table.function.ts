@@ -63,6 +63,7 @@ export class TableFunctions {
     returnLeadersAndMembers() {
         const getPastor = this.service.getAllPastorsWithItsLeaders()
         getPastor.subscribe((response: any) => {
+            console.log(response)
             this.pastorsData = response[0].pastor
             response[0].leaders.forEach(element => {
                 const members = this.service.returnMembersOfACertainLeader(element.id)
