@@ -15,7 +15,9 @@ export class NavbarComponent implements OnInit{
       {path: "view-events", title: 'View Events'}, 
       {path: "view-records", title: "View Class"}, 
       {path: "add-new-lesson", title: "Add New Lesson"}, 
-      {path: "add-new-classes", title: "Add New Class"}]
+      {path: "add-new-classes", title: "Add New Class"},
+      {path: "add-new-training", title: "Add New Training"}      
+    ]
     private listTitles: any[];
     location: Location;
     private nativeElement: Node;
