@@ -6,8 +6,10 @@ import { DataServicesService } from 'data-services/data-services.service';
 })
 
 export class TableFunctions {
+    public membersOfCertainLeader = []
     public leaderCounter = 0
     public listOfLeadersAndItsMembers = [];
+    public membersOfSelectedLeader = []
     public membersMembers = []
     public pastorsData = { firstname: '', lastname: '' };
 
@@ -61,11 +63,12 @@ export class TableFunctions {
     returnLeadersAndMembers() {
         const getPastor = this.service.getAllPastorsWithItsLeaders()
         getPastor.subscribe((response: any) => {
-            this.pastorsData = response[1].pastor
-            response[1].leaders.forEach(element => {
+            this.pastorsData = response[0].pastor
+            response[0].leaders.forEach(element => {
                 const members = this.service.returnMembersOfACertainLeader(element.id)
                 members.subscribe((member: any) => {
                     this.listOfLeadersAndItsMembers.push({ leader: element, members: member })
+                    this.membersOfCertainLeader = this.listOfLeadersAndItsMembers[0].members
                     this.leaderCounter += 1
                 })
             });

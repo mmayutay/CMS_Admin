@@ -8,8 +8,7 @@ import { DataServicesService } from '../../../data-services/data-services.servic
   styleUrls: ['./mynetworkgroup.component.css']
 })
 export class MynetworkgroupComponent implements OnInit {
-  public membersOfSelectedLeader = []
-  public selectedLeadersMembers  = []
+  public selectedLeadersMembers = []
   public pastorsWithItsMembers = []
 
   constructor(
@@ -19,6 +18,7 @@ export class MynetworkgroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.allPastorsWithItsLeaders()
+    this.built.returnLeadersAndMembers()
   }
 
   // Kini siya nga function kay kuhaon niya ang tanan nga pastors 
@@ -26,7 +26,9 @@ export class MynetworkgroupComponent implements OnInit {
     const pastors = this.service.getAllPastorsWithItsLeaders()
     pastors.subscribe((response: any) => {
       this.pastorsWithItsMembers = response
-      console.log(this.pastorsWithItsMembers)
+      response.forEach(element => {
+        this.getMembers(element.pastor.id)
+      });
     })
   }
 
@@ -37,14 +39,14 @@ export class MynetworkgroupComponent implements OnInit {
 
   // Kini siya kay mag kuha sa mga members sa usa ka leader 
   getCertainLeadersMembers(leader, hideAndShow) {
-    if(hideAndShow  == 'show') {
+    if (hideAndShow == 'show') {
       this.selectedLeadersMembers = []
       this.service.allMembers.forEach(element => {
-        if(element.leader == leader.id) {
+        if (element.leader == leader.id) {
           this.selectedLeadersMembers.push(element)
         }
       })
-    }else {
+    } else {
       this.selectedLeadersMembers = []
     }
   }
@@ -62,13 +64,12 @@ export class MynetworkgroupComponent implements OnInit {
   // Kini siya nga function kay kuhaon ang mga members under anang certain leader 
   getMembers(members) {
     this.built.listOfLeadersAndItsMembers.forEach(element => {
-      console.log(element)
-      if(element.leader.id == members) {
-        this.membersOfSelectedLeader = element.members
-        this.membersOfSelectedLeader.forEach(member => {
-            this.built.returnMembersMembers(member.id)
+      if (element.leader.id == members) {
+        this.built.membersOfCertainLeader = element.members
+        this.built.membersOfCertainLeader.forEach(member => {
+          this.built.returnMembersMembers(member.id)
         });
       }
-    });
+    })
   }
 }

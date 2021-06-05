@@ -173,6 +173,8 @@ export class EventsandannouncementsComponent implements OnInit {
         ) {
             Swal.fire('Sorry', 'There are empty field/s, please check if their is an empty filled', 'error')
         } else {
+            this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
+            document.getElementById('id01').style.display='none'
             this.createdEventOrAnnouncement.newEvents.Description = ""
             this.createdEventOrAnnouncement.newEvents.End_date = ""
             this.createdEventOrAnnouncement.newEvents.End_time = ""
@@ -180,8 +182,7 @@ export class EventsandannouncementsComponent implements OnInit {
             this.createdEventOrAnnouncement.newEvents.Start_date = ""
             this.createdEventOrAnnouncement.newEvents.Start_time = ""
             this.createdEventOrAnnouncement.newEvents.Title = ""
-            this.createdEventOrAnnouncement.currentUser.userID = ""
-            this.builtFunction.addNewEventsAndAnnouncements(this.createdEventOrAnnouncement)
+            this.createdEventOrAnnouncement.currentUser.userID = ""            
         }
     }
 
