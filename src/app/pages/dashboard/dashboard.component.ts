@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import { Chart } from 'chart.js';
 import { DataServicesService } from 'data-services/data-services.service';
 import { Router } from '@angular/router';
 import { AttendanceService } from 'data-services/attendance.service';
@@ -29,7 +29,8 @@ export class DashboardComponent implements OnInit {
   };
 
   public allVipUsers = []
-  public url = "https://group8finalthesis.herokuapp.com/api/"
+  // public url = "https://group8finalthesis.herokuapp.com/api/"
+  public url = "http://localhost:8000/api/"
   public canvas: any;
   public sundayCelebration: any;
   public ctx;
@@ -151,47 +152,47 @@ export class DashboardComponent implements OnInit {
           }
         ]
       },
-      options: {
-        legend: {
-          display: false
-        },
+      // options: {
+      //   legend: {
+      //     display: false
+      //   },
 
-        tooltips: {
-          enabled: false
-        },
+      //   tooltips: {
+      //     enabled: false
+      //   },
 
-        scales: {
-          yAxes: [{
+      //   scales: {
+      //     yAxes: [{
 
-            ticks: {
-              fontColor: "#9f9f9f",
-              beginAtZero: false,
-              maxTicksLimit: 5,
-              //padding: 20
-            },
-            gridLines: {
-              drawBorder: false,
-              zeroLineColor: "#ccc",
-              color: 'rgba(255,255,255,0.05)'
-            }
+      //       ticks: {
+      //         fontColor: "#9f9f9f",
+      //         beginAtZero: false,
+      //         maxTicksLimit: 5,
+      //         //padding: 20
+      //       },
+      //       gridLines: {
+      //         drawBorder: false,
+      //         zeroLineColor: "#ccc",
+      //         color: 'rgba(255,255,255,0.05)'
+      //       }
 
-          }],
+      //     }],
 
-          xAxes: [{
-            barPercentage: 1.6,
-            gridLines: {
-              drawBorder: false,
-              color: 'rgba(255,255,255,0.1)',
-              zeroLineColor: "transparent",
-              display: false,
-            },
-            ticks: {
-              padding: 20,
-              fontColor: "#9f9f9f"
-            }
-          }]
-        },
-      }
+      //     xAxes: [{
+      //       barPercentage: 1.6,
+      //       gridLines: {
+      //         drawBorder: false,
+      //         color: 'rgba(255,255,255,0.1)',
+      //         zeroLineColor: "transparent",
+      //         display: false,
+      //       },
+      //       ticks: {
+      //         padding: 20,
+      //         fontColor: "#9f9f9f"
+      //       }
+      //     }]
+      //   },
+      // }
     });
 
   }

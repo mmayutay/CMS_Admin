@@ -12,7 +12,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoginAndLogout {
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
-    public url = 'https://group8finalthesis.herokuapp.com/api/'
+    // public url = 'https://group8finalthesis.herokuapp.com/api/'
+    public url = "http://localhost:8000/api/"
     public authenticationKey = 'usersLogged'
     public allUsers = []
 
@@ -39,7 +40,7 @@ export class LoginAndLogout {
                     Swal.fire('User Unacceptable', "You can't logged because it is for ADMIN user only", 'warning')
                 } else {
                     localStorage.setItem(this.authenticationKey, data[0].id)
-                    location.reload(true)
+                    location.reload()
                 }
             } else {
                 Swal.fire('Ooopssss', 'Username or password is incorrect!', 'warning');
@@ -65,7 +66,7 @@ export class LoginAndLogout {
     logOut() {
         localStorage.removeItem(this.authenticationKey)
         // this.router.navigate(['/login'])
-        location.reload(true)
+        location.reload()
     }
 
     // Kini siya nga function kay gi render niya daan nga iyaha na nga kuhaon tanan nga user 

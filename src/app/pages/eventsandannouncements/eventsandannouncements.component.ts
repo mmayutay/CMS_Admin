@@ -113,7 +113,7 @@ export class EventsandannouncementsComponent implements OnInit {
     }
 
     addEvent() {
-        this.isShow = false;
+        this.isShow = false; 
     }
 
     addNewTrainings() {

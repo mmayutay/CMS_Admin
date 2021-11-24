@@ -10,10 +10,10 @@ import Swal from 'sweetalert2'
 })
 export class AddNewUserComponent implements OnInit {
   public roles = [
-    {code: '1', role: 'Pastor'},
-    {code: '12', role: 'Primary'},
-    {code: '144', role: 'Member(144)'},
-    {code: '1728', role: 'Member(1728)'},
+    { code: '1', role: 'Pastor' },
+    { code: '12', role: 'Primary' },
+    { code: '144', role: 'Member(144)' },
+    { code: '1728', role: 'Member(1728)' },
   ]
   public marital_status = ["Single", "Married", "Divorce", "Widowed"]
   public listOfLeaders = []
@@ -23,19 +23,19 @@ export class AddNewUserComponent implements OnInit {
       Lastname: '',
       Firstname: '',
       Birthday: '',
-      Age: null,
+      Age: '',
       Gender: '',
       Address: '',
       Marital_status: '',
       Email: '',
-      Contact_number: null,
+      Contact_number: '',
       Facebook: '',
       Instagram: '',
       Twitter: '',
       Category: '',
-      Description:'A new member added!',
-      isCGVIP: 'true',
-      isSCVIP: 'true'
+      Description: '',
+      isCGVIP: '',
+      isSCVIP: ''
     }, groupBelong: {
       Leader: ''
     }, role: {
@@ -68,49 +68,58 @@ export class AddNewUserComponent implements OnInit {
     this.birthdate = this.signup.newUser.Birthday.split('-');
 
     if (today.getMonth() > this.birthdate[1]) {
-      this.signup.newUser.Age = today.getFullYear() - this.birthdate[0]
+      this.signup.newUser.Age = (today.getFullYear() - this.birthdate[0]).toString()
     } else {
-      this.signup.newUser.Age = today.getFullYear() - this.birthdate[0] - 1
+      this.signup.newUser.Age = (today.getFullYear() - this.birthdate[0] - 1).toString()
     }
     console.log(this.signup.newUser.Age)
   }
 
   // Kini siya nga function kay ang pag add new user nga makita sa submit nga button 
   submitUser() {
-    if(this.signup.role.code == '1') {
-      this.signup.groupBelong.Leader = '1'
-    }
-    const newUser = this.userService.addNewUser(this.signup)
-    newUser.subscribe((response: any) => {
-      console.log(response)
-      Swal.fire({
-        title: 'Successfully added!',
-        text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Show'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'User Account',
-            response.username + ' is the username and the password is ' + this.signup.newUser.Lastname + 'Member' + response.userid,
-            'success'
-          )
+    for (const property in this.signup.newUser) {
+      if (this.signup.newUser[property] !== '') {
+        if (this.signup.role.code == '1') {
+          this.signup.groupBelong.Leader = '1'
         }
-      })
-      // Swal.fire({
-      //   title: 'Successfully added!',
-      //   text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
-      //   showClass: {
-      //     popup: 'animate__animated animate__fadeInDown'
-      //   },
-      //   hideClass: {
-      //     popup: 'animate__animated animate__fadeOutUp'
-      //   }
-      // })
-    })
+        const newUser = this.userService.addNewUser(this.signup)
+        newUser.subscribe((response: any) => {
+          console.log(response)
+          Swal.fire({
+            title: 'Successfully added!',
+            text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Show'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'User Account',
+                response.username + ' is the username and the password is ' + this.signup.newUser.Lastname + 'Member' + response.userid,
+                'success'
+              )
+            }
+          })
+        })
+      } else {
+        Swal.fire("All fields is required!")
+      }
+    }
+
+
+    // Swal.fire({
+    //   title: 'Successfully added!',
+    //   text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
+    //   showClass: {
+    //     popup: 'animate__animated animate__fadeInDown'
+    //   },
+    //   hideClass: {
+    //     popup: 'animate__animated animate__fadeOutUp'
+    //   }
+    // })
+
   }
 
   // Kini siya nga function kay i identify kung unsa ang role nga iyang gipili 
@@ -119,7 +128,7 @@ export class AddNewUserComponent implements OnInit {
     leadersOfChosen.subscribe((response: any) => {
       this.listOfLeaders = response
     })
-    this.getUserGender({target: {value: "Male"}})
+    this.getUserGender({ target: { value: "Male" } })
   }
 
   // Kini siya nga function kay kuhaon ang gender sa new added member 
@@ -127,10 +136,10 @@ export class AddNewUserComponent implements OnInit {
     const allUsers = this.dataService.getAllUsers()
     allUsers.subscribe((response: any) => {
       response.forEach(element => {
-        if(element.gender == value.target.value) {
+        if (element.gender == value.target.value) {
           const userAccount = this.dataService.getUserAccount(element.id)
           userAccount.subscribe((user: any) => {
-            if(user.roles == (Number(this.signup.role.code) * 12).toString()) {
+            if (user.roles == (Number(this.signup.role.code) * 12).toString()) {
               console.log(element)
               this.listOfLeaders.length = 0
               this.listOfLeaders.push(element)
@@ -140,5 +149,5 @@ export class AddNewUserComponent implements OnInit {
       });
     })
   }
-  
+
 }

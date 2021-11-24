@@ -40,9 +40,11 @@ export class TableComponent implements OnInit {
             data.forEach(element => {
                 const user = this.service.getUserDetails(element.userid)
                 user.subscribe((details: any) => {
+                    element.password = details[0].lastname + 'Member' + details[0].id
                     this.allUsers.push({ account: element, userDetails: details[0], role: this.roleConverter(element.roles) })
                 })
             })
+            console.log(this.allUsers)
             this.usersCounter = data.length
         })
     }
