@@ -18,6 +18,11 @@ export class EventAndAnnouncementsService {
         return this.http.post(this.url + 'trainings-and-classes/add-students-records', dataToAdd)
     }
 
+    // Kini siya nga function kay i delete niya ang student sa certain class 
+    deleteStudentOfAClass(studentID, classID) {
+        return this.http.delete(this.url + 'trainings-and-classes/remove-student-from-class/' + studentID +'/' + classID)
+    }
+
     // This function is to get the details of a selected events
     returnEventsDetails(eventID) {
         return this.http.get(this.url + 'event-return/' + eventID)
@@ -34,6 +39,7 @@ export class EventAndAnnouncementsService {
     }
 
     deleteSelectedEvent(id) {
+        console.log(id)
         return this.http.delete(this.url + 'event-announcement/delete/' + id)
     }
 

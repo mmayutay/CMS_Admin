@@ -262,3 +262,11 @@ th {
   color: #3dca73;
   font-weight: 100;
 }
+
+.addEvent {
+  color: red;
+}
+
+textarea {
+  padding: 20px;
+}

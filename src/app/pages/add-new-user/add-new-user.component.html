@@ -5,20 +5,36 @@
                 <h5 class="card-title">Add New User</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form #addNewMember="ngForm" novalidate>
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Firstname" name="fname"
-                                    class="form-control">
+                                    class="form-control" required minlength="2" #fname="ngModel">
+                                <div *ngIf="fname.invalid && (fname.dirty || fname.touched)" class="error">
+                                    <div *ngIf="fname.errors.required">
+                                        <p>First Name is required.</p>
+                                    </div>
+                                    <div *ngIf="fname.errors.minlength">
+                                        <p>First Name must be at least 2 characters long.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>Last Name</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Lastname" name="lname"
-                                    class="form-control">
+                                    class="form-control" minlength="2" #lname="ngModel" required>
+                                <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="error">
+                                    <div *ngIf="lname.errors.required">
+                                        <p>Last Name is required.</p>
+                                    </div>
+                                    <div *ngIf="lname.errors.minlength">
+                                        <p>Last Name must be at least 2 characters long.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -33,8 +49,16 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Email address</label>
-                                <input type="email" [(ngModel)]="signup.newUser.Email" name="email"
-                                    class="form-control">
+                                <input type="email" [(ngModel)]="signup.newUser.Email" name="email" class="form-control"
+                                    email required #email="ngModel">
+                                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                                    <div *ngIf="email.errors.required">
+                                        <p>Email is required.</p>
+                                    </div>
+                                    <div *ngIf="email.errors?.email">
+                                        <p>Email not valid.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 pr-1">
@@ -51,7 +75,8 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select id="country" (change)="getUserGender($event)" [(ngModel)]="signup.newUser.Gender" name="cgVip">
+                                <select id="country" (change)="getUserGender($event)"
+                                    [(ngModel)]="signup.newUser.Gender" name="cgVip">
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -60,14 +85,23 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Contact_number</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Contact_number" name="twit"
-                                    class="form-control">
+                                <input type="number" [(ngModel)]="signup.newUser.Contact_number" name="contact"
+                                    class="form-control" #contact="ngModel" required>
+                                <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="error">
+                                    <div *ngIf="contact.errors.required">
+                                        <p>Contact Number is required.</p>
+                                    </div>
+                                    <div *ngIf="contact.errors.minlength">
+                                        <p>Contact Number must be at least 2 characters long.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Role</label>
-                                <select id="country" [(ngModel)]="signup.role.code" (change)="getRoleChosen($event)" name="role">
+                                <select id="country" [(ngModel)]="signup.role.code" (change)="getRoleChosen($event)"
+                                    name="role">
                                     <option *ngFor="let role of roles" [value]="role.code">{{ role.role }}</option>
                                 </select>
                             </div>
@@ -78,8 +112,8 @@
                             <div class="form-group">
                                 <label>VIP of Cell Group?</label>
                                 <select id="cgVip" [(ngModel)]="signup.newUser.isCGVIP" name="cgVip">
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="'true'">Yes</option>
+                                    <option value="'false'">No</option>
                                 </select>
                             </div>
                         </div>
@@ -87,8 +121,8 @@
                             <div class="form-group">
                                 <label>VIP of Sunday Celebration?</label>
                                 <select id="scVip" [(ngModel)]="signup.newUser.isSCVIP" name="scVip">
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="'true'">Yes</option>
+                                    <option value="'false'">No</option>
                                 </select>
                             </div>
                         </div>
@@ -97,8 +131,10 @@
                                 <label>Who is his/her leader?</label>
                                 <!-- <input type="text" [(ngModel)]="signup.groupBelong.Leader" name="insta" class="form-control"> -->
                                 <select [(ngModel)]="signup.groupBelong.Leader" name="isCgVip">
-                                    <option>Select A Leader</option>
-                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname }} {{ leader.lastname }}</option>
+                                    <option *ngIf="listOfLeaders.length != 0">Select A Leader</option>
+                                    <option *ngIf="listOfLeaders.length === 0">No data to show!</option>
+                                    <option *ngFor="let leader of listOfLeaders" [value]="leader.id">{{ leader.firstname
+                                        }} {{ leader.lastname }}</option>
                                 </select>
                             </div>
                         </div>
@@ -108,7 +144,15 @@
                             <div class="form-group">
                                 <label>Address</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Address" name="address"
-                                    class="form-control">
+                                    class="form-control" required #address="ngModel">
+                                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error">
+                                    <div *ngIf="address.errors.required">
+                                        <p>Address is required.</p>
+                                    </div>
+                                    <div *ngIf="address.errors.minlength">
+                                        <p>Address must be at least 2 characters long.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,21 +160,22 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Facebook</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Facebook" name="fb" class="form-control">
+                                <input type="text" [(ngModel)]="signup.newUser.Facebook" name="fb" class="form-control"
+                                    required #fb="ngModel">
                             </div>
                         </div>
                         <div class="col-md-4 px-1">
                             <div class="form-group">
                                 <label>Twitter</label>
-                                <input type="text" [(ngModel)]="signup.newUser.Twitter" name="twit"
-                                    class="form-control">
+                                <input type="text" [(ngModel)]="signup.newUser.Twitter" name="twit" class="form-control"
+                                    required #twit="ngModel">
                             </div>
                         </div>
                         <div class="col-md-4 pl-1">
                             <div class="form-group">
                                 <label>Instagram</label>
                                 <input type="text" [(ngModel)]="signup.newUser.Instagram" name="insta"
-                                    class="form-control">
+                                    class="form-control" required #insta="ngModel">
                             </div>
                         </div>
                     </div>
@@ -145,7 +190,8 @@
                     </div>
                     <div class="row">
                         <div class="update ml-auto mr-auto">
-                            <button type="submit" (click)="submitUser()" class="btn btn-primary btn-round">Add
+                            <button type="submit" (click)="submitUser(addNewMember)"
+                                class="btn btn-primary btn-round">Add
                                 User</button>
                         </div>
                     </div>

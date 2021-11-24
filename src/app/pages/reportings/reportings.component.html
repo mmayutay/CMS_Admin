@@ -1,49 +1,62 @@
 <div *ngIf="data.length == 0" class="spinning">
-    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="card-body all-icons">
+        <div class="select-adjust-width">
+            <select>
+                <option>Apples</option>
+                <option selected>Pineapples</option>
+                <option>Chocklate</option>
+                <option>Pancakes</option>
+            </select>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="data.length != 0" class="row">
     <div class="col-md-12">
         <div class="card demo-icons">
-            <div class="card-header ">
-                <h5 class="card-title">Reportings</h5>
-                <p class="card-category">Attendances</p>
-            </div>
             <div class="card-body all-icons">
                 <div id="icons-wrapper">
                     <section>
                         <div class="row">
-                            <div class="col-md-6" *ngFor="let in of counter(data.length); let i = index" >
-                                <div class="card"><br>
-                                    <p style="margin-left: 5px;">Date Attendance: <input style="width: 50%; margin: 10px;" type="date"  (change)="getInputedDate($event, data[i].members)"></p>
-                                    <p style="text-align: center;font-size: 20px;">{{ data[i].leader.firstname }} {{ data[i].leader.lastname }}</p><br>
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>
-                                                Member
-                                            </th>
-                                            <th>
-                                                Cell Group
-                                            </th>
-                                            <th>
-                                                Sunday Celebration
-                                            </th>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let member of data[i].members">
-                                                <td>
-                                                    {{ member.lastname }} {{ member.firstname }}
-                                                </td>
-                                                <td [id]="member.id">
-                                                    Didn't Attend
-                                                </td>
-                                                <td [id]="'sunday' + member.id">
-                                                    Didn't Attend
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="card-handler">
+                                <div class="name-display">
+                                    <h2>
+                                        {{ dataService.leaders[0].leader.firstname }} {{
+                                        dataService.leaders[0].leader.lastname }}
+                                    </h2>
                                 </div>
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <th>
+                                            Member
+                                        </th>
+                                        <th>
+                                            Cell Group
+                                        </th>
+                                        <th>
+                                            Sunday Celebration
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </section>
@@ -52,3 +65,42 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- <div class="row">
+    <div class="col-md-6" *ngFor="let in of counter(data.length); let i = index">
+    <div class="card"><br>
+        <p style="margin-left: 5px;">Date Attendance: <input
+                                                                    style="width: 50%; margin: 10px;" type="date"
+                                                                    (change)="getInputedDate($event, data[i].members)"></p>
+        <p style="text-align: center;font-size: 20px;"></p><br>
+        <table class="table">
+            <thead class=" text-primary">
+                <th>
+                    Member
+                </th>
+                <th>
+                    Cell Group
+                </th>
+                <th>
+                    Sunday Celebration
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of data[i].members">
+                <td>
+                    {{ member.lastname }} {{ member.firstname }}
+                </td>
+                <td [id]="member.id">
+                Didn't Attend
+                </td>
+                <td [id]="'sunday' + member.id">
+                Didn't Attend
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div> -->

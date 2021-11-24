@@ -16,7 +16,7 @@ export class ReportingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.data = this.dataService.leaders
+    this.data = this.dataService.leaders;
   }
 
   counter(i: number) {
@@ -28,13 +28,13 @@ export class ReportingsComponent implements OnInit {
     members.forEach(element => {
       const attendances = this.attendance.getUserAttendance(element.id, new Date(dateChosen.target.value).getMonth())
       attendances.subscribe((response: any) => {
-        if(response.length != 0) {
+        if (response.length != 0) {
           response.forEach(date => {
             if ((new Date(date).getMonth() == new Date(dateChosen.target.value).getMonth()) && (new Date(date).getDate() == new Date(dateChosen.target.value).getDate()) && (new Date(date).getFullYear() == new Date(dateChosen.target.value).getFullYear())) {
               document.getElementById(element.id).innerHTML = "Attended";
-              if(new Date(date).getDay() == 0) {
+              if (new Date(date).getDay() == 0) {
                 document.getElementById('sunday' + element.id).innerHTML = "Attended"
-              }else {
+              } else {
                 document.getElementById('sunday' + element.id).innerHTML = "Didn't Attend"
               }
             } else {
@@ -42,7 +42,7 @@ export class ReportingsComponent implements OnInit {
               document.getElementById('sunday' + element.id).innerHTML = "Didn't Attend"
             }
           });
-        }else {
+        } else {
           document.getElementById(element.id).innerHTML = "Didn't Attend"
         }
       })

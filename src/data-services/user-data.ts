@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataServicesService } from './data-services.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -39,7 +40,7 @@ export class LoginAndLogout {
                 if (data[0].roles != 0) {
                     Swal.fire('User Unacceptable', "You can't logged because it is for ADMIN user only", 'warning')
                 } else {
-                    localStorage.setItem(this.authenticationKey, data[0].id)
+                    localStorage.setItem(this.authenticationKey, data[0].userid)
                     location.reload()
                 }
             } else {
@@ -52,7 +53,6 @@ export class LoginAndLogout {
         return this.http.post(this.url + 'sign-up', newUser)
     }
 
-
     // Kini siya nga function kay kuhaon ang tanan nga leaders 
     getAllLeaders() {
         return this.http.get(this.url + 'get-leaders');
@@ -60,6 +60,7 @@ export class LoginAndLogout {
 
     // Kini siya nga function kay kuhaon depende sa role 
     getUsersRole(code) {
+        console.log(code)
         return this.http.get(this.url + 'return-all-pastors/' + code)
     }
 

@@ -13,3 +13,7 @@ select {
  #birth {
    height: 40px;
  }
+
+ p {
+  color: red;
+ }

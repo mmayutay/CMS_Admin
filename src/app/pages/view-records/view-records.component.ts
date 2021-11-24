@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class ViewRecordsComponent implements OnInit {
   public classID = ''
+  public trainingID = ''
+  public classType = ''
   public allUsers = []
   public className = ''
   public studentsNames = []
@@ -26,8 +28,12 @@ export class ViewRecordsComponent implements OnInit {
 
   ngOnInit(): void {
     let classID = this.activatedRoute.snapshot.paramMap.get('classID')
+    this.trainingID = this.activatedRoute.snapshot.paramMap.get('trainingID')
+    const training = this.eventsRequest.returnTrainingDetails(this.trainingID)
+    training.subscribe((response: any) => {
+      this.trainingID = response[0].id
+    })
     this.classID = classID
-    console.log(classID)
     this.getStudents(classID)
     this.classDetails(classID)
     this.getAllUsers()
@@ -38,12 +44,15 @@ export class ViewRecordsComponent implements OnInit {
   getStudents(classID) {
     const students = this.eventsRequest.getAllStudentsOfAClass(classID)
     students.subscribe((response: any) => {
-      response.forEach(element => {
-        const studentNames = this.dataRequest.getUserDetails(element.students_id)
-        studentNames.subscribe((names: any) => {
-          this.studentsNames.push(names[0])
+      if (response.length != 0) {
+        this.classType = response[0].type
+        response.forEach(element => {
+          const studentNames = this.dataRequest.getUserDetails(element.students_id)
+          studentNames.subscribe((names: any) => {
+            this.studentsNames.push(names[0])
+          })
         })
-      });
+      }
     })
   }
 
@@ -61,7 +70,7 @@ export class ViewRecordsComponent implements OnInit {
     allUsers.subscribe((response: any) => {
       this.allUsers = response
     })
-  } 
+  }
 
   // Kini siya nga function kay i delete niya ang class 
   deleteSelectedClass() {
@@ -79,6 +88,46 @@ export class ViewRecordsComponent implements OnInit {
         classSelected.subscribe((response: any) => {
           Swal.fire('Deleted!', 'Class Deleted Successfully!', 'success')
           this.router.navigate(['/eventsandannouncements'])
+        })
+      }
+    })
+  }
+
+  // Kini siya nga function kay mag add ug student sa class 
+  addStudentToAClass(studentID) {
+    this.studentsNames.push(studentID)
+    var studentData = {
+      selectedTrainingID: this.trainingID,
+      classesID: this.classID,
+      studentID: studentID.id,
+      type: this.classType
+    }
+    const studentsData = this.eventsRequest.addStudent(studentData)
+    studentsData.subscribe((response: any) => {
+      Swal.fire('Added!', studentID.firstname + ' ' + studentID.lastname + ' successfully added to the class!', 'success')
+    })
+  }
+
+  // Kini siya nga function kay i delete ang selected student 
+  deleteSelectedStudent(student) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete " + student.firstname + "?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        const recordToDelete = this.eventsRequest.deleteStudentOfAClass(student.id, this.classID)
+        recordToDelete.subscribe((deleted: any) => {
+          this.studentsNames.splice(this.studentsNames.indexOf(student), 1)
+          Swal.fire(
+            'Deleted!',
+            student.firstname + ' deleted successfully!',
+            'success'
+          )
         })
       }
     })

@@ -201,4 +201,14 @@ export class DataServicesService {
     getTheCurrentUser(userId) {
         return this.http.post(this.url + "info", userId);
     }
+
+    // Kini siya nga function kay i delete ang certain user 
+    deleteSelectedUser(userID) {
+        return this.http.delete(this.url + 'user/delete/' + userID)
+    }
+
+    // Kini siya nga function kay i delete ang user account 
+    deleteUsersAccount(userid) {
+        return this.http.delete(this.url + 'user/delete/account/' + userid)
+    }
 }

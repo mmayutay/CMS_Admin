@@ -17,6 +17,7 @@ declare interface TableData {
 })
 
 export class TableComponent implements OnInit {
+    public selectedUserIndex  = 0
     public toShowInModal = {
         id: '',
         selectedUser: ''
@@ -61,7 +62,8 @@ export class TableComponent implements OnInit {
 
 
     // Kini siya nga function kay i execute ni kung ang mu select ang user ug certain user 
-    toInactiveUser(selectedUser, userID) {
+    toInactiveUser(selectedUser, userID, index) {
+        this.selectedUserIndex = index
         var userInactive = {
             memberId: '',
             active: ''
@@ -100,28 +102,60 @@ export class TableComponent implements OnInit {
     // Kini siya nga function kay ang certain execution sa selected action
     toInactiveActiveOrRegular(type: string) {
         var userInactive = {
-            memberID: '',
+            memberId: '',
             active: ''
         }
-        userInactive.memberID = this.toShowInModal.id
+        userInactive.memberId = this.toShowInModal.id
         if (type == 'Inactive') {
             userInactive.active = 'false'
+            console.log(userInactive)
             const toInactive = this.eventsRequest.isActive(userInactive)
             toInactive.subscribe((response: any) => {
                 console.log(response)
+                document.getElementById('id01').style.display='none'
             })
         } else if (type == 'Active') {
             userInactive.active = 'true'
             const toActive = this.eventsRequest.isActive(userInactive)
             toActive.subscribe((response: any) => {
                 console.log(response)
+                document.getElementById('id01').style.display='none'
             })
         } else {
             const vipToRegular = this.eventsRequest.toRegularMember(this.toShowInModal.id)
             vipToRegular.subscribe((response: any) => {
                 console.log(response)
+                document.getElementById('id01').style.display='none'
             })
         }
+    }
+
+    // Kini siya nga function kay for the deletion of the certain user 
+    deleteUser() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this user?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(this.selectedUserIndex.toString()).style.display = 'none'
+                const deleteUser = this.service.deleteSelectedUser(this.toShowInModal.id)
+                deleteUser.subscribe((response: any) => {
+                    this.service.deleteUsersAccount(this.toShowInModal.id).subscribe((response: any) => {
+                        document.getElementById('id01').style.display='none'
+                        Swal.fire(
+                            'Deleted!',
+                            'User you selected is successfully deleted.',
+                            'success'
+                        )
+                    })
+                })
+            }
+        })
     }
 
 

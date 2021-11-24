@@ -6,8 +6,11 @@ import { DataServicesService } from 'data-services/data-services.service';
 })
 
 export class TableFunctions {
+    public membersOfCertainLeader = []
     public leaderCounter = 0
     public listOfLeadersAndItsMembers = [];
+    public membersOfSelectedLeader = []
+    public membersMembers = []
     public pastorsData = { firstname: '', lastname: '' };
 
     public eventsAndAnnouncements = []
@@ -60,16 +63,28 @@ export class TableFunctions {
     returnLeadersAndMembers() {
         const getPastor = this.service.getAllPastorsWithItsLeaders()
         getPastor.subscribe((response: any) => {
+            console.log(response)
             this.pastorsData = response[0].pastor
             response[0].leaders.forEach(element => {
                 const members = this.service.returnMembersOfACertainLeader(element.id)
                 members.subscribe((member: any) => {
                     this.listOfLeadersAndItsMembers.push({ leader: element, members: member })
+                    this.membersOfCertainLeader = this.listOfLeadersAndItsMembers[0].members
                     this.leaderCounter += 1
                 })
             });
         })
     }
+
+    // Kini siya nga function kay i return ang member's members
+    returnMembersMembers(leaderid) {
+        // conso
+        const members = this.service.returnMembersOfACertainLeader(leaderid)
+        members.subscribe((response: any) => {
+            console.log(response)
+            this.membersMembers.push(response)
+        })
+    } 
 
     // Kini siya nga function kay mauy mu add sa bag o nga events and announcements 
     addNewEventsAndAnnouncements(newEvent) {

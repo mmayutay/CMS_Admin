@@ -76,57 +76,50 @@ export class AddNewUserComponent implements OnInit {
   }
 
   // Kini siya nga function kay ang pag add new user nga makita sa submit nga button 
-  submitUser() {
-    for (const property in this.signup.newUser) {
-      if (this.signup.newUser[property] !== '') {
-        if (this.signup.role.code == '1') {
-          this.signup.groupBelong.Leader = '1'
-        }
-        const newUser = this.userService.addNewUser(this.signup)
-        newUser.subscribe((response: any) => {
-          console.log(response)
-          Swal.fire({
-            title: 'Successfully added!',
-            text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
-            icon: 'success',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Show'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'User Account',
-                response.username + ' is the username and the password is ' + this.signup.newUser.Lastname + 'Member' + response.userid,
-                'success'
-              )
-            }
-          })
-        })
-      } else {
-        Swal.fire("All fields is required!")
+  submitUser(memberInfo) {
+    if (!this.inputValidation()) {
+      if (this.signup.role.code == '1') {
+        this.signup.groupBelong.Leader = '1'
       }
+      const newUser = this.userService.addNewUser(this.signup)
+      newUser.subscribe((response: any) => {
+        console.log(response)
+        memberInfo.reset()
+        Swal.fire({
+          title: 'Successfully added!',
+          text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF, click show to see what is his/her account',
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Show'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'User Account',
+              response.username + ' is the username and the password is ' + this.signup.newUser.Lastname + 'Member' + response.userid,
+              'success'
+            )
+          }
+        })
+      })
+    } else {
+      Swal.fire('Missing Field', 'You forgot to fill an input field, please check the fields', 'error')
     }
-
-
-    // Swal.fire({
-    //   title: 'Successfully added!',
-    //   text: this.signup.newUser.Firstname + ' is successfully added to as a new member of BHCF',
-    //   showClass: {
-    //     popup: 'animate__animated animate__fadeInDown'
-    //   },
-    //   hideClass: {
-    //     popup: 'animate__animated animate__fadeOutUp'
-    //   }
-    // })
-
   }
 
   // Kini siya nga function kay i identify kung unsa ang role nga iyang gipili 
   getRoleChosen(value) {
-    const leadersOfChosen = this.userService.getUsersRole(Number(value.target.value) / 12)
+    var listOfSelectedLeaders = []
+    const leadersOfChosen = this.userService.getUsersRole(String(Number(value.target.value) / 12))
     leadersOfChosen.subscribe((response: any) => {
-      this.listOfLeaders = response
+      console.log(response)
+      response.forEach(element => {
+        if (element.gender == this.signup.newUser.Gender) {
+          listOfSelectedLeaders.push(element)
+        }
+      })
+      this.listOfLeaders = listOfSelectedLeaders
     })
     this.getUserGender({ target: { value: "Male" } })
   }
@@ -139,7 +132,7 @@ export class AddNewUserComponent implements OnInit {
         if (element.gender == value.target.value) {
           const userAccount = this.dataService.getUserAccount(element.id)
           userAccount.subscribe((user: any) => {
-            if (user.roles == (Number(this.signup.role.code) * 12).toString()) {
+            if (user.roles == (Number(this.signup.role.code) / 12).toString()) {
               console.log(element)
               this.listOfLeaders.length = 0
               this.listOfLeaders.push(element)
@@ -150,4 +143,25 @@ export class AddNewUserComponent implements OnInit {
     })
   }
 
+
+  // Kini siya nga function kay haha.. manual nga validation 
+  inputValidation() {
+    if (
+      this.signup.newUser.Address == "" ||
+      this.signup.newUser.Age == null ||
+      this.signup.newUser.Birthday == "" ||
+      this.signup.newUser.Contact_number == "" ||
+      this.signup.newUser.Email == "" ||
+      this.signup.newUser.Firstname == "" ||
+      this.signup.newUser.Gender == "" ||
+      this.signup.newUser.Lastname == "" ||
+      this.signup.newUser.Marital_status == "" ||
+      this.signup.newUser.isCGVIP == "" ||
+      this.signup.newUser.isSCVIP == ""
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
 }
