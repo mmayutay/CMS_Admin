@@ -29,8 +29,8 @@ export class DashboardComponent implements OnInit {
   };
 
   public allVipUsers = []
-  // public url = "https://group8finalthesis.herokuapp.com/api/"
-  public url = "http://localhost:8000/api/"
+  public url = "https://group8finalthesis.herokuapp.com/api/"
+  // public url = "http://localhost:8000/api/"
   public canvas: any;
   public sundayCelebration: any;
   public ctx;

@@ -18,12 +18,10 @@
 <div class="col-md-12">
     <div class="card-body all-icons">
         <div class="select-adjust-width">
-            <select>
-                <option>Apples</option>
-                <option selected>Pineapples</option>
-                <option>Chocklate</option>
-                <option>Pancakes</option>
-            </select>
+            <select class="w3-select" name="option" (change)="returnMembers($event.target.value)">
+                <option value="" disabled selected>Choose your option</option>
+                <option *ngFor="let data of dataService.leaders" [value]="data.leader.id">{{ data.leader.firstname + " " + data.leader.lastname }}</option>
+              </select>
         </div>
     </div>
 </div>
@@ -38,8 +36,8 @@
                             <div class="card-handler">
                                 <div class="name-display">
                                     <h2>
-                                        {{ dataService.leaders[0].leader.firstname }} {{
-                                        dataService.leaders[0].leader.lastname }}
+                                        {{ data[0].leader.firstname }} {{
+                                        data[0].leader.lastname }}
                                     </h2>
                                 </div>
                                 <table class="table">
@@ -54,7 +52,10 @@
                                             Sunday Celebration
                                         </th>
                                     </thead>
-                                    <tbody>
+                                    <tbody *ngFor="let member of data[0].members">
+                                        <td>{{ member.firstname + " " + member.lastname }}</td>
+                                        <td>{{ convertIfAttended(member.isCGVIP) }}</td>
+                                        <td>{{ convertIfAttended(member.isSCVIP) }}</td>
                                     </tbody>
                                 </table>
                             </div>

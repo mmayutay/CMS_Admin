@@ -48,4 +48,23 @@ export class ReportingsComponent implements OnInit {
       })
     });
   }
+
+
+  // This function is to return the members of the selected leader
+  returnMembers(data) {
+    this.data = this.dataService.leaders
+    var arrayhandler = []
+    this.data.forEach(element => {
+      if(element.leader.id == data) {
+        arrayhandler.push(element);
+        this.data = arrayhandler;
+      }
+    })
+  }
+
+  // 
+
+  convertIfAttended(attended) {
+    return attended === "true" ? "Attended" : "Not Attended"; 
+  }
 }

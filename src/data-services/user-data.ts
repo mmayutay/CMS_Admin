@@ -13,8 +13,8 @@ import { catchError } from 'rxjs/operators';
 export class LoginAndLogout {
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
-    // public url = 'https://group8finalthesis.herokuapp.com/api/'
-    public url = "http://localhost:8000/api/"
+    public url = 'https://group8finalthesis.herokuapp.com/api/'
+    // public url = "http://localhost:8000/api/"
     public authenticationKey = 'usersLogged'
     public allUsers = []
 

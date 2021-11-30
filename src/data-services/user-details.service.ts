@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 
 export class UserDetailsService {
-    // public url = "https://group8finalthesis.herokuapp.com/api/"
-    public url = "http://localhost:8000/api/"
+    public url = "https://group8finalthesis.herokuapp.com/api/"
+    // public url = "http://localhost:8000/api/"
 
     constructor(
         private http: HttpClient
@@ -20,6 +20,10 @@ export class UserDetailsService {
     // This function is to get the account of a certain user
     getUserAccount(id) {
         return this.http.get(this.url + 'user-account/' + id);
+    }
+
+    updateUser(updatedData) {
+        return this.http.post(this.url + 'updateUser', updatedData);
     }
 
 }

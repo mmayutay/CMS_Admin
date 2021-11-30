@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServicesService } from 'data-services/data-services.service';
+import Swal from 'sweetalert2';
 import { UserDetailsService } from '../../../data-services/user-details.service';
+import { UserModel } from './user.model';
 
 @Component({
     selector: 'user-cmp',
@@ -40,13 +43,13 @@ export class UserComponent implements OnInit {
 
     constructor(
         private userService: UserDetailsService,
+        private usermodel: UserModel
     ) {
 
     }
     ngOnInit() {
         const user = this.userService.getTheUsersInfo(localStorage.getItem('usersLogged'))
         user.subscribe((data: any) => {
-            console.log(data)
             this.userDetails = data[0]
             const account = this.userService.getUserAccount(localStorage.getItem('usersLogged'));
             account.subscribe((response: any) => {
@@ -54,8 +57,11 @@ export class UserComponent implements OnInit {
             })
         })
     }
-}
 
-export interface User {
-    
+    updateUser() {
+        const updateUser =  this.userService.updateUser(this.usermodel.returnUpdatedUser(this.userDetails));
+        updateUser.subscribe((response: any) => {
+            Swal.fire('Hooray!', 'User Updated Successfully!', 'success')
+        })
+    }
 }
