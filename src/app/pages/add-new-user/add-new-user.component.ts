@@ -29,11 +29,11 @@ export class AddNewUserComponent implements OnInit {
       Marital_status: '',
       Email: '',
       Contact_number: '',
-      Facebook: '',
-      Instagram: '',
-      Twitter: '',
+      Facebook: 'null',
+      Instagram: 'null',
+      Twitter: 'null',
       Category: '',
-      Description: '',
+      Description: 'null',
       isCGVIP: '',
       isSCVIP: ''
     }, groupBelong: {
